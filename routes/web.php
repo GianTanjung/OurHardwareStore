@@ -17,6 +17,52 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+// Week 2
+Route::get('/user/{id?}', function($id='') {
+    if ($id==true) echo 'detail user';
+    else echo 'list user';
+});
+//atau
+// Route::get('/user', function() {
+//     echo 'list user';
+// });
+// Route::get('/user/{id}', function($id) {
+//     echo 'list user';
+// });
+
+Route::get('/baju', function () {
+    echo 'ini halaman baju';
+});
+
+Route::get('/celana', function () {
+    echo 'ini halaman celana';
+})->name('celananih');
+
+Route::get('/celana/{id}/profile', function ($id) {
+    echo 'ini profile celana';
+})->name('celana');
+
+Route::get('/kategori/{id}', function ($id) {
+    return view('listkategori',['code' => $id]);
+})->name('listkategori');
+
+//AktivitasKelas
+Route::get('/kategori/{id}', function ($id) {
+    return view('listkategori',['code' => $id]);
+})->name('listkategori');
+Route::get('/kategori/{id}/detail', function ($id) {
+    return view('detailkategori',['code' => $id]);
+})->name('detailkategori');
+Route::get('/produk/{id}', function ($id) {
+    return view('listproduk',['code' => $id]);
+})->name('listproduk');
+Route::get('/produk/{id}/detail', function ($id) {
+    return view('detailproduk',['code' => $id]);
+})->name('detailproduk');
+
+
+
+//Week 1
 Route::get('/', function () {
     return view('welcome');
 });
@@ -411,28 +457,4 @@ Route::get('/featured', function () {
 Route::get('/promotion', function () {
     echo 'ini halaman promosi';
 });
-
-// Week 2
-Route::get('/user/{id?}', function($id='') {
-    if ($id==true) echo 'detail user';
-    else echo 'list user';
-});
-//atau
-// Route::get('/user', function() {
-//     echo 'list user';
-// });
-// Route::get('/user/{id}', function($id) {
-//     echo 'list user';
-// });
-
-Route::get('/baju', function () {
-    echo 'ini halaman baju';
-});
-
-Route::get('/celana', function () {
-    echo 'ini halaman celana';
-})->name('celananih');
-
-Route::get('/celana/{id}/profile', function ($id) {
-    echo 'ini profile celana';
-})->name('celana');
+?>
