@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // Week 2
 Route::get('/user/{id?}', function($id='') {
     if ($id==true) echo 'detail user';
-    else echo 'list user';
+    else echo 'list orang';
 });
 //atau
 // Route::get('/user', function() {
