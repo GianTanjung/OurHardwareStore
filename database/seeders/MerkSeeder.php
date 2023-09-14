@@ -14,16 +14,43 @@ class MerkSeeder extends Seeder
     public function run()
     {
         DB::table('merks')->insert([
-            'nama' => 'Sunlex'
+            'nama' => 'American Standard'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Philps'
+            'nama' => 'Asian Paints'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'NIppon Paint'
+            'nama' => 'Avian'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Aquaproof'
+            'nama' => 'Dekson'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Dulux'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Meridian'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Modena'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Mowilex'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Nippon Paint'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Panasonic'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Philips'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Roman'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Sandimas'
         ]);
     }
 }
