@@ -1,9 +1,10 @@
 <?php
 
 namespace Database\Seeders;
-use DB;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {

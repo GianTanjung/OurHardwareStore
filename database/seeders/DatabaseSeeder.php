@@ -18,7 +18,13 @@ class DatabaseSeeder extends Seeder
             ProdukSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-            PelangganSeeder::class
+            PelangganSeeder::class,
+            PromoSeeder::class,
+            PembayaranSeeder::class,
+            TipePembayaranSeeder::class,
+            TransaksiSeeder::class,
+            DetailTransaksiSeeder::class
+
         ]);
         // User::factory(10)->create();
     }
