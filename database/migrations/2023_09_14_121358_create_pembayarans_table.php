@@ -16,11 +16,10 @@ return new class extends Migration
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->double('biayaAdmin');          
-        });
-        Schema::table('pembayarans', function (Blueprint $table) {
-            $table->unsignedBigInteger('tipePembayaran_id');
-            $table->foreign('tipePembayaran_id')->preferences('id')->on('pembayarans');
+            $table->double('biaya_admin');          
+            $table->unsignedBigInteger('tipe_pembayaran_id');
+            $table->foreign('tipe_pembayaran_id')->references('id')->on('tipe_pembayarans');
+            $table->timestamps();
         });
     }
 
@@ -31,10 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('pembayarans', function(Blueprint $table){
-            $table->dropForeign(['tipePembayaran_id']);
-            $table->dropColumn('tipePembayaran_id');
-        });
         Schema::dropIfExists('pembayarans');
     }
 };

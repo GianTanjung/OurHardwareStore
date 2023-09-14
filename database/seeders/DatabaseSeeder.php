@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PelangganSeeder::class,
             PromoSeeder::class,
-            PembayaranSeeder::class,
             TipePembayaranSeeder::class,
+            PembayaranSeeder::class,
             TransaksiSeeder::class,
             DetailTransaksiSeeder::class
 

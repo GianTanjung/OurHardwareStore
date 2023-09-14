@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('detail_transaksis', function (Blueprint $table) {
-            $table->unsignedBigInteger('produk_id');
-            $table->foreign('produk_id')->preferences('id')->on('detail_transaksis');
-            $table->unsignedBigInteger('transaksi_id');
-            $table->foreign('transaksi_id')->preferences('id')->on('detail_transaksis');
-        });
         Schema::create('detail_transaksis', function (Blueprint $table) {
+            $table->unsignedBigInteger('produk_id');
+            $table->foreign('produk_id')->references('id')->on('produks');
+            $table->unsignedBigInteger('transaksi_id');
+            $table->foreign('transaksi_id')->references('id')->on('transaksis');
             $table->integer('kuantitas');
         });
     }
@@ -31,12 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('detail_transaksis', function(Blueprint $table){
-            $table->dropForeign(['produk_id']);
-            $table->dropColumn('produk_id');
-            $table->dropForeign(['transaksi_id']);
-            $table->dropColumn('transaksi_id');
-        });
         Schema::dropIfExists('detail_transaksis');
     }
 };
