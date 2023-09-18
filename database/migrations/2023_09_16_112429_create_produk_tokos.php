@@ -29,6 +29,12 @@ class CreateProdukTokos extends Migration
      */
     public function down()
     {
+        Schema::table('produk_tokos', function (Blueprint $table) {
+            $table->dropForeign(['produk_id']);
+            $table->dropColumn('produk_id');
+            $table->dropForeign(['toko_id']);
+            $table->dropColumn('toko_id');
+        });
         Schema::dropIfExists('produk_tokos');
     }
 }

@@ -16,13 +16,12 @@ class CreateTokos extends Migration
         Schema::create('tokos', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('no_hp');
             $table->string('alamat');
+            $table->string('kode_pos');
             $table->string('kecamatan');
             $table->string('kota');
             $table->string('provinsi');
-            $table->string('noTelp');
-            $table->string('kodePos');
-            $table->string('warna');
             $table->timestamps();
         });
 

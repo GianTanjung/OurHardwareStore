@@ -29,6 +29,12 @@ class CreateKeranjangs extends Migration
      */
     public function down()
     {
+        Schema::table('keranjangs', function (Blueprint $table) {
+            $table->dropForeign(['pelaggan_id']);
+            $table->dropColumn('pelanggan_id');
+            $table->dropForeign(['produk_id']);
+            $table->dropColumn('produk_id');
+        });
         Schema::dropIfExists('keranjangs');
     }
 }

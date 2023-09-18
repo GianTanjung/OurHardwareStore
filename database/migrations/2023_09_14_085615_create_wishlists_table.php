@@ -30,6 +30,12 @@ class CreateWishlistsTable extends Migration
      */
     public function down()
     {
+        Schema::table('wishlists', function (Blueprint $table) {
+            $table->dropForeign(['pelanggan_id']);
+            $table->dropColumn('pelanggan_id');
+            $table->dropForeign(['produk_id']);
+            $table->dropColumn('produk_id');
+        });
         Schema::dropIfExists('wishlists');
     }
 }

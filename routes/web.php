@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\MerkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-// Week 2
+// Week 4
+Route::resource('produk', ProdukController::class);
+Route::resource('merk', MerkController::class);
+Route::get('albumProduk', [ProdukController::class, 'album']);
+
 Route::get('/user/{id?}', function($id='') {
     if ($id==true) echo 'detail user';
     else echo 'list orang';

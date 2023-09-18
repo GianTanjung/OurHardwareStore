@@ -16,13 +16,13 @@ class CreatePelanggansTable extends Migration
         Schema::create('pelanggans', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('noHP');
+            $table->string('no_hp');
             $table->string('alamat');
+            $table->string('kode_pos');
+            $table->string('kecamatan');
             $table->string('kota');
             $table->string('provinsi');
             $table->string('negara');
-            $table->string('kecamatan');
-            $table->string('kodePos');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
@@ -36,6 +36,10 @@ class CreatePelanggansTable extends Migration
      */
     public function down()
     {
+        Schema::table('pelanggans', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        });
         Schema::dropIfExists('pelanggans');
     }
 }

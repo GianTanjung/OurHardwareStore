@@ -16,15 +16,12 @@ class Produks extends Migration
         Schema::create('produks', function(Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->double('hargaAsli');
-            $table->double('hargaSpesial');
-            $table->float('diskon');
+            $table->string('deskripsi');
             $table->string('fotoProduk');
-            $table->string('ukuran');
-            $table->integer('stok');
+            $table->string('tipe');
+            $table->double('harga');
             $table->string('warna');
-            $table->dateTime('tanggalMulaiHargaSpesial');
-            $table->dateTime('tanggalAkhirHargaSpesial');
+            $table->timestamps();
         });
 
     }
@@ -36,6 +33,14 @@ class Produks extends Migration
      */
     public function down()
     {
+        Schema::table('produks', function (Blueprint $table) {
+            $table->dropForeign(['merk_id']);
+            $table->dropColumn('merk_id');
+            $table->dropForeign(['ruangan_id']);
+            $table->dropColumn('ruangan_id');
+            $table->dropForeign(['kategori_id']);
+            $table->dropColumn('kategori_id');
+        });
         Schema::dropIfExists('produks');
     }
 }

@@ -26,6 +26,6 @@ class Ruangans extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('produks');
+        Schema::dropIfExists('ruangans');
     }
 }

@@ -22,8 +22,9 @@ class DatabaseSeeder extends Seeder
             PromoSeeder::class,
             TipePembayaranSeeder::class,
             PembayaranSeeder::class,
-            TransaksiSeeder::class,
-            DetailTransaksiSeeder::class
+            KategoriSeeder::class,
+            // TransaksiSeeder::class,
+            // DetailTransaksiSeeder::class
 
         ]);
         // User::factory(10)->create();

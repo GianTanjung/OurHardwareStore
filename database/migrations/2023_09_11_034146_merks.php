@@ -16,6 +16,8 @@ class Merks extends Migration
         Schema::create('merks', function(Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('foto_merk');
+            $table->timestamps();
         });
     }
 
