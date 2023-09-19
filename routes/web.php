@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PelangganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +25,10 @@ use App\Http\Controllers\MerkController;
 // Week 4
 Route::resource('produk', ProdukController::class);
 Route::resource('merk', MerkController::class);
+Route::resource('role', RoleController::class);
+Route::resource('user', UserController::class);
+Route::resource('pelanggan', PelangganController::class);
+
 Route::get('albumProduk', [ProdukController::class, 'album']);
 
 Route::get('/user/{id?}', function($id='') {

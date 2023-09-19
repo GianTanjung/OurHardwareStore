@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-
-class ProdukController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +15,9 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $queryRaw = DB::select(DB::raw("select * from produks"));
-        $queryBuilder = DB::table('produks')->get();
-        $queryModel = Product::all();
+        $queryBuilder = DB::table('users')->get();
 
-        // dd($queryRaw);
-        // dd($queryBuilder);
-        // dd($queryModel);
-
-        return view('produk.Index',compact('queryBuilder'));
+        return view('user.index',compact('queryBuilder'));
     }
 
     /**
@@ -51,21 +44,21 @@ class ProdukController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        echo("ID: ".$id);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
     }
@@ -74,10 +67,10 @@ class ProdukController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -85,16 +78,11 @@ class ProdukController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
-    }
-
-    public function album(){
-        $ProdukList = DB::table('produks')->get();
-        return view('produk.album',compact('ProdukList'));
     }
 }
