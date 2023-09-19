@@ -46,21 +46,42 @@ class ProdukSeeder extends Seeder
         //DEKSON
         DB::table('produks')->insert([
             'nama' => 'DEKKSON PADLOCK PL200 L 50MM',
+            'deskripsi' => 'Upgrade engsel pintu atau jendela Anda dengan engsel kupu-kupu dari Dekkson tipe ESS EL 4X3X3MM 4BB SSS. Terbuat dari stainless steel dan dilengkapi dengan 4 ball bearing, engsel ini memiliki kapasitas beban maksimum 75 Kg per pasang. Dapatkan kualitas dan kekuatan terbaik untuk pintu atau jendela Anda dengan engsel Dekkson."
+
+            Berikut adalah beberapa informasi mengenai Dekkson Engsel S4BB:
+            
+            Kualitas: Engsel ini terbuat dari bahan berkualitas tinggi yang tahan lama dan kuat. Material yang digunakan memberikan kekuatan dan daya tahan yang baik terhadap beban pintu atau jendela.
+            
+            Desain: Dekkson Engsel S4BB memiliki desain yang elegan dan tampilan yang menarik. Desainnya yang ergonomis memudahkan pemasangan dan penggunaan engsel ini.
+            
+            Fungsi: Engsel ini digunakan untuk menghubungkan pintu atau jendela dengan bingkai atau dinding. Engsel ini memungkinkan pintu atau jendela untuk dibuka dan ditutup dengan lancar.
+            
+            Keamanan: Dekkson Engsel S4BB dirancang dengan fitur keamanan yang kuat, menjaga pintu atau jendela tetap stabil dan terkunci dengan aman.
+            
+            Perawatan: Untuk menjaga kinerja dan keawetan engsel ini, disarankan untuk membersihkannya secara rutin dan memeriksa apakah ada keausan atau kerusakan yang perlu diperbaiki.
+            
+            Aplikasi: Engsel ini cocok untuk digunakan pada pintu atau jendela di rumah, kantor, atau bangunan komersial lainnya. Engsel ini dapat digunakan untuk berbagai jenis pintu atau jendela dengan berat yang sesuai.
+            
+            Spesifikasi Produk :
+                - Merk : Dekkson
+                - Tipe : ESS EL 4X3X3MM 4BB SSS
+                - Ball Bearing = 4 Ball Bearing
+                - Kapasitas : Beban Maksimum 75 Kg / Pasang (2 Pcs)
+                - Material : Stainless Steel',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/d/e/dekks0204240001_bu.png',
             'tipe' => 'PADLOCK',
             'harga' => '122700',
             'merk_id' => '4', 
         ]);
         DB::table('produks')->insert([
-            'nama' => 'DEKKSON PADLOCK PL100 40MM',
-            'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/d/e/dekks0203610002_bu.png',
-            'tipe' => 'PADLOCK',
-            'harga' => '51400',
-            'merk_id' => '4', 
-        ]);
-        DB::table('produks')->insert([
             'nama' => 'DEKKSON KUNCI LACI DL138',
-            'deskripsi' => 'Kunci laci Dekkson DL138 adalah jenis kunci laci yang digunakan untuk mengunci laci atau drawer Kunci laci ini memiliki ukuran 19 mm x 22 mm dan terbuat dari bahan paduan seng (zinc alloy) dengan finishing chrome  plate. Kunci laci Dekkson DL138 juga memiliki dimensi ukuran 40 x 40 mm dengan ketebalan 5 mm dan diameter kunci 20 mm',
+            'deskripsi' => 'Kunci laci Dekkson DL138 adalah jenis kunci laci yang digunakan untuk mengunci laci atau drawer Kunci laci ini memiliki ukuran 19 mm x 22 mm dan terbuat dari bahan paduan seng (zinc alloy) dengan finishing chrome  plate. Kunci laci Dekkson DL138 juga memiliki dimensi ukuran 40 x 40 mm dengan ketebalan 5 mm dan diameter kunci 20 mm.
+            Spesifikasi Produk :
+                - Merk : Dekkson
+                - Tipe : DL 138
+                - Ukuran : 19 Mm x 22 Mm
+                - Material : Zinc Alloy
+                - Finishing / Warna : Chrome Plate',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/d/e/dekks030004_bu.jpg',
             'tipe' => 'DRAWER LOCK',
             'harga' => '13400',
@@ -68,6 +89,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'DEKKSON CASEMENT CH425 R/H',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/d/e/dekks030004_bu.jpg',
             'tipe' => '	RAMBUNCIS',
             'harga' => '15000',
@@ -77,6 +99,7 @@ class ProdukSeeder extends Seeder
         //DULUX
         DB::table('produks')->insert([
             'nama' => 'DULUX PENTALITE A923 CEILING PAINT 25KG',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/d/u/dulux0300180001_pa.jpg',
             'tipe' => '	CAT CEILING',
             'harga' => '855000',
@@ -84,6 +107,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'DULUX PENTALITE A923 CEILING PAINT 25KG',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/d/u/dulux0300180001_pa.jpg',
             'tipe' => '	CAT CEILING',
             'harga' => '855000',
@@ -91,6 +115,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'DULUX WEATHERSHIELD DUAL SHIELD A918-2290M BRILLIANT WHITE 20LT',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/d24a6b57e355322e93abe513866d1b5c/d/u/dulux0300290013_pa.png',
             'tipe' => '	CAT TEMBOK',
             'harga' => '2473600',
@@ -98,6 +123,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'DULUX EASY CLEAN ANTI VIRAL A937-1501 WHITE 20LT',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/d/u/dulux0300280005_pa.jpg',
             'tipe' => '	CAT TEMBOK',
             'harga' => '1844300',
@@ -107,6 +133,7 @@ class ProdukSeeder extends Seeder
         //MERIDIAN
         DB::table('produks')->insert([
             'nama' => 'MERIDIAN WHITE SHOWER BOX NON TRAY SIKU SSC-20 (B)',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/m/e/merid0400340001_p1.jpg',
             'tipe' => '	SHOWER BOX SET',
             'harga' => '2301000',
@@ -114,6 +141,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'MERIDIAN BASIN CABINET BC 619-60',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/m/e/merid0900800001_p1.jpg',
             'tipe' => 'BASIN CABINET SET',
             'harga' => '2558000',
@@ -123,6 +151,7 @@ class ProdukSeeder extends Seeder
         //MODENA
         DB::table('produks')->insert([
             'nama' => 'MODENA KOMPOR TANAM BIH BH1725 (BL) CRISTA',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/m/e/merid0900800001_p1.jpg',
             'tipe' => 'BUILT IN HOB',
             'harga' => '4049444',
@@ -130,6 +159,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'MODENA DISPENSER DD 68 L',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/m/o/moden040015_hw.jpg',
             'tipe' => 'BUILT IN HOB',
             'harga' => '4173000',
@@ -137,6 +167,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'MODENA KOMPOR TANAM HOB BH 2723 LL',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/m/e/merid0900800001_p1.jpg',
             'tipe' => 'BUILT IN HOB',
             'harga' => '6115278',
@@ -144,6 +175,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'MODENA DISPENSER DD 65 L',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/m/o/moden040017_hw.png',
             'tipe' => '	DISPENSER',
             'harga' => '3622917',
@@ -153,6 +185,7 @@ class ProdukSeeder extends Seeder
         //Nippon Paint
         DB::table('produks')->insert([
             'nama' => 'NIPPON SAND PAPER 240',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/n/i/nippo0500110003_pa.jpg',
             'tipe' => 'AMPLAS',
             'harga' => '3500',
@@ -189,6 +222,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'PANASONIC DOWNLIGHT OUT BOW NLP72306 HITAM',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/p/a/panas060225_el.jpg',
             'tipe' => 'DOWNLIGHT KONVENSIONAL (E27)',
             'harga' => '92900',
@@ -196,6 +230,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'PANASONIC MESIN CUCI NA-127XB1WNE',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/1/2/127xb1wne.jpg',
             'tipe' => 'MESIN CUCI',
             'harga' => '5331000',
@@ -205,6 +240,7 @@ class ProdukSeeder extends Seeder
         //Philips
         DB::table('produks')->insert([
             'nama' => 'PHILIPS UFO LED BULB 24W E27 6500K 230V',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/p/h/phili050179_el.png',
             'tipe' => 'BOHLAM LED',
             'harga' => '220900',
@@ -212,6 +248,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'PHILIPS TL LED T8 16W 765 1200MM DAYLIGHT',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/p/h/phili0500270003_2_el.jpg',
             'tipe' => 'TL LED',
             'harga' => '87000',
@@ -219,6 +256,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'PHILIPS MESON 59464 13W 65K DOWNLIGHT DAYLIGHT PACK/3',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/p/h/phili061101_el.jpg',
             'tipe' => 'DOWNLIGHT LED',
             'harga' => '287200',
@@ -226,6 +264,7 @@ class ProdukSeeder extends Seeder
         ]);
         DB::table('produks')->insert([
             'nama' => 'PHILIPS LED BULB 6W E27 6500K GEN8 PACK/4',
+            'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/p/h/phili050167_el.png',
             'tipe' => 'BOHLAM LED',
             'harga' => '158700',

@@ -18,17 +18,14 @@ class PembayaranSeeder extends Seeder
         DB::table('pembayarans')->insert([
             'nama' => 'BCA VA',
             'biaya_admin' => '1000',
-            'tipe_pembayaran_id' => '1'
         ]);
         DB::table('pembayarans')->insert([
             'nama' => 'BCA Kredit',
             'biaya_admin' => '1000',
-            'tipe_pembayaran_id' => '1'
         ]);
         DB::table('pembayarans')->insert([
             'nama' => 'Cash On Delivery',
-            'biaya_admin' => '0',
-            'tipe_pembayaran_id' => '1'
+            'biaya_admin' => '0'
         ]);
     }
 }

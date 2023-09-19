@@ -22,12 +22,12 @@ class PromoSeeder extends Seeder
         ]);
         DB::table('promos')->insert([
             'nama' => '11 Mei',
-            'kodePromo' => 'DEPOBANGUNANMEI11',
+            'kode_promo' => 'DEPOBANGUNANMEI11',
             'deskripsi' => 'Promo 11 Mei nih bosque'
         ]);
         DB::table('promos')->insert([
             'nama' => '1 Januari',
-            'kodePromo' => 'DEPOBANGUNANJAN1',
+            'kode_promo' => 'DEPOBANGUNANJAN1',
             'deskripsi' => 'Promo 1 Januari nih bosque, Tahun Baru'
         ]);
     }
