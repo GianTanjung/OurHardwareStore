@@ -18,15 +18,13 @@ class ProdukController extends Controller
     {
         // $queryRaw = DB::select(DB::raw("select * from produks"));
         $queryBuilder = DB::table('produks')->get();
-        return view('produk.Index',compact('queryBuilder'));
         // $queryModel = Product::all();
 
         // dd($queryRaw);
         // dd($queryBuilder);
         // dd($queryModel);
 
-        
-
+        return view('produk.Index',compact('queryBuilder'));
     }
 
     /**

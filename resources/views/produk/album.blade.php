@@ -16,9 +16,9 @@
                         <div class="card-body"> 
                             <div class="clearfix mb-3"> 
                                 <span class="float-start badge rounded-pill bg-primary">{{$produk->nama}}</span> 
-                                <span class="float-end price-hp">{{$produk->hargaAsli}}</span> 
+                                <span class="float-end price-hp">{{$produk->harga}}</span> 
                             </div> 
-                            <h5 class="card-title">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam quidem eaque ut eveniet aut quis rerum. Asperiores accusamus harum ducimus velit odit ut. Saepe, iste optio laudantium sed aliquam sequi.</h5> 
+                            <h5 class="card-title">{{$produk->deskripsi}}</h5> 
                             <div class="text-center my-4"> 
                                 <a href="#" class="btn btn-warning">Check offer</a> 
                             </div> 
@@ -27,7 +27,7 @@
                      </div>
                 </div>
             </div> 
-                    @endforeach
+    @endforeach
 
     
 </body>
