@@ -16,11 +16,16 @@ class Produks extends Migration
         Schema::create('produks', function(Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->string('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->string('fotoProduk');
             $table->string('tipe');
             $table->double('harga');
-            $table->string('warna');
+            $table->unsignedBigInteger('merk_id')->nullable();
+            $table->foreign('merk_id')->references('id')->on('merks');
+            $table->unsignedBigInteger('ruangan_id')->nullable();
+            $table->foreign('ruangan_id')->references('id')->on('ruangans');
+            $table->unsignedBigInteger('kategori_id')->nullable();
+            $table->foreign('kategori_id')->references('id')->on('kategoris');
             $table->timestamps();
         });
 

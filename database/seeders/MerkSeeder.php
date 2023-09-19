@@ -14,43 +14,84 @@ class MerkSeeder extends Seeder
     public function run()
     {
         DB::table('merks')->insert([
-            'nama' => 'American Standard'
+            'nama' => 'American Standard',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_13.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Asian Paints'
+            'nama' => 'Asian Paints',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_22.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Avian'
+            'nama' => 'Avian',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_14.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Dekson'
+            'nama' => 'Dekson',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_15.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Dulux'
+            'nama' => 'Dulux',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_02.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Meridian'
+            'nama' => 'Meridian',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_20.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Modena'
+            'nama' => 'Modena',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_19.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Mowilex'
+            'nama' => 'Mowilex',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_12.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Nippon Paint'
+            'nama' => 'Nippon Paint',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_05.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Panasonic'
+            'nama' => 'Panasonic',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_31.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Philips'
+            'nama' => 'Philips',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_06.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Roman'
+            'nama' => 'Roman',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_16.jpg'
         ]);
         DB::table('merks')->insert([
-            'nama' => 'Sandimas'
+            'nama' => 'Sandimas',
+            'foto_merk' => 'https://www.depobangunan.co.id/media/brand/images/l/o/logo_03.jpg'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Sanlex',
+            'foto_merk' => 'https://picsum.photos/200/300'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Flexy Coat',
+            'foto_merk' => 'https://picsum.photos/200/300'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Arca',
+            'foto_merk' => 'https://picsum.photos/200/300'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Brillo',
+            'foto_merk' => 'https://picsum.photos/200/300'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Magix',
+            'foto_merk' => 'https://picsum.photos/200/300'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'Aquaproof',
+            'foto_merk' => 'https://picsum.photos/200/300'
+        ]);
+        DB::table('merks')->insert([
+            'nama' => 'SCG',
+            'foto_merk' => 'https://picsum.photos/200/300'
         ]);
     }
 }

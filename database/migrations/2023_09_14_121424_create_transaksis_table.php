@@ -22,14 +22,13 @@ return new class extends Migration
             $table->double('grand_total');
             $table->enum('pengiriman', ['Ambil Toko','Antar Di tempat']);      
             $table->unsignedBigInteger('pelanggan_id');
-            $table->foreign('pelanggan_id')->references('id')->on('transaksis');
+            $table->foreign('pelanggan_id')->references('id')->on('pelanggans');
             $table->unsignedBigInteger('promo_id');
-            $table->foreign('promo_id')->references('id')->on('transaksis');
+            $table->foreign('promo_id')->references('id')->on('promos');
             $table->unsignedBigInteger('pembayaran_id');
-            $table->foreign('pembayaran_id')->references('id')->on('transaksis');   
+            $table->foreign('pembayaran_id')->references('id')->on('pembayarans');   
             $table->unsignedBigInteger('toko_id');
-            $table->foreign('toko_id')->references('id')->on('transaksis');
-            
+            $table->foreign('toko_id')->references('id')->on('tokos');
         });
     }
 
@@ -47,7 +46,7 @@ return new class extends Migration
             $table->dropColumn('promo_id');
             $table->dropForeign(['pembayaran_id']);
             $table->dropColumn('pembayaran_id');
-            $table->dropForeign('toko_id');
+            $table->dropForeign(['toko_id']);
             $table->dropColumn('toko_id');
         });
         Schema::dropIfExists('transaksis');

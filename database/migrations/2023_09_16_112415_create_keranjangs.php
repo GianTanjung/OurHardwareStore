@@ -16,8 +16,10 @@ class CreateKeranjangs extends Migration
         Schema::create('keranjangs', function (Blueprint $table) {
             $table->id();
             $table->integer('kuantitas');
-            $table->foreignId('produk_id')->constrained('produks');
-            $table->foreignId('pelanggan_id')->constrained('pelanggans');
+            $table->unsignedBigInteger('pelanggan_id');
+            $table->foreign('pelanggan_id')->references('id')->on('pelanggans');
+            $table->unsignedBigInteger('produk_id');
+            $table->foreign('produk_id')->references('id')->on('produks');
             $table->timestamps();
         });
     }
@@ -30,7 +32,7 @@ class CreateKeranjangs extends Migration
     public function down()
     {
         Schema::table('keranjangs', function (Blueprint $table) {
-            $table->dropForeign(['pelaggan_id']);
+            $table->dropForeign(['pelanggan_id']);
             $table->dropColumn('pelanggan_id');
             $table->dropForeign(['produk_id']);
             $table->dropColumn('produk_id');

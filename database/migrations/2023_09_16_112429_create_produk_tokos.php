@@ -14,10 +14,12 @@ class CreateProdukTokos extends Migration
     public function up()
     {
         Schema::create('produk_tokos', function (Blueprint $table) {
-            $table->id();            
-            $table->foreignId('produk_id')->constrained('produks');
-            $table->foreignId('toko_id')->constrained('tokos');
-            $table->float('stok');
+            $table->id();        
+            $table->unsignedBigInteger('produk_id');
+            $table->foreign('produk_id')->references('id')->on('produks');
+            $table->unsignedBigInteger('toko_id');
+            $table->foreign('toko_id')->references('id')->on('tokos');
+            $table->integer('stok');
             $table->timestamps();
         });
     }

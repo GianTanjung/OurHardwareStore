@@ -16,13 +16,19 @@ class PromoSeeder extends Seeder
     public function run()
     {
         DB::table('promos')->insert([
-            'kodePromo' => 'DEPOBANGUNANMAR10'
+            'nama' => '10 Maret',
+            'kode_promo' => 'DEPOBANGUNANMAR10',
+            'deskripsi' => 'Promo 10 Maret nih bosque'
         ]);
         DB::table('promos')->insert([
-            'kodePromo' => 'DEPOBANGUNANMEI11'
+            'nama' => '11 Mei',
+            'kodePromo' => 'DEPOBANGUNANMEI11',
+            'deskripsi' => 'Promo 11 Mei nih bosque'
         ]);
         DB::table('promos')->insert([
-            'kodePromo' => 'DEPOBANGUNANJAN1'
+            'nama' => '1 Januari',
+            'kodePromo' => 'DEPOBANGUNANJAN1',
+            'deskripsi' => 'Promo 1 Januari nih bosque, Tahun Baru'
         ]);
     }
 }

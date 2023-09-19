@@ -15,8 +15,10 @@ class CreateRatingProduks extends Migration
     {
         Schema::create('rating_produks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produk_id')->constrained('produks');
-            $table->foreignId('rating_id')->constrained('ratings');
+            $table->unsignedBigInteger('produk_id');
+            $table->foreign('produk_id')->references('id')->on('produks');
+            $table->unsignedBigInteger('rating_id');
+            $table->foreign('rating_id')->references('id')->on('ratings');
             $table->integer('jumlah');
             $table->double('rating');
             $table->timestamps();

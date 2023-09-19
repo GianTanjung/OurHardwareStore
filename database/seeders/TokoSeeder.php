@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class TokoSeeder extends Seeder
 {
@@ -15,39 +16,30 @@ class TokoSeeder extends Seeder
     {
         DB::table('tokos')->insert([
             'nama' => 'Depo Sidoarjo',
+            'no_hp' => '081133308281',
             'alamat' => 'Jl Ahmad Yani 41',
-            'kecamata' => 'Gedangan',
+            'kode_pos' => '61254',
+            'kecamatan' => 'Gedangan',
             'kota' => 'Sidoarjo',
-            'provinsi' => 'Jawa timur',
-            'noTelp' => '081133308281',
-            'kodePos' => '61254'
+            'provinsi' => 'Jawa timur'
         ]);
         DB::table('tokos')->insert([
             'nama' => 'Depo Malang',
+            'no_hp' => '081133308281',
             'alamat' => 'Jl Raya Karanglo 69',
-            'kecamata' => 'Blimbing',
+            'kode_pos' => '65153',
+            'kecamatan' => 'Blimbing',
             'kota' => 'Malanng',
-            'provinsi' => 'Jawa timur',
-            'noTelp' => '081133308281',
-            'kodePos' => '65153'
+            'provinsi' => 'Jawa timur'
         ]);
         DB::table('tokos')->insert([
             'nama' => 'Depo Surabaya',
+            'no_hp' => '089683213464',
             'alamat' => 'Jl Rajawali 55',
-            'kecamata' => 'Krembangan',
+            'kode_pos' => '60175',
+            'kecamatan' => 'Krembangan',
             'kota' => 'Surabaya',
-            'provinsi' => 'Jawa timur',
-            'noTelp' => '089683213464',
-            'kodePos' => '60175'
-        ]);
-        DB::table('tokos')->insert([
-            'nama' => 'Depo Surabaya',
-            'alamat' => 'Jl Kalilom Lor Indah 10',
-            'kecamata' => 'Kedinding',
-            'kota' => 'Surabaya',
-            'provinsi' => 'Jawa timur',
-            'noTelp' => '081133308281',
-            'kodePos' => '60129'
+            'provinsi' => 'Jawa timur'
         ]);
     }
 }
