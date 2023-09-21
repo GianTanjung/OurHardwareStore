@@ -6,6 +6,9 @@ use App\Http\Controllers\MerkController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\DetailTransaksiController;
+use App\Http\Controllers\PromoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +31,9 @@ Route::resource('merk', MerkController::class);
 Route::resource('role', RoleController::class);
 Route::resource('user', UserController::class);
 Route::resource('pelanggan', PelangganController::class);
+Route::resource('transaksi', TransaksiController::class);
+Route::resource('detailtransaksi', DetailTransaksiController::class);
+Route::resource('promo', PromoController::class);
 
 Route::get('albumProduk', [ProdukController::class, 'album']);
 
