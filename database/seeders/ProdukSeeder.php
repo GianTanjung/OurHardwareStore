@@ -106,14 +106,6 @@ class ProdukSeeder extends Seeder
             'merk_id' => '5', 
         ]);
         DB::table('produks')->insert([
-            'nama' => 'DULUX PENTALITE A923 CEILING PAINT 25KG',
-            'deskripsi' => '',
-            'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/71f305564ac6e04ecc05726940a4946c/d/u/dulux0300180001_pa.jpg',
-            'tipe' => '	CAT CEILING',
-            'harga' => '855000',
-            'merk_id' => '5', 
-        ]);
-        DB::table('produks')->insert([
             'nama' => 'DULUX WEATHERSHIELD DUAL SHIELD A918-2290M BRILLIANT WHITE 20LT',
             'deskripsi' => '',
             'fotoProduk' => 'https://www.depobangunan.co.id/media/catalog/product/cache/d24a6b57e355322e93abe513866d1b5c/d/u/dulux0300290013_pa.png',
