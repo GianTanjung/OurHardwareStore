@@ -15,9 +15,12 @@ class DetailTransaksiController extends Controller
      */
     public function index()
     {
-        $queryRaw = DB::select(DB::raw("select * from detail_transaksis"));
-        $queryBuilder = DB::table('detail_transaksis')->get();
-        $queryModel = DetailTransaksi::all();
+        $transactionId = 1;
+        $queryRaw = DB::select('SELECT * FROM detail_transaksis WHERE transaksi_id = ?', [$transactionId]);
+
+        $queryBuilder = DB::table('detail_transaksis')->where('transaksi_id', 1)->first();
+
+        $queryModel = DetailTransaksi::where('transaksi_id', 1)->get();;
 
         return view('detailtransaksi.Index',compact('queryBuilder'));
     }

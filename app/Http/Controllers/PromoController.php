@@ -15,8 +15,10 @@ class PromoController extends Controller
      */
     public function index()
     {
-        $queryRaw = DB::select(DB::raw("select * from promos"));
+        $queryRaw = DB::select(DB::raw('select * from promos'));
+
         $queryBuilder = DB::table('promos')->get();
+        
         $queryModel = Promo::all();
 
         return view('promo.Index',compact('queryBuilder'));
