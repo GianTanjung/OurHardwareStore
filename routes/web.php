@@ -9,6 +9,8 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DetailTransaksiController;
 use App\Http\Controllers\PromoController;
+use App\Http\Controllers\RuanganController;
+use App\Http\Controllers\TokoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,8 @@ Route::resource('merk', MerkController::class);
 Route::resource('role', RoleController::class);
 Route::resource('user', UserController::class);
 Route::resource('pelanggan', PelangganController::class);
+Route::get('ruangan', [RuanganController::class, 'index']);
+Route::get('toko', [TokoController::class, 'index']);
 
 Route::resource('transaksi', TransaksiController::class);
 Route::resource('detailtransaksi', DetailTransaksiController::class);
