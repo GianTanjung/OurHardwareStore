@@ -18,7 +18,7 @@ return new class extends Migration
             $table->dateTime('tanggal_transaksi');
             $table->dateTime('tanggal_jatuh_tempo');
             $table->datetime('tanggal_bayar');
-            $table->enum('status',['Sudah Bayar','Menunggu Pembayaran','Dibatalkan']);
+            $table->enum('status',['Sudah Bayar','Menunggu Pembayaran','Dibatalkan','Selesai']);
             $table->double('grand_total');
             $table->enum('pengiriman', ['Ambil Toko','Antar Di tempat']);      
             $table->unsignedBigInteger('pelanggan_id');

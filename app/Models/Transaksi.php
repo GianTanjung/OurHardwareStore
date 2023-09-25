@@ -9,4 +9,9 @@ class Transaksi extends Model
 {
     protected $table = 'transaksis';
     use HasFactory;
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }
