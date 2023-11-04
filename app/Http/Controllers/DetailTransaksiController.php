@@ -20,7 +20,7 @@ class DetailTransaksiController extends Controller
 
         $queryBuilder = DB::table('detail_transaksis')->where('transaksi_id', 1)->first();
 
-        $queryModel = DetailTransaksi::where('transaksi_id', 1)->get();;
+        $queryModel = DetailTransaksi::where('transaksi_id', 1)->get();
 
         return view('detailtransaksi.Index',compact('queryBuilder'));
     }
