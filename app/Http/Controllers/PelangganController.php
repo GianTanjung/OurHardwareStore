@@ -15,9 +15,8 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $queryBuilder = DB::table('pelanggans')->get();
-
-        return view('pelanggan.index',compact('queryBuilder'));
+        $pelangganList = Pelanggan::all();
+        return view('pelanggan.pelangganList',compact('pelangganList'));
     }
 
     /**

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
-use App\Models\Product;
+use App\Models\Kategori;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
-
-class ProdukController extends Controller
+class KategoriController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +15,18 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $queryRaw = DB::select(DB::raw("select * from produks"));
-        $queryBuilder = DB::table('produks')->get();
-        $listProduct = Product::all();
-
-        // dd($queryRaw);
-        // dd($queryBuilder);
-        // dd($queryModel);
-
-        return view('listproduk',compact('listProduct'));
+        $kategoriList = Kategori::all();
+        return view('kategori.kategoriList',compact('kategoriList'));
     }
-
+    public function listProduk($id){
+        $produkList = Produk::where('produks.kategori_id',$id)
+                        ->join('merks','produks.merk_id', '=','merks.id')
+                        ->join('kategoris','produks.kategori_id', '=','kategoris.id')
+                        ->join('ruangans','produks.ruangan_id', '=','ruangans.id')
+                        ->select("produks.*","merks.nama as namaMerk","kategoris.nama as namaKategori","ruangans.nama as namaRuangan")
+                        ->get();
+        return view('kategori.kategoriProduk',compact('produkList'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -51,21 +51,21 @@ class ProdukController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Kategori $kategori)
     {
-        echo("ID: ".$id);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Kategori $kategori)
     {
         //
     }
@@ -74,10 +74,10 @@ class ProdukController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Kategori $kategori)
     {
         //
     }
@@ -85,16 +85,11 @@ class ProdukController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Kategori $kategori)
     {
         //
-    }
-
-    public function album(){
-        $ProdukList = DB::table('produks')->get();
-        return view('produk.album',compact('ProdukList'));
     }
 }

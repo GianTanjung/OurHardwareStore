@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Merk;
+use App\Models\Produk;
 
 class MerkController extends Controller
 {
@@ -13,7 +15,17 @@ class MerkController extends Controller
      */
     public function index()
     {
-        //
+        $merkList = Merk::all();
+        return view('merk.merkList',compact('merkList'));
+    }
+    public function listProduk($id){
+        $produkList = Produk::where('produks.merk_id',$id)
+                        ->join('merks','produks.merk_id', '=','merks.id')
+                        ->join('kategoris','produks.kategori_id', '=','kategoris.id')
+                        ->join('ruangans','produks.ruangan_id', '=','ruangans.id')
+                        ->select("produks.*","merks.nama as namaMerk","kategoris.nama as namaKategori","ruangans.nama as namaRuangan")
+                        ->get();
+        return view('merk.merkProduk',compact('produkList'));
     }
 
     /**

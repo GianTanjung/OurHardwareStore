@@ -15,7 +15,7 @@
                             </div> 
                             <h5 class="card-title">{{$produk->deskripsi}}</h5> 
                             <div class="text-center my-4"> 
-                                <a href="#" class="btn btn-warning">Check offer</a> 
+                                <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#myModal">Check offer</a> 
                             </div> 
                         </div>
                      </div>
@@ -23,6 +23,16 @@
                 </div>
             </div> 
     @endforeach
+
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog modal-wide">
+            <div class="modal-content" id="showProducts">
+
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 {{-- @section('custom_js')

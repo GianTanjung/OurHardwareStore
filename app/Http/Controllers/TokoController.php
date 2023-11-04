@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Toko;
 use Illuminate\Support\Facades\DB;
 
 class TokoController extends Controller
@@ -14,8 +15,8 @@ class TokoController extends Controller
      */
     public function index()
     {
-        $tokos = DB::table('tokos')->select('id', 'nama', 'alamat', 'kecamatan', 'kota', 'provinsi', 'no_hp', 'kode_pos')->get();
-        return view('toko.index', compact('tokos'));
+        $tokoList = Toko::all();
+        return view('toko.tokoList', compact('tokoList'));
     }
 
     /**
