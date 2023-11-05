@@ -15,8 +15,11 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoriList = Kategori::all();
-        return view('kategori.kategoriList',compact('kategoriList'));
+        $listKategori = Kategori::all();
+
+        // dd($listMerk);
+
+        return view('kategori.index',compact('listKategori'));
     }
     public function listProduk($id){
         $produkList = Produk::where('produks.kategori_id',$id)

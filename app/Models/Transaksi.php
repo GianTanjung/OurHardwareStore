@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
-    protected $table = 'transaksis';
+    // protected $table = 'transaksis';
     use HasFactory;
 
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Produk::class, 'detail_transaksis', 'id', 'id');
     }
 }

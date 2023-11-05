@@ -11,6 +11,6 @@ class Merk extends Model
 
     public function produks()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Produk::class);
     }
 }

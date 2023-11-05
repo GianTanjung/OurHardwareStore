@@ -15,14 +15,6 @@ class DetailTransaksiController extends Controller
      */
     public function index()
     {
-        $transactionId = 1;
-        $queryRaw = DB::select('SELECT * FROM detail_transaksis WHERE transaksi_id = ?', [$transactionId]);
-
-        $queryBuilder = DB::table('detail_transaksis')->where('transaksi_id', 1)->first();
-
-        $queryModel = DetailTransaksi::where('transaksi_id', 1)->get();
-
-        return view('detailtransaksi.Index',compact('queryBuilder'));
     }
 
     /**
@@ -54,7 +46,15 @@ class DetailTransaksiController extends Controller
      */
     public function show($id)
     {
-        //
+        $detailTransaksiJual = DetailTransaksi::join('transaksis', 'detail_transaksis.transaksi_id', '=', 'transaksis.id')
+            ->join('produks', 'detail_transaksis.produk_id', '=', 'produks.id')
+            ->select('transaksis.*', 'detail_transaksis.*', 'produks.nama', 'produks.harga')
+            ->where('transaksi_id', $id)
+            ->get();
+
+        // dd($detailTransaksiJual);
+
+        return view('detailTransaksi.jual', compact('detailTransaksiJual'));
     }
 
     /**

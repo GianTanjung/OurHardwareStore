@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merk;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 
@@ -16,15 +18,14 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $queryRaw = DB::select(DB::raw("select * from produks"));
-        $queryBuilder = DB::table('produks')->get();
-        $listProduct = Product::all();
+        $listProduct = Merk::join('produks', 'merks.id', '=', 'produks.merk_id')
+        ->select('produks.*', 'merks.nama as merk_nama')
+        ->orderBy('produks.id', 'asc')
+        ->get();
 
-        // dd($queryRaw);
-        // dd($queryBuilder);
-        // dd($queryModel);
+        // dd($listProduct);
 
-        return view('listproduk',compact('listProduct'));
+        return view('produk.index',compact('listProduct'));
     }
 
     /**
@@ -56,7 +57,12 @@ class ProdukController extends Controller
      */
     public function show($id)
     {
-        echo("ID: ".$id);
+        $detailProduk = Produk::where('id', $id)
+        ->get();
+
+        // dd($detailProduk);
+
+        return view('produk.detail', compact('detailProduk'));
     }
 
     /**

@@ -15,8 +15,11 @@ class MerkController extends Controller
      */
     public function index()
     {
-        $merkList = Merk::all();
-        return view('merk.merkList',compact('merkList'));
+        $listMerk = Merk::all();
+
+        // dd($listMerk);
+
+        return view('merk.index',compact('listMerk'));
     }
     public function listProduk($id){
         $produkList = Produk::where('produks.merk_id',$id)

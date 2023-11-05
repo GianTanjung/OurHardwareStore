@@ -1,18 +1,12 @@
 <?php
 
+use App\Http\Controllers\DetailTransaksiController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanTransaksiController;
+use App\Http\Controllers\MerkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\MerkController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\DetailTransaksiController;
-use App\Http\Controllers\LaporanTransaksiController;
-use App\Http\Controllers\PromoController;
-use App\Http\Controllers\RuanganController;
-use App\Http\Controllers\TokoController;
-use App\Http\Controllers\KategoriController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,25 +23,47 @@ use App\Http\Controllers\KategoriController;
 //     return view('welcome');
 // });
 
-// Week 4
-Route::resource('produk', ProdukController::class);
-Route::resource('merk', MerkController::class);
+Route::get('/', function () {
+    return view('dashboard.analytics');
+})->name('home');
+
+// Dashboard ===========================================
+Route::get('/dasboard/analytics', function () {
+    return view('dashboard.analytics');
+})->name('dashboard.analytics');
+
+Route::get('/dasboard/sales', function () {
+    return view('dashboard.sales');
+})->name('dashboard.sales');
+
+// Master ===========================================
+Route::get('/master/produk', [ProdukController::class, 'index'])->name('produk.index');
+Route::get('/master/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+Route::get('/master/merk', [MerkController::class, 'index'])->name('merk.index');
+
+Route::get('/produk/detail/{id}', [ProdukController::class, 'show'])->name('detailproduk.detail');
+
+// Transaksi ===========================================
+Route::get('/transaksi/penjualan', [TransaksiController::class, 'index'])->name('transaksi.jual');
+Route::get('/transaksi/penjualan/{id}', [DetailTransaksiController::class, 'show'])->name('detailtransaksi.jual');
+// Route::get('/transaksi/pembelian', [TransaksiController::class, 'index'])->name('transaksi.beli');
+
+// Laporan ===========================================
+Route::get('/laporan/penjualan', [LaporanTransaksiController::class, 'index'])->name('laporanpenjualan.index');
+
 Route::resource('role', RoleController::class);
 Route::resource('user', UserController::class);
 Route::resource('pelanggan', PelangganController::class);
 Route::get('ruangan', [RuanganController::class, 'index']);
 Route::get('toko', [TokoController::class, 'index']);
-Route::get('laporantransaksi', [LaporanTransaksiController::class, 'index']);
 
 Route::resource('transaksi', TransaksiController::class);
 Route::resource('detailtransaksi', DetailTransaksiController::class);
 Route::resource('promo', PromoController::class);
 
 // Kategori
-    Route::get('kategori', [KategoriController::class, 'index'])->name("kategoriList");
     Route::get('kategori/{id}', [KategoriController::class, 'listProduk'])->name("kategoriProduk");
 // Merk
-    Route::get('merk', [MerkController::class, 'index'])->name("markList");
     Route::get('merkProduk/{id}', [MerkController::class, 'listProduk'])->name("merkProduk");
 // Pelanggan
     Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
@@ -56,12 +72,4 @@ Route::resource('promo', PromoController::class);
 // Ruang
     Route::get('ruang', [RuanganController::class, 'index'])->name("ruangList");
     Route::get('ruang/{id}', [RuanganController::class, 'listProduk'])->name("ruangProduk");
-
-
-Route::get('albumProduk', [ProdukController::class, 'album']);
-
-Route::get('/user/{id?}', function($id='') {
-    if ($id==true) echo 'detail user';
-    else echo 'list orang';
-});
 ?>

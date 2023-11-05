@@ -10,11 +10,21 @@ class Produk extends Model
     use HasFactory;
     public function transaksis()
     {
-        return $this->belongsToMany(Transaksi::class);
+        return $this->belongsToMany(Transaksi::class,'detail_transaksis','id', 'id');
     }
 
     public function merks()
     {
         return $this->belongsTo(Merk::class);
+    }
+
+    public function kategoris()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function ruangans()
+    {
+        return $this->belongsTo(Ruangan::class);
     }
 }
