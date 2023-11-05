@@ -152,17 +152,17 @@
                             <ul class="splide__list">
                                 <li class="splide__slide">
                                     <a href="{{ $detailProduk[0]->foto_produk }}" class="glightbox">
-                                        <img alt="Gbr 1" src="{{ $detailProduk[0]->foto_produk }}">
+                                        <img alt="Gbr 1" src="{{ $detailProduk[0]->fotoProduk }}">
                                     </a>
                                 </li>
                                 <li class="splide__slide">
                                     <a href="{{ $detailProduk[0]->foto_produk }}" class="glightbox">
-                                        <img alt="Gbr 2" src="{{ $detailProduk[0]->foto_produk }}">
+                                        <img alt="Gbr 2" src="{{ $detailProduk[0]->fotoProduk }}">
                                     </a>
                                 </li>
                                 <li class="splide__slide">
                                     <a href="{{ $detailProduk[0]->foto_produk }}" class="glightbox">
-                                        <img alt="Gbr 3" src="{{ $detailProduk[0]->foto_produk }}">
+                                        <img alt="Gbr 3" src="{{ $detailProduk[0]->fotoProduk }}">
                                     </a>
                                 </li>                               
                             </ul>
