@@ -328,7 +328,7 @@
                             <div class="w-summary-details">
 
                                 <div class="w-summary-info">
-                                    <h6>Harga <span class="summary-count">@currency($detailProduk[0]->harga)</span></h6>
+                                    <h6>Harga <span class="summary-count">Rp {{number_format($detailProduk[0]->harga, 0, ',', '.')}}</span></h6>
                                     {{-- <p class="summary-average">42%</p> --}}
                                 </div>
 

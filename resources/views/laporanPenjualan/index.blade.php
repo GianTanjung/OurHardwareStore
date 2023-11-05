@@ -117,7 +117,6 @@
             </div>
         </a>
     </li>
-
 </ul>
 @endsection
 
@@ -192,7 +191,7 @@
                             <td>{{ date('d-m-Y', strtotime($datalaporanPenjualan->tanggal_transaksi)) }}</td>
                             <td>{{ date('d-m-Y', strtotime($datalaporanPenjualan->tanggal_bayar)) }}</td>
                             <td>{{ $datalaporanPenjualan->status }}</td>
-                            <td>@currency($datalaporanPenjualan->grand_total)</td>
+                            <td>Rp {{number_format($datalaporanPenjualan->grand_total, 0, ',', '.')}}</td>
                         </tr>
                         @endforeach
                     </tbody>

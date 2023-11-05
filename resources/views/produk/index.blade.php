@@ -173,7 +173,7 @@
                                     <td><span class="badge badge-light-success">Masih Ada</span></td>
                                     @endif --}}
 
-                                    <td class="text-end">@currency($dataproduk->harga)</td>
+                                    <td class="text-end">Rp {{number_format($dataproduk->harga, 0, ',', '.')}}</td>
 
                                     <td class="text-center">
                                         <a class="badge badge-light-primary text-start me-2 action-edit bs-tooltip"
