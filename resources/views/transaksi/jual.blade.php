@@ -160,7 +160,7 @@
 
                             <td>{{ $datatransaksijual->status}}</td>
                             <td>{{ $datatransaksijual->pengiriman}}</td>
-                            <td>@currency($datatransaksijual->grand_total)</td>
+                            <td>Rp {{number_format($datatransaksijual->grand_total, 0, ',', '.')}}</td>
 
                             <td class="text-center">
                                 <a class="badge badge-light-primary text-start me-2 action-edit bs-tooltip"
