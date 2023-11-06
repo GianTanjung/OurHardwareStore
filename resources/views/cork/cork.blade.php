@@ -29,7 +29,7 @@
     @yield('cssdaftarproduk')
     @yield('cssdaftarkategori')
     @yield('cssdaftarmerk')
-    @yield('cssinsertkain')
+    @yield('cssinsertproduk')
     @yield('cssdetailproduk')
 
     <!-- Transaksi -->
@@ -437,7 +437,7 @@
                 @yield('sidebardaftarproduk')
                 @yield('sidebardaftarkategori')
                 @yield('sidebardaftarmerk')
-                @yield('sidebarinsertkain')
+                @yield('sidebarinsertproduk')
                 @yield('sidebardetailproduk')
 
                 <!-- Transaksi -->
@@ -487,7 +487,7 @@
                     @yield('kontendaftarproduk')
                     @yield('kontendaftarkategori')
                     @yield('kontendaftarmerk')
-                    @yield('konteninsertkain')
+                    @yield('konteninsertproduk')
                     @yield('kontendetailproduk')
 
                     <!-- Transaksi -->
@@ -542,7 +542,7 @@
     @yield('jsdaftarproduk')
     @yield('jsdaftarkategori')
     @yield('jsdaftarmerk')
-    @yield('jsinsertkain')
+    @yield('jsinsertproduk')
     @yield('jsdetailproduk')
 
     <!-- Transaksi -->
