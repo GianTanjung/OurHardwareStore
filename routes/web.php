@@ -43,10 +43,16 @@ Route::get('/master/merk', [MerkController::class, 'index'])->name('merk.index')
 
 Route::get('/produk/detail/{id}', [ProdukController::class, 'show'])->name('detailproduk.detail');
 
+Route::get('/master/produk/tambahdata', function () {
+    return view('produk.insert');
+})->name('master.insertproduk');
+
 // Transaksi ===========================================
 Route::get('/transaksi/penjualan', [TransaksiController::class, 'index'])->name('transaksi.jual');
 Route::get('/transaksi/penjualan/{id}', [DetailTransaksiController::class, 'show'])->name('detailtransaksi.jual');
 // Route::get('/transaksi/pembelian', [TransaksiController::class, 'index'])->name('transaksi.beli');
+
+
 
 // Laporan ===========================================
 Route::get('/laporan/penjualan', [LaporanTransaksiController::class, 'index'])->name('laporanpenjualan.index');
