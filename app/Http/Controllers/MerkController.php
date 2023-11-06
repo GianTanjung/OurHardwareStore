@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Merk;
 use App\Models\Produk;
+use App\Models\Ruangan;
+use App\Models\Kategori;
 
 class MerkController extends Controller
 {
@@ -38,7 +40,7 @@ class MerkController extends Controller
      */
     public function create()
     {
-        //
+        return view("merk.insert");
     }
 
     /**
@@ -49,7 +51,10 @@ class MerkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $merk = new Merk();
+        $merk->nama = $request->input("input-name");
+        $merk->foto_merk = $request->input("input-foto");
+        $merk->save();
     }
 
     /**

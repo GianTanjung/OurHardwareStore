@@ -6,6 +6,9 @@ use App\Models\Merk;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Produk;
+use App\Models\Ruangan;
+use App\Models\Kategori;
+
 use Illuminate\Http\Request;
 
 
@@ -35,7 +38,10 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        //
+        $listMerk = Merk::all();
+        $listRuangan = Ruangan::all();
+        $listKategori = Kategori::all();
+        return view('produk.insert',compact("listMerk","listRuangan","listKategori"));
     }
 
     /**
@@ -46,7 +52,17 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produk = new Produk();
+        $produk->nama = $request->input("input-name");
+        $produk->deskripsi = $request->input("input-deskripsi");
+        $produk->fotoProduk = $request->input("input-foto");
+        $produk->tipe = $request->input("input-tipe");
+        $produk->harga = $request->input("input-harga");
+        $produk->merk_id = $request->input("input-merk");
+        $produk->ruangan_id = $request->input("input-ruangan");
+        $produk->kategori_id = $request->input("input-kategori");
+        return redirect()->route('produk.idex');
+        $produk->save();
     }
 
     /**

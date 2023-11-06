@@ -41,11 +41,13 @@ Route::get('/master/produk', [ProdukController::class, 'index'])->name('produk.i
 Route::get('/master/kategori', [KategoriController::class, 'index'])->name('kategori.index');
 Route::get('/master/merk', [MerkController::class, 'index'])->name('merk.index');
 
-Route::get('/produk/detail/{id}', [ProdukController::class, 'show'])->name('detailproduk.detail');
 
-Route::get('/master/produk/tambahdata', function () {
-    return view('produk.insert');
-})->name('master.insertproduk');
+//Produk
+Route::get('/produk/detail/{id}', [ProdukController::class, 'show'])->name('detailproduk.detail');
+Route::get('/master/produk/tambahdata', [ProdukController::class, 'create'])->name('master.insertproduk');
+Route::get('/master/kategori/tambahdata', [KategoriController::class, 'create'])->name('master.insertKategori');
+Route::get('/master/merk/tambahdata', [MerkController::class, 'create'])->name('master.insertMerk');
+Route::put('/addProduk', [ProdukController::class, 'store'])->name('addProduk');
 
 // Transaksi ===========================================
 Route::get('/transaksi/penjualan', [TransaksiController::class, 'index'])->name('transaksi.jual');
@@ -69,8 +71,10 @@ Route::resource('promo', PromoController::class);
 
 // Kategori
     Route::get('kategori/{id}', [KategoriController::class, 'listProduk'])->name("kategoriProduk");
+    Route::put('/addKategori', [KategoriController::class, 'store'])->name('addKategori');
 // Merk
     Route::get('merkProduk/{id}', [MerkController::class, 'listProduk'])->name("merkProduk");
+    Route::put('/addMerk', [MerkController::class, 'store'])->name('addMerk');
 // Pelanggan
     Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
 // Toko

@@ -133,7 +133,7 @@
 <!-- /BREADCRUMB -->
 
 <div class="page-meta">
-    <a href="#">
+    <a href="{{route('master.insertMerk')}}">
         <button class="btn btn-primary  mb-2 me-4">
             <i data-feather="plus"></i>
             <span class="btn-text-inner">Tambah Data</span>

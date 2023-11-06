@@ -37,7 +37,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view("kategori.insert");
     }
 
     /**
@@ -48,7 +48,9 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kategori = new Kategori();
+        $kategori->nama = $request->input('input-name');
+        $kategori->save();
     }
 
     /**
