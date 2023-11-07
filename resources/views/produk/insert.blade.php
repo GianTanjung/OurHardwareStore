@@ -144,65 +144,67 @@
 <div class="row mb-4 layout-spacing layout-top-spacing">
 
     <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
-
-
-        
         <div class="widget-content widget-content-area ecommerce-create-section">
             <form method="POST" action="{{route('addProduk')}}">
                 @csrf
                 @method("PUT")
-                
-                <div>        
+
+                <div>
                     <div class="row">
                         <div class="col-md-8">
                             <label for="input-nama">Nama</label>
                             <div class="multiple-file-upload">
-                                <input type="text" class="form-control" name="input-name" id="input-name" placeholder="Nama Produk">
+                                <input type="text" class="form-control" name="input-name" id="input-name"
+                                    placeholder="Nama Produk">
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div>
-                <div>        
+                <div>
                     <div class="row">
                         <div class="col-md-8">
                             <label for="input-deskripsi">Deskripsi</label>
                             <div class="multiple-file-upload">
-                                <input type="text" class="form-control" name="input-deskripsi" id="input-deskripsi" placeholder="Deskripsi Produk">
+                                <input type="text" class="form-control" name="input-deskripsi" id="input-deskripsi"
+                                    placeholder="Deskripsi Produk">
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div>
-                <div>        
+                <div>
                     <div class="row">
                         <div class="col-md-8">
                             <label for="input-foto">Foto Produk</label>
                             <div class="multiple-file-upload">
-                                <input type="text" class="form-control" name="input-foto" id="input-foto" placeholder="Link Foto Produk">
+                                <input type="text" class="form-control" name="input-foto" id="input-foto"
+                                    placeholder="Link Foto Produk">
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div>
-                <div>        
+                <div>
                     <div class="row">
                         <div class="col-md-8">
                             <label for="input-tipe">Tipe</label>
                             <div class="multiple-file-upload">
-                                <input type="text" class="form-control" name="input-tipe" id="input-tipe" placeholder="Tipe Produk">
+                                <input type="text" class="form-control" name="input-tipe" id="input-tipe"
+                                    placeholder="Tipe Produk">
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div>
-                <div>        
+                <div>
                     <div class="row">
                         <div class="col-md-8">
                             <label for="input-harga">Harga</label>
                             <div class="multiple-file-upload">
-                                <input type="number" class="form-control" name="input-harga" id="input-harga" placeholder="Harga Produk">
+                                <input type="number" class="form-control" name="input-harga" id="input-harga"
+                                    placeholder="Harga Produk">
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div>
-                <div>        
+                <div>
                     <div class="row">
                         <div class="col-md-8">
                             <label for="input-merk">Merk</label>
@@ -210,14 +212,14 @@
                                 <select name="input-merk" class="form-control" id="input-merk">
                                     <option value="">--Choose Kategori--</option>
                                     @foreach($listMerk as $merk)
-                                        <option value="{{$merk->id}}">{{$merk->nama}}</option>
+                                    <option value="{{$merk->id}}">{{$merk->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div>
-                <div>        
+                <div>
                     <div class="row">
                         <div class="col-md-8">
                             <label for="input-ruangan">Ruangan</label>
@@ -225,14 +227,14 @@
                                 <select name="input-ruangan" class="form-control" id="input-ruangan">
                                     <option value="">--Choose Kategori--</option>
                                     @foreach($listRuangan as $ruangan)
-                                        <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
+                                    <option value="{{$ruangan->id}}">{{$ruangan->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div>
-                <div>        
+                <div>
                     <div class="row">
                         <div class="col-md-8">
                             <label for="input-kategori">Kategori</label>
@@ -240,21 +242,21 @@
                                 <select name="input-kategori" class="form-control" id="input-kategori">
                                     <option value="">--Choose Kategori--</option>
                                     @foreach($listKategori as $kategori)
-                                        <option value="{{$kategori->id}}">{{$kategori->nama}}</option>
+                                    <option value="{{$kategori->id}}">{{$kategori->nama}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                        </div>        
+                        </div>
                     </div>
                 </div><br>
                 <button class="btn btn-success" type="submit">Submit</button>
-            
+
             </form>
         </div>
 
     </div>
 
-    <div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+    {{-- <div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12 col-sm-12">
 
         <div class="row">
             <div class="col-xxl-12 col-xl-8 col-lg-8 col-md-7 mt-xxl-0 mt-4">
@@ -326,7 +328,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 </div>
 @endsection
