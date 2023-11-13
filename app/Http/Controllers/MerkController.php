@@ -55,6 +55,8 @@ class MerkController extends Controller
         $merk->nama = $request->input("input-name");
         $merk->foto_merk = $request->input("input-foto");
         $merk->save();
+        $notif = "Success adding ".$merk->nama." to list of Merk";
+        return redirect()->route('merk.index')->with("status",$notif);
     }
 
     /**
@@ -76,7 +78,8 @@ class MerkController extends Controller
      */
     public function edit($id)
     {
-        //
+        $merk = Merk::find($id);
+        return view('merk.edit',compact('merk'));
     }
 
     /**
@@ -86,9 +89,18 @@ class MerkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $merk = Merk::find($request->input('input-id'));
+        if($request->input("input-name") != $merk->nama){
+            $merk->nama = $request->input("input-name");
+        }
+        if($request->input("input-foto") != $merk->foto_merk){
+            $merk->foto_merk = $request->input("input-foto");
+        }
+        $merk->save();
+        $notif = "Success updating ".$merk->nama." in list of Merk";
+        return redirect()->route('merk.index')->with("status",$notif);
     }
 
     /**
@@ -99,6 +111,9 @@ class MerkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $merk = Merk::find($id);
+        $merk->delete();
+        $notif = "Success deleting ".$merk->nama." from list of Merk";
+        return redirect()->route('merk.index')->with("status",$notif);
     }
 }

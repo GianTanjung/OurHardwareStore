@@ -144,6 +144,14 @@
 
 <div class="row layout-spacing">
     <div class="col-lg-12">
+        @if (session('status'))
+                <div class="row alert alert-success" id="status-messages">
+                    <span id="status-text">{{ session('status') }}</span>
+                </div>
+            @endif
+            @php
+            $sessionData = session('data');
+        @endphp
         <div class="statbox widget box box-shadow">
             <div class="widget-content widget-content-area">
                 <table id="style-3" class="table style-3 table-hover">
@@ -160,10 +168,10 @@
 
                             <td class="text-center">
                                 <a class="badge badge-light-primary text-start me-2 action-edit bs-tooltip"
-                                    href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    href="kategoriEdit/{{$datakategori->id}}" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="Edit" data-original-title="Edit"><i data-feather="edit-3"></i></a>
                                 <a class="badge badge-light-danger text-start action-delete bs-tooltip"
-                                    href="javascript:void(0);" data-bs-toggle="tooltip" data-bs-placement="top"
+                                    href="kategoriDelete/{{$datakategori->id}}" data-bs-toggle="tooltip" data-bs-placement="top"
                                     title="Delete" data-original-title="Delete"><i data-feather="trash"></i></a>
                             </td>
                         </tr>

@@ -1,0 +1,277 @@
+@extends('cork.cork')
+
+@section('title', 'Tambah Data Produk')
+
+@section('cssinsertproduk')
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+<link rel="stylesheet" href="{{ asset('assets/src/plugins/src/filepond/filepond.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/src/plugins/src/filepond/FilePondPluginImagePreview.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/src/tagify/tagify.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/assets/css/light/forms/switches.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/light/editors/quill/quill.snow.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/light/tagify/custom-tagify.css') }}">
+<link href="{{ asset('assets/src/plugins/css/light/filepond/custom-filepond.css" rel="stylesheet"
+    type="text/css') }}" />
+
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/assets/css/dark/forms/switches.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/dark/editors/quill/quill.snow.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/css/dark/tagify/custom-tagify.css') }}">
+<link href="{{ asset('assets/src/plugins/css/dark/filepond/custom-filepond.css" rel="stylesheet" type="text/css') }}" />
+<!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+<!--  BEGIN CUSTOM STYLE FILE  -->
+<link rel="stylesheet" href="{{ asset('assets/src/assets/css/light/apps/ecommerce-create.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/src/assets/css/dark/apps/ecommerce-create.css') }}">
+<!--  END CUSTOM STYLE FILE  -->
+@endsection
+
+@section('sidebarinsertproduk')
+<ul class="list-unstyled menu-categories" id="accordionExample">
+
+    <li class="menu">
+        <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <div class="">
+                <i data-feather="home"></i>
+                <span>Dashboard</span>
+            </div>
+            <div>
+                <i data-feather="chevron-right"></i>
+                <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </a>
+        <ul class="collapse submenu list-unstyled" id="dashboard" data-bs-parent="#accordionExample">
+            <li>
+                <a href="{{ route('dashboard.analytics') }}"> Analytics </a>
+            </li>
+            <li>
+                <a href="{{ route('dashboard.sales') }}"> Sales </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="menu active">
+        <a href="#master" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+            <div class="">
+                <i data-feather="grid"></i>
+                <span>Master</span>
+            </div>
+            <div>
+                <i data-feather="chevron-right"></i>
+                <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </a>
+        <ul class="collapse submenu list-unstyled show" id="master" data-bs-parent="#accordionExample">
+            <li class="active">
+                <a href="{{ route('produk.index') }}"> Produk </a>
+            </li>
+            <li>
+                <a href="{{ route('merk.index') }}"> Merk </a>
+            </li>
+            <li>
+                <a href="{{ route('kategori.index') }}"> Kategori </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="menu">
+        <a href="#transaksi" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <div class="">
+                <i data-feather="shopping-bag"></i>
+                <span>Transaksi</span>
+            </div>
+            <div>
+                <i data-feather="chevron-right"></i>
+                <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </a>
+        <ul class="collapse submenu list-unstyled" id="transaksi" data-bs-parent="#accordionExample">
+            <li>
+                <a href="{{ route('transaksi.jual') }}"> Penjualan </a>
+            </li>
+            <li>
+                <a href="#"> Pembelian </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="menu">
+        <a href="#laporan" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <div class="">
+                <i data-feather="file-text"></i>
+                <span>Laporan</span>
+            </div>
+            <div>
+                <i data-feather="chevron-right"></i>
+                <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+        </a>
+        <ul class="collapse submenu list-unstyled" id="laporan" data-bs-parent="#accordionExample">
+            <li>
+                <a href="{{ route('laporanpenjualan.index') }}"> Penjualan </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="menu">
+        <a href="#" aria-expanded="false" class="dropdown-toggle">
+            <div class="">
+                <i data-feather="settings"></i>
+                <span>Pengaturan</span>
+            </div>
+        </a>
+    </li>
+</ul>
+@endsection
+
+@section('konteninsertproduk')
+<!-- BREADCRUMB -->
+<div class="page-meta">
+    <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('produk.index') }}">Produk</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Data</li>
+        </ol>
+    </nav>
+</div>
+<!-- /BREADCRUMB -->
+
+
+<div class="row mb-4 layout-spacing layout-top-spacing">
+
+    <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="widget-content widget-content-area ecommerce-create-section">
+            <form method="POST" action="{{route('produkUpdate')}}">
+                @csrf
+                @method("PUT")
+                <input type="hidden" name="input-id" value="{{$produk->id}}">
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="input-nama">Nama</label>
+                            <div class="multiple-file-upload">
+                                <input type="text" class="form-control" name="input-name" value="{{$produk->nama}}" id="input-name"
+                                    placeholder="Nama Produk">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="input-deskripsi">Deskripsi</label>
+                            <div class="multiple-file-upload">
+                                <input type="text" class="form-control" name="input-description" value="{{$produk->deskripsi}}" id="input-description"
+                                    placeholder="Deskripsi Produk">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="input-foto">Foto Produk</label>
+                            <div class="multiple-file-upload">
+                                <input type="text" class="form-control" name="input-foto" value="{{$produk->fotoProduk}}" id="input-foto"
+                                    placeholder="Link Foto Produk">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="input-tipe">Tipe</label>
+                            <div class="multiple-file-upload">
+                                <input type="text" class="form-control" name="input-type" value="{{$produk->tipe}}" id="input-type"
+                                    placeholder="Tipe Produk">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="input-harga">Harga</label>
+                            <div class="multiple-file-upload">
+                                <input type="number" class="form-control" name="input-price" value="{{$produk->harga}}" id="input-price"
+                                    placeholder="Harga Produk">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="input-merk">Merk</label>
+                            <div class="multiple-file-upload">
+                                <select name="input-merk" class="form-control" id="input-merk">
+                                    <option value="">--Choose Kategori--</option>
+                                    @foreach($listMerk as $merk)
+                                    <option value="{{$merk->id}}" {{$produk->merk_id == $merk->id ? 'selected' : ''}}>{{$merk->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="input-ruangan">Ruangan</label>
+                            <div class="multiple-file-upload">
+                                <select name="input-ruangan" class="form-control" id="input-ruangan">
+                                    <option value="">--Choose Kategori--</option>
+                                    @foreach($listRuangan as $ruangan)
+                                    <option value="{{$ruangan->id}}" {{$produk->ruangan_id == $ruangan->id ? 'selected' : ''}}>{{$ruangan->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <label for="input-kategori">Kategori</label>
+                            <div class="multiple-file-upload">
+                                <select name="input-kategori" class="form-control" id="input-kategori">
+                                    <option value="">--Choose Kategori--</option>
+                                    @foreach($listKategori as $kategori)
+                                    <option value="{{$kategori->id}}" {{$produk->kategori_id == $kategori->id ? 'selected' : ''}}>{{$kategori->nama}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <button class="btn btn-success" type="submit">Submit</button>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+@endsection
+
+@section('jsinsertproduk')
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{{ asset('assets/src/plugins/src/editors/quill/quill.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/filepond.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/FilePondPluginFileValidateType.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/FilePondPluginImageExifOrientation.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/FilePondPluginImagePreview.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/FilePondPluginImageCrop.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/FilePondPluginImageResize.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/FilePondPluginImageTransform.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/filepond/filepondPluginFileValidateSize.min.js') }}"></script>
+
+<script src="{{ asset('assets/src/plugins/src/tagify/tagify.min.js') }}"></script>
+
+<script src="{{ asset('assets/src/assets/js/apps/ecommerce-create.js') }}"></script>
+@endsection

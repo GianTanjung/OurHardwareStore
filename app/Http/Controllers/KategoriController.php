@@ -51,6 +51,8 @@ class KategoriController extends Controller
         $kategori = new Kategori();
         $kategori->nama = $request->input('input-name');
         $kategori->save();
+        $notif = "Success adding ".$kategori->nama." to list of Category";
+        return redirect()->route('kategori.index')->with("status",$notif);
     }
 
     /**
@@ -70,9 +72,10 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kategori $kategori)
+    public function edit($id)
     {
-        //
+        $kategori = Kategori::find($id);
+        return view('kategori.edit',compact('kategori'));
     }
 
     /**
@@ -82,9 +85,15 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kategori $kategori)
+    public function update(Request $request)
     {
-        //
+        $kategori = Kategori::find($request->input('input-id'));
+        if($request->input("input-name") != $kategori->nama){
+            $kategori->nama = $request->input("input-name");
+        }
+        $kategori->save();
+        $notif = "Success adding ".$kategori->nama." to list of Category";
+        return redirect()->route('kategori.index')->with("status",$notif);
     }
 
     /**
@@ -93,8 +102,11 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kategori $kategori)
+    public function destroy($id)
     {
-        //
+        $kategori = Kategori::find($id);
+        $kategori->delete();
+        $notif = "Success deleting ".$kategori->nama." from list of Merk";
+        return redirect()->route('kategori.index')->with("status",$notif);
     }
 }

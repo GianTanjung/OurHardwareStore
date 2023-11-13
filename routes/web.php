@@ -48,6 +48,9 @@ Route::get('/master/produk/tambahdata', [ProdukController::class, 'create'])->na
 Route::get('/master/kategori/tambahdata', [KategoriController::class, 'create'])->name('master.insertKategori');
 Route::get('/master/merk/tambahdata', [MerkController::class, 'create'])->name('master.insertMerk');
 Route::put('/addProduk', [ProdukController::class, 'store'])->name('addProduk');
+Route::get('/master/produkEdit/{id}', [ProdukController::class, 'edit'])->name("produkEdit");
+Route::put('/produkUpdate', [ProdukController::class, 'update'])->name('produkUpdate');
+Route::get('/master/produkDelete/{id}', [ProdukController::class, 'destroy'])->name("produkDelete");
 
 // Transaksi ===========================================
 Route::get('/transaksi/penjualan', [TransaksiController::class, 'index'])->name('transaksi.jual');
@@ -72,9 +75,15 @@ Route::resource('promo', PromoController::class);
 // Kategori
     Route::get('kategori/{id}', [KategoriController::class, 'listProduk'])->name("kategoriProduk");
     Route::put('/addKategori', [KategoriController::class, 'store'])->name('addKategori');
+    Route::get('/master/kategoriEdit/{id}', [KategoriController::class, 'edit'])->name("kategoriEdit");
+    Route::put('/kategoriUpdate', [KategoriController::class, 'update'])->name('kategoriUpdate');
+    Route::get('/master/kategoriDelete/{id}', [KategoriController::class, 'destroy'])->name("kategoriDelete");
 // Merk
     Route::get('merkProduk/{id}', [MerkController::class, 'listProduk'])->name("merkProduk");
     Route::put('/addMerk', [MerkController::class, 'store'])->name('addMerk');
+    Route::get('/master/merkEdit/{id}', [MerkController::class, 'edit'])->name("merkEdit");
+    Route::put('/merkUpdate', [MerkController::class, 'update'])->name('merkUpdate');
+    Route::get('/master/merkDelete/{id}', [MerkController::class, 'destroy'])->name("merkDelete");
 // Pelanggan
     Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
 // Toko

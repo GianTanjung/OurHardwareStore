@@ -61,8 +61,9 @@ class ProdukController extends Controller
         $produk->merk_id = $request->input("input-merk");
         $produk->ruangan_id = $request->input("input-ruangan");
         $produk->kategori_id = $request->input("input-kategori");
-        return redirect()->route('produk.idex');
         $produk->save();
+        $notif = "Success adding ".$produk->nama." to list of Product";
+        return redirect()->route('produk.index')->with("status",$notif);
     }
 
     /**
@@ -89,7 +90,12 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produk = Produk::find($id);
+        $listMerk = Merk::all();
+        $listRuangan = Ruangan::all();
+        $listKategori = Kategori::all();
+        // dd($produk);
+        return view('produk.edit',compact("produk","listMerk","listRuangan","listKategori"));
     }
 
     /**
@@ -99,9 +105,36 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $produk = Produk::find($request->input('input-id'));
+        if($request->input("input-name") != $produk->nama){
+            $produk->nama = $request->input("input-name");
+        }
+        if($request->input("input-description") != $produk->deskripsi){
+            $produk->deskripsi = $request->input("input-description");
+        }
+        if($request->input("input-foto") != $produk->fotoProduk){
+            $produk->fotoProduk = $request->input("input-foto");
+        }
+        if($request->input("input-type") != $produk->tipe){
+            $produk->tipe = $request->input("input-type");
+        }
+        if($request->input("input-price") != $produk->harga){
+            $produk->harga = $request->input("input-price");
+        }
+        if($request->input("input-merk") != $produk->merk_id){
+            $produk->merk_id = $request->input("input-merk");
+        }
+        if($request->input("input-ruangan") != $produk->ruangan_id){
+            $produk->ruangan_id = $request->input("input-ruangan");
+        }
+        if($request->input("input-kategori") != $produk->kategori_id){
+            $produk->kategori_id = $request->input("input-kategori");
+        }
+        $produk->save();
+        $notif = "Success updating ".$produk->nama." to list of Product";
+        return redirect()->route('produk.index')->with("status",$notif);
     }
 
     /**
@@ -112,7 +145,10 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $produk = Produk::find($id);
+        $produk->delete();
+        $notif = "Success deleting ".$produk->nama." from list of Product";
+        return redirect()->route('produk.index')->with("status",$notif);
     }
 
     public function album(){
