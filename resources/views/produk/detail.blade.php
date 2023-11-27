@@ -125,278 +125,279 @@
             </div>
         </a>
     </li>
-    @endsection
+</ul>
+@endsection
 
-    @section('kontendetailproduk')
-    <!-- BREADCRUMB -->
-    <div class="page-meta">
-        <nav class="breadcrumb-style-one" aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('produk.index') }}">Produk</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Detail Produk {{ $detailProduk[0]->id }}</li>
-            </ol>
-        </nav>
+@section('kontendetailproduk')
+<!-- BREADCRUMB -->
+<div class="page-meta">
+    <nav class="breadcrumb-style-one" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('produk.index') }}">Produk</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Detail Produk {{ $detailProduk[0]->id }}</li>
+        </ol>
+    </nav>
+</div>
+<!-- /BREADCRUMB -->
+
+<div class="row layout-spacing ">
+
+    <!-- Content -->
+    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+        <div class="user-profile">
+            <div class="widget-content widget-content-area">
+                <div class="d-flex justify-content-between">
+                    <h3 class="">Foto Produk</h3>
+                </div>
+                <div class="col-xl-30 layout-top-spacing">
+                    <!-- Swiper -->
+                    <div id="main-slider" class="splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <<<<<<< HEAD <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
+                                        =======
+                                        <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
+                                            <img alt="Gbr 1" src="{{ $detailProduk[0]->fotoProduk }}">
+                                        </a>
+                                </li>
+                                <li class="splide__slide">
+                                    <<<<<<< HEAD <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
+                                        =======
+                                        <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
+                                            <img alt="Gbr 2" src="{{ $detailProduk[0]->fotoProduk }}">
+                                        </a>
+                                </li>
+                                <li class="splide__slide">
+                                    <<<<<<< HEAD <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
+                                        =======
+                                        <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
+                                            <img alt="Gbr 3" src="{{ $detailProduk[0]->fotoProduk }}">
+                                        </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="thumbnail-slider" class="splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide"><img alt="Gbr 1" src="{{ $detailProduk[0]->fotoProduk }}">
+                                </li>
+                                <li class="splide__slide"><img alt="Gbr 2" src="{{ $detailProduk[0]->fotoProduk }}">
+                                </li>
+                                <li class="splide__slide"><img alt="Gbr 3" src="{{ $detailProduk[0]->fotoProduk }}">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                {{-- <div class="text-center user-info">
+                    <img src="{{ asset('assets/src/assets/img/profile-3.jpeg') }}" alt="avatar">
+                </div> --}}
+            </div>
+        </div>
     </div>
-    <!-- /BREADCRUMB -->
 
-    <div class="row layout-spacing ">
+    <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+        <div class="summary layout-spacing ">
+            <div class="widget-content widget-content-area">
+                {{-- <h3 class="">Summary</h3> --}}
+                <div class="order-summary">
 
-        <!-- Content -->
-        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
-            <div class="user-profile">
-                <div class="widget-content widget-content-area">
-                    <div class="d-flex justify-content-between">
-                        <h3 class="">Foto Produk</h3>
-                    </div>
-                    <div class="col-xl-30 layout-top-spacing">
-                        <!-- Swiper -->
-                        <div id="main-slider" class="splide">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                    <li class="splide__slide">
-                                        <<<<<<< HEAD <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
-                                            =======
-                                            <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
-                                                <img alt="Gbr 1" src="{{ $detailProduk[0]->fotoProduk }}">
-                                            </a>
-                                    </li>
-                                    <li class="splide__slide">
-                                        <<<<<<< HEAD <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
-                                            =======
-                                            <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
-                                                <img alt="Gbr 2" src="{{ $detailProduk[0]->fotoProduk }}">
-                                            </a>
-                                    </li>
-                                    <li class="splide__slide">
-                                        <<<<<<< HEAD <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
-                                            =======
-                                            <a href="{{ $detailProduk[0]->fotoProduk }}" class="glightbox">
-                                                <img alt="Gbr 3" src="{{ $detailProduk[0]->fotoProduk }}">
-                                            </a>
-                                    </li>
-                                </ul>
+                    <div class="summary-list summary-id">
+
+                        <div class="summery-info">
+
+                            <div class="w-icon">
+                                <i data-feather="shopping-bag"></i>
                             </div>
-                        </div>
 
-                        <div id="thumbnail-slider" class="splide">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                    <li class="splide__slide"><img alt="Gbr 1" src="{{ $detailProduk[0]->fotoProduk }}">
-                                    </li>
-                                    <li class="splide__slide"><img alt="Gbr 2" src="{{ $detailProduk[0]->fotoProduk }}">
-                                    </li>
-                                    <li class="splide__slide"><img alt="Gbr 3" src="{{ $detailProduk[0]->fotoProduk }}">
-                                    </li>
-                                </ul>
+                            <div class="w-summary-details">
+
+                                <div class="w-summary-info">
+                                    <h6>Id Produk <span class="summary-count">{{ $detailProduk[0]->id }} </span>
+                                    </h6>
+                                    {{-- <p class="summary-average">90%</p> --}}
+                                </div>
+
                             </div>
+
                         </div>
 
                     </div>
-                    {{-- <div class="text-center user-info">
-                        <img src="{{ asset('assets/src/assets/img/profile-3.jpeg') }}" alt="avatar">
+
+                    <div class="summary-list summary-nama">
+
+                        <div class="summery-info">
+
+                            <div class="w-icon">
+                                <i data-feather="dollar-sign"></i>
+                            </div>
+
+                            <div class="w-summary-details">
+
+                                <div class="w-summary-info">
+                                    <h6>Nama Produk <span class="summary-count">{{ $detailProduk[0]->nama }}</span>
+                                    </h6>
+                                    {{-- <p class="summary-average">65%</p> --}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="summary-list summary-tipe">
+
+                        <div class="summery-info">
+
+                            <div class="w-icon">
+                                <i data-feather="credit-card"></i>
+                            </div>
+                            <div class="w-summary-details">
+
+                                <div class="w-summary-info">
+                                    <h6>Tipe Produk <span class="summary-count">{{ $detailProduk[0]->tipe }}</span>
+                                    </h6>
+                                    {{-- <p class="summary-average">42%</p> --}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="summary-list summary-merk">
+
+                        <div class="summery-info">
+
+                            <div class="w-icon">
+                                <i data-feather="credit-card"></i>
+                            </div>
+                            <div class="w-summary-details">
+
+                                <div class="w-summary-info">
+                                    <h6>Merk <span class="summary-count">{{ $detailProduk[0]->merk_id }}</span></h6>
+                                    {{-- <p class="summary-average">42%</p> --}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="summary-list summary-ruangan">
+
+                        <div class="summery-info">
+
+                            <div class="w-icon">
+                                <i data-feather="credit-card"></i>
+                            </div>
+                            <div class="w-summary-details">
+
+                                <div class="w-summary-info">
+                                    <h6>Ruangan <span class="summary-count">{{ $detailProduk[0]->ruangan_id
+                                            }}</span></h6>
+                                    {{-- <p class="summary-average">42%</p> --}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="summary-list summary-kategori">
+
+                        <div class="summery-info">
+
+                            <div class="w-icon">
+                                <i data-feather="credit-card"></i>
+                            </div>
+                            <div class="w-summary-details">
+
+                                <div class="w-summary-info">
+                                    <h6>Kategori <span class="summary-count">{{ $detailProduk[0]->kategori_id
+                                            }}</span></h6>
+                                    {{-- <p class="summary-average">42%</p> --}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="summary-list summary-harga">
+
+                        <div class="summery-info">
+
+                            <div class="w-icon">
+                                <i data-feather="credit-card"></i>
+                            </div>
+                            <div class="w-summary-details">
+
+                                <div class="w-summary-info">
+                                    <h6>Harga <span class="summary-count">Rp
+                                            {{number_format($detailProduk[0]->harga, 0, ',', '.')}}</span></h6>
+                                    {{-- <p class="summary-average">42%</p> --}}
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    <div>
+        <div class="pro-plan layout-spacing">
+            <div class="widget">
+
+                <div class="widget-heading">
+
+                    <div class="task-info">
+                        <div class="w-title">
+                            <h5>Deskripsi Produk</h5>
+                            {{-- <span>$25/month</span> --}}
+                        </div>
+                    </div>
+
+                    {{-- <div class="task-action">
+                        <button class="btn btn-secondary">Renew Now</button>
                     </div> --}}
                 </div>
-            </div>
-        </div>
 
-        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
-            <div class="summary layout-spacing ">
-                <div class="widget-content widget-content-area">
-                    {{-- <h3 class="">Summary</h3> --}}
-                    <div class="order-summary">
+                <div class="widget-content">
 
-                        <div class="summary-list summary-id">
-
-                            <div class="summery-info">
-
-                                <div class="w-icon">
-                                    <i data-feather="shopping-bag"></i>
-                                </div>
-
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Id Produk <span class="summary-count">{{ $detailProduk[0]->id }} </span>
-                                        </h6>
-                                        {{-- <p class="summary-average">90%</p> --}}
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="summary-list summary-nama">
-
-                            <div class="summery-info">
-
-                                <div class="w-icon">
-                                    <i data-feather="dollar-sign"></i>
-                                </div>
-
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Nama Produk <span class="summary-count">{{ $detailProduk[0]->nama }}</span>
-                                        </h6>
-                                        {{-- <p class="summary-average">65%</p> --}}
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="summary-list summary-tipe">
-
-                            <div class="summery-info">
-
-                                <div class="w-icon">
-                                    <i data-feather="credit-card"></i>
-                                </div>
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Tipe Produk <span class="summary-count">{{ $detailProduk[0]->tipe }}</span>
-                                        </h6>
-                                        {{-- <p class="summary-average">42%</p> --}}
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="summary-list summary-merk">
-
-                            <div class="summery-info">
-
-                                <div class="w-icon">
-                                    <i data-feather="credit-card"></i>
-                                </div>
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Merk <span class="summary-count">{{ $detailProduk[0]->merk_id }}</span></h6>
-                                        {{-- <p class="summary-average">42%</p> --}}
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="summary-list summary-ruangan">
-
-                            <div class="summery-info">
-
-                                <div class="w-icon">
-                                    <i data-feather="credit-card"></i>
-                                </div>
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Ruangan <span class="summary-count">{{ $detailProduk[0]->ruangan_id
-                                                }}</span></h6>
-                                        {{-- <p class="summary-average">42%</p> --}}
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="summary-list summary-kategori">
-
-                            <div class="summery-info">
-
-                                <div class="w-icon">
-                                    <i data-feather="credit-card"></i>
-                                </div>
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Kategori <span class="summary-count">{{ $detailProduk[0]->kategori_id
-                                                }}</span></h6>
-                                        {{-- <p class="summary-average">42%</p> --}}
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="summary-list summary-harga">
-
-                            <div class="summery-info">
-
-                                <div class="w-icon">
-                                    <i data-feather="credit-card"></i>
-                                </div>
-                                <div class="w-summary-details">
-
-                                    <div class="w-summary-info">
-                                        <h6>Harga <span class="summary-count">Rp
-                                                {{number_format($detailProduk[0]->harga, 0, ',', '.')}}</span></h6>
-                                        {{-- <p class="summary-average">42%</p> --}}
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div>
-            <div class="pro-plan layout-spacing">
-                <div class="widget">
-
-                    <div class="widget-heading">
-
-                        <div class="task-info">
-                            <div class="w-title">
-                                <h5>Deskripsi Produk</h5>
-                                {{-- <span>$25/month</span> --}}
-                            </div>
-                        </div>
-
-                        {{-- <div class="task-action">
-                            <button class="btn btn-secondary">Renew Now</button>
-                        </div> --}}
-                    </div>
-
-                    <div class="widget-content">
-
-                        <P>{{ $detailProduk[0]->deskripsi }}</P>
-                    </div>
-
+                    <P>{{ $detailProduk[0]->deskripsi }}</P>
                 </div>
 
             </div>
+
         </div>
     </div>
+</div>
 
-    @endsection
+@endsection
 
-    @section('jsdetailproduk')
-    <script src="{{ asset('assets/src/plugins/src/global/vendors.min.js') }}"></script>
+@section('jsdetailproduk')
+<script src="{{ asset('assets/src/plugins/src/global/vendors.min.js') }}"></script>
 
-    <script src="{{ asset('assets/src/plugins/src/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
-    <script src="{{ asset('assets/src/plugins/src/glightbox/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/src/plugins/src/splide/splide.min.js') }}"></script>
-    <script src="{{ asset('assets/src/assets/js/apps/ecommerce-details.js') }}"></script>
-    @endsection
+<script src="{{ asset('assets/src/plugins/src/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/glightbox/glightbox.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/splide/splide.min.js') }}"></script>
+<script src="{{ asset('assets/src/assets/js/apps/ecommerce-details.js') }}"></script>
+@endsection
