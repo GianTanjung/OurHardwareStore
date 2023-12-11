@@ -22,7 +22,12 @@ use App\Http\Controllers\TransaksiController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+// COBA LAYOUT ===========================================
+Route::get('/cobalayout', function () {
+    return view('checkout.cart');
+});
 
+// PROJECT ===========================================
 Route::get('/', function () {
     return view('dashboard.analytics');
 })->name('home');
