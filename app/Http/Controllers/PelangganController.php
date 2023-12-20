@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Merk;
 use App\Models\Pelanggan;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +19,15 @@ class PelangganController extends Controller
     {
         $pelangganList = Pelanggan::all();
         return view('pelanggan.pelangganList',compact('pelangganList'));
+    }
+
+    public function katalog()
+    {
+
+        $listProduct = DB::table('produks')->select('*')->get();
+
+        return view('checkout.index',compact('listProduct'));
+        // dd($listProduct);
     }
 
     /**

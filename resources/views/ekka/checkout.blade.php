@@ -19,28 +19,28 @@
      <meta name="author" content="ashishmaraviya">
      
     <!-- site Favicon -->
-    <link rel="icon" href="assets/images/favicon/favicon.png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="assets/images/favicon/favicon.png" />
-    <meta name="msapplication-TileImage" content="assets/images/favicon/favicon.png" />
+    <link rel="icon" href="{{asset('assets/images/favicon/favicon.png')}}" sizes="32x32)}}" />
+    <link rel="apple-touch-icon" href="{{asset('assets/images/favicon/favicon.png')}}" />
+    <meta name="msapplication-TileImage" content="{{asset('assets/images/favicon/favicon.png')}}" />
 
     <!-- css Icon Font -->
-    <link rel="stylesheet" href="assets/css/vendor/ecicons.min.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/vendor/ecicons.min.css')}}" />
 
     <!-- css All Plugins Files -->
-    <link rel="stylesheet" href="assets/css/plugins/animate.css" />
-    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/countdownTimer.css" />
-    <link rel="stylesheet" href="assets/css/plugins/slick.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/nouislider.css" />
-    <link rel="stylesheet" href="assets/css/plugins/bootstrap.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/animate.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/swiper-bundle.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/jquery-ui.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/countdownTimer.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/slick.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/nouislider.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/bootstrap.css')}}" />
 
     <!-- Main Style -->
-    <link rel="stylesheet" href="assets/css/ekkastyle.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/ekkastyle.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}" />
 
     <!-- Background css -->
-    <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
+    <link rel="stylesheet" id="bg-switcher-css" href="{{asset('assets/css/backgrounds/bg-4.css')}}">
     
 </head>
 <body class="product_page">
@@ -105,7 +105,7 @@
                             <!-- Header User Start -->
                             <div class="ec-header-user dropdown">
                                 <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
-                                        src="assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
+                                        src="{{asset('assets/images/icons/user.svg')}}" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a class="dropdown-item" href="register.html">Register</a></li>
                                     <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
@@ -115,21 +115,21 @@
                             <!-- Header User End -->
                             <!-- Header Cart Start -->
                             <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
-                                <div class="header-icon"><img src="assets/images/icons/wishlist.svg"
+                                <div class="header-icon"><img src="{{asset('assets/images/icons/wishlist.svg')}}"
                                         class="svg_img header_svg" alt="" /></div>
                                 <span class="ec-header-count">4</span>
                             </a>
                             <!-- Header Cart End -->
                             <!-- Header Cart Start -->
                             <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-                                <div class="header-icon"><img src="assets/images/icons/cart.svg"
+                                <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                         class="svg_img header_svg" alt="" /></div>
                                 <span class="ec-header-count cart-count-lable">3</span>
                             </a>
                             <!-- Header Cart End -->
                             <!-- Header menu Start -->
                             <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
-                                <img src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="icon" />
+                                <img src="{{asset('assets/images/icons/menu.svg')}}" class="svg_img header_svg" alt="icon" />
                             </a>
                             <!-- Header menu End -->
                         </div>
@@ -147,8 +147,8 @@
                         <!-- Ec Header Logo Start -->
                         <div class="align-self-center">
                             <div class="header-logo">
-                                <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo" /><img
-                                        class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
+                                <a href="index.html"><img src="{{asset('assets/images/logo/logo.png')}}" alt="Site Logo" /><img
+                                        class="dark-logo" src="{{asset('assets/images/logo/dark-logo.png')}}" alt="Site Logo"
                                         style="display: none;" /></a>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                             <div class="header-search">
                                 <form class="ec-btn-group-form" action="#">
                                     <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                                    <button class="submit" type="submit"><img src="assets/images/icons/search.svg"
+                                    <button class="submit" type="submit"><img src="{{asset('assets/images/icons/search.svg')}}"
                                             class="svg_img header_svg" alt="" /></button>
                                 </form>
                             </div>
@@ -173,7 +173,7 @@
                                 <!-- Header User Start -->
                                 <div class="ec-header-user dropdown">
                                     <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
-                                            src="assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
+                                            src="{{asset('assets/images/icons/user.svg')}}" class="svg_img header_svg" alt="" /></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a class="dropdown-item" href="register.html">Register</a></li>
                                         <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
@@ -183,14 +183,14 @@
                                 <!-- Header User End -->
                                 <!-- Header wishlist Start -->
                                 <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
-                                    <div class="header-icon"><img src="assets/images/icons/wishlist.svg"
+                                    <div class="header-icon"><img src="{{asset('assets/images/icons/wishlist.svg')}}"
                                             class="svg_img header_svg" alt="" /></div>
                                     <span class="ec-header-count">4</span>
                                 </a>
                                 <!-- Header wishlist End -->
                                 <!-- Header Cart Start -->
                                 <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-                                    <div class="header-icon"><img src="assets/images/icons/cart.svg"
+                                    <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                             class="svg_img header_svg" alt="" /></div>
                                     <span class="ec-header-count cart-count-lable">3</span>
                                 </a>
@@ -210,8 +210,8 @@
                     <!-- Ec Header Logo Start -->
                     <div class="col">
                         <div class="header-logo">
-                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo" /><img
-                                    class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
+                            <a href="index.html"><img src="{{asset('assets/images/logo/logo.png')}}" alt="Site Logo" /><img
+                                    class="dark-logo" src="{{asset('assets/images/logo/dark-logo.png')}}" alt="Site Logo"
                                     style="display: none;" /></a>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         <div class="header-search">
                             <form class="ec-btn-group-form" action="#">
                                 <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                                <button class="submit" type="submit"><img src="assets/images/icons/search.svg"
+                                <button class="submit" type="submit"><img src="{{asset('assets/images/icons/search.svg')}}"
                                         class="svg_img header_svg" alt="icon" /></button>
                             </form>
                         </div>
@@ -294,16 +294,16 @@
                                         <li>
                                             <ul class="ec-main-banner w-100">
                                                 <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img
-                                                            class="img-responsive" src="assets/images/menu-banner/1.jpg"
+                                                            class="img-responsive" src="{{asset('assets/images/menu-banner/1.jpg')}}"
                                                             alt=""></a></li>
                                                 <li><a class="p-0" href="shop-left-sidebar-col-4.html"><img
-                                                            class="img-responsive" src="assets/images/menu-banner/2.jpg"
+                                                            class="img-responsive" src="{{asset('assets/images/menu-banner/2.jpg')}}"
                                                             alt=""></a></li>
                                                 <li><a class="p-0" href="shop-right-sidebar-col-3.html"><img
-                                                            class="img-responsive" src="assets/images/menu-banner/3.jpg"
+                                                            class="img-responsive" src="{{asset('assets/images/menu-banner/3.jpg')}}"
                                                             alt=""></a></li>
                                                 <li><a class="p-0" href="shop-right-sidebar-col-4.html"><img
-                                                            class="img-responsive" src="assets/images/menu-banner/4.jpg"
+                                                            class="img-responsive" src="{{asset('assets/images/menu-banner/4.jpg')}}"
                                                             alt=""></a></li>
                                             </ul>
                                         </li>
@@ -539,7 +539,7 @@
                                     </ul>
                                 </li>
                                 <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img class="img-responsive"
-                                            src="assets/images/menu-banner/1.jpg" alt=""></a>
+                                            src="{{asset('assets/images/menu-banner/1.jpg')}}" alt=""></a>
                                 </li>
                             </ul>
                         </li>
@@ -733,7 +733,7 @@
                 <ul class="eccart-pro-items">
                     <li>
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="assets/images/product-image/6_1.jpg" alt="product"></a>
+                                src="{{asset('assets/images/product-image/6_1.jpg')}}" alt="product"></a>
                         <div class="ec-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
                             <span class="cart-price"><span>$76.00</span> x 1</span>
@@ -745,7 +745,7 @@
                     </li>
                     <li>
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="assets/images/product-image/12_1.jpg" alt="product"></a>
+                                src="{{asset('assets/images/product-image/12_1.jpg')}}" alt="product"></a>
                         <div class="ec-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
                             <span class="cart-price"><span>$64.00</span> x 1</span>
@@ -757,7 +757,7 @@
                     </li>
                     <li>
                         <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
-                                src="assets/images/product-image/3_1.jpg" alt="product"></a>
+                                src="{{asset('assets/images/product-image/3_1.jpg')}}" alt="product"></a>
                         <div class="ec-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
                             <span class="cart-price"><span>$59.00</span> x 1</span>
@@ -835,45 +835,45 @@
                                     <div class="single-product-scroll">
                                         <div class="single-product-cover">
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-360/1_1.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_1.jpg')}}"
                                                     alt="">
                                             </div>
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-360/1_2.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_2.jpg')}}"
                                                     alt="">
                                             </div>
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-360/1_3.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_3.jpg')}}"
                                                     alt="">
                                             </div>
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-360/1_4.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_4.jpg')}}"
                                                     alt="">
                                             </div>
                                             <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="assets/images/product-360/1_5.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_5.jpg')}}"
                                                     alt="">
                                             </div>
                                         </div>
                                         <div class="single-nav-thumb">
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-360/1_1.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_1.jpg')}}"
                                                     alt="">
                                             </div>
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-360/1_2.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_2.jpg')}}"
                                                     alt="">
                                             </div>
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-360/1_3.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_3.jpg')}}"
                                                     alt="">
                                             </div>
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-360/1_4.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_4.jpg')}}"
                                                     alt="">
                                             </div>
                                             <div class="single-slide">
-                                                <img class="img-responsive" src="assets/images/product-360/1_5.jpg"
+                                                <img class="img-responsive" src="{{asset('assets/images/product-360/1_5.jpg')}}"
                                                     alt="">
                                             </div>
                                         </div>
@@ -955,14 +955,14 @@
                                             </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                                        src="assets/images/icons/wishlist.svg" class="svg_img pro_svg"
+                                                        src="{{asset('assets/images/icons/wishlist.svg')}}" class="svg_img pro_svg"
                                                         alt="" /></a>
                                             </div>
                                             <div class="ec-single-quickview">
                                                 <a href="#" class="ec-btn-group quickview" data-link-action="quickview"
                                                     title="Quick view" data-bs-toggle="modal"
                                                     data-bs-target="#ec_quickview_modal"><img
-                                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                                        src="{{asset('assets/images/icons/quickview.svg')}}" class="svg_img pro_svg"
                                                         alt="" /></a>
                                             </div>
                                         </div>
@@ -1041,7 +1041,7 @@
                                         <div class="ec-t-review-wrapper">
                                             <div class="ec-t-review-item">
                                                 <div class="ec-t-review-avtar">
-                                                    <img src="assets/images/review-image/1.jpg" alt="" />
+                                                    <img src="{{asset('assets/images/review-image/1.jpg')}}" alt="" />
                                                 </div>
                                                 <div class="ec-t-review-content">
                                                     <div class="ec-t-review-top">
@@ -1066,7 +1066,7 @@
                                             </div>
                                             <div class="ec-t-review-item">
                                                 <div class="ec-t-review-avtar">
-                                                    <img src="assets/images/review-image/2.jpg" alt="" />
+                                                    <img src="{{asset('assets/images/review-image/2.jpg')}}" alt="" />
                                                 </div>
                                                 <div class="ec-t-review-content">
                                                     <div class="ec-t-review-top">
@@ -1154,25 +1154,25 @@
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
                                     <img class="main-image"
-                                        src="assets/images/product-image/6_1.jpg" alt="Product" />
+                                        src="{{asset('assets/images/product-image/6_1.jpg')}}" alt="Product" />
                                     <img class="hover-image"
-                                        src="assets/images/product-image/6_2.jpg" alt="Product" />
+                                        src="{{asset('assets/images/product-image/6_2.jpg')}}" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <a href="#" class="quickview" data-link-action="quickview"
                                     title="Quick view" data-bs-toggle="modal"
                                     data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                        src="{{asset('assets/images/icons/quickview.svg')}}" class="svg_img pro_svg"
                                         alt="" /></a>
                                 <div class="ec-pro-actions">
                                     <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                        title="Compare"><img src="{{asset('assets/images/icons/compare.svg')}}"
                                             class="svg_img pro_svg" alt="" /></a>
                                     <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                            src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img pro_svg"
                                             alt="" /> Add To Cart</button>
                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
+                                            src="{{asset('assets/images/icons/wishlist.svg')}}"
                                             class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
@@ -1196,13 +1196,13 @@
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
                                         <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/6_1.jpg"
-                                                data-src-hover="assets/images/product-image/6_1.jpg"
+                                                data-src="{{asset('assets/images/product-image/6_1.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/6_1.jpg')}}"
                                                 data-tooltip="Gray"><span
                                                     style="background-color:#e8c2ff;"></span></a></li>
                                         <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/6_2.jpg"
-                                                data-src-hover="assets/images/product-image/6_2.jpg"
+                                                data-src="{{asset('assets/images/product-image/6_2.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/6_2.jpg')}}"
                                                 data-tooltip="Orange"><span
                                                     style="background-color:#9cfdd5;"></span></a></li>
                                     </ul>
@@ -1229,9 +1229,9 @@
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
                                     <img class="main-image"
-                                        src="assets/images/product-image/7_1.jpg" alt="Product" />
+                                        src="{{asset('assets/images/product-image/7_1.jpg')}}" alt="Product" />
                                     <img class="hover-image"
-                                        src="assets/images/product-image/7_2.jpg" alt="Product" />
+                                        src="{{asset('assets/images/product-image/7_2.jpg')}}" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
@@ -1240,17 +1240,17 @@
                                 <a href="#" class="quickview" data-link-action="quickview"
                                     title="Quick view" data-bs-toggle="modal"
                                     data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                        src="{{asset('assets/images/icons/quickview.svg')}}" class="svg_img pro_svg"
                                         alt="" /></a>
                                 <div class="ec-pro-actions">
                                     <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                        title="Compare"><img src="{{asset('assets/images/icons/compare.svg')}}"
                                             class="svg_img pro_svg" alt="" /></a>
                                     <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                            src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img pro_svg"
                                             alt="" /> Add To Cart</button>
                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
+                                            src="{{asset('assets/images/icons/wishlist.svg')}}"
                                             class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
@@ -1274,13 +1274,13 @@
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
                                         <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/7_1.jpg"
-                                                data-src-hover="assets/images/product-image/7_1.jpg"
+                                                data-src="{{asset('assets/images/product-image/7_1.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/7_1.jpg')}}"
                                                 data-tooltip="Gray"><span
                                                     style="background-color:#01f1f1;"></span></a></li>
                                         <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/7_2.jpg"
-                                                data-src-hover="assets/images/product-image/7_2.jpg"
+                                                data-src="{{asset('assets/images/product-image/7_2.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/7_2.jpg')}}"
                                                 data-tooltip="Orange"><span
                                                     style="background-color:#b89df8;"></span></a></li>
                                     </ul>
@@ -1307,9 +1307,9 @@
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
                                     <img class="main-image"
-                                        src="assets/images/product-image/1_1.jpg" alt="Product" />
+                                        src="{{asset('assets/images/product-image/1_1.jpg')}}" alt="Product" />
                                     <img class="hover-image"
-                                        src="assets/images/product-image/1_2.jpg" alt="Product" />
+                                        src="{{asset('assets/images/product-image/1_2.jpg')}}" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
@@ -1318,17 +1318,17 @@
                                 <a href="#" class="quickview" data-link-action="quickview"
                                     title="Quick view" data-bs-toggle="modal"
                                     data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                        src="{{asset('assets/images/icons/quickview.svg')}}" class="svg_img pro_svg"
                                         alt="" /></a>
                                 <div class="ec-pro-actions">
                                     <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                        title="Compare"><img src="{{asset('assets/images/icons/compare.svg')}}"
                                             class="svg_img pro_svg" alt="" /></a>
                                     <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                            src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img pro_svg"
                                             alt="" /> Add To Cart</button>
                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
+                                            src="{{asset('assets/images/icons/wishlist.svg')}}"
                                             class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
@@ -1352,23 +1352,23 @@
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
                                         <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_1.jpg"
-                                                data-src-hover="assets/images/product-image/1_1.jpg"
+                                                data-src="{{asset('assets/images/product-image/1_1.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/1_1.jpg')}}"
                                                 data-tooltip="Gray"><span
                                                     style="background-color:#90cdf7;"></span></a></li>
                                         <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_2.jpg"
-                                                data-src-hover="assets/images/product-image/1_2.jpg"
+                                                data-src="{{asset('assets/images/product-image/1_2.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/1_2.jpg')}}"
                                                 data-tooltip="Orange"><span
                                                     style="background-color:#ff3b66;"></span></a></li>
                                         <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_3.jpg"
-                                                data-src-hover="assets/images/product-image/1_3.jpg"
+                                                data-src="{{asset('assets/images/product-image/1_3.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/1_3.jpg')}}"
                                                 data-tooltip="Green"><span
                                                     style="background-color:#ffc476;"></span></a></li>
                                         <li><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/1_4.jpg"
-                                                data-src-hover="assets/images/product-image/1_4.jpg"
+                                                data-src="{{asset('assets/images/product-image/1_4.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/1_4.jpg')}}"
                                                 data-tooltip="Sky Blue"><span
                                                     style="background-color:#1af0ba;"></span></a></li>
                                     </ul>
@@ -1393,9 +1393,9 @@
                             <div class="ec-pro-image">
                                 <a href="product-left-sidebar.html" class="image">
                                     <img class="main-image"
-                                        src="assets/images/product-image/2_1.jpg" alt="Product" />
+                                        src="{{asset('assets/images/product-image/2_1.jpg')}}" alt="Product" />
                                     <img class="hover-image"
-                                        src="assets/images/product-image/2_2.jpg" alt="Product" />
+                                        src="{{asset('assets/images/product-image/2_2.jpg')}}" alt="Product" />
                                 </a>
                                 <span class="percentage">20%</span>
                                 <span class="flags">
@@ -1404,17 +1404,17 @@
                                 <a href="#" class="quickview" data-link-action="quickview"
                                     title="Quick view" data-bs-toggle="modal"
                                     data-bs-target="#ec_quickview_modal"><img
-                                        src="assets/images/icons/quickview.svg" class="svg_img pro_svg"
+                                        src="{{asset('assets/images/icons/quickview.svg')}}" class="svg_img pro_svg"
                                         alt="" /></a>
                                 <div class="ec-pro-actions">
                                     <a href="compare.html" class="ec-btn-group compare"
-                                        title="Compare"><img src="assets/images/icons/compare.svg"
+                                        title="Compare"><img src="{{asset('assets/images/icons/compare.svg')}}"
                                             class="svg_img pro_svg" alt="" /></a>
                                     <button title="Add To Cart" class=" add-to-cart"><img
-                                            src="assets/images/icons/cart.svg" class="svg_img pro_svg"
+                                            src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img pro_svg"
                                             alt="" /> Add To Cart</button>
                                     <a class="ec-btn-group wishlist" title="Wishlist"><img
-                                            src="assets/images/icons/wishlist.svg"
+                                            src="{{asset('assets/images/icons/wishlist.svg')}}"
                                             class="svg_img pro_svg" alt="" /></a>
                                 </div>
                             </div>
@@ -1438,8 +1438,8 @@
                                     <span class="ec-pro-opt-label">Color</span>
                                     <ul class="ec-opt-swatch ec-change-img">
                                         <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                data-src="assets/images/product-image/2_1.jpg"
-                                                data-src-hover="assets/images/product-image/2_2.jpg"
+                                                data-src="{{asset('assets/images/product-image/2_1.jpg')}}"
+                                                data-src-hover="{{asset('assets/images/product-image/2_2.jpg')}}"
                                                 data-tooltip="Gray"><span
                                                     style="background-color:#fdbf04;"></span></a></li>
                                     </ul>
@@ -1471,8 +1471,8 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-3 ec-footer-contact">
                             <div class="ec-footer-widget">
-                                <div class="ec-footer-logo"><a href="#"><img src="assets/images/logo/footer-logo.png"
-                                            alt=""><img class="dark-footer-logo" src="assets/images/logo/dark-logo.png"
+                                <div class="ec-footer-logo"><a href="#"><img src="{{asset('assets/images/logo/footer-logo.png')}}"
+                                            alt=""><img class="dark-footer-logo" src="{{asset('assets/images/logo/dark-logo.png')}}"
                                             alt="Site Logo" style="display: none;" /></a></div>
                                 <h4 class="ec-footer-heading">Contact us</h4>
                                 <div class="ec-footer-links">
@@ -1580,7 +1580,7 @@
                         <div class="col footer-bottom-right">
                             <div class="footer-bottom-payment d-flex justify-content-end">
                                 <div class="payment-link">
-                                    <img src="assets/images/icons/payment.png" alt="">
+                                    <img src="{{asset('assets/images/icons/payment.png')}}" alt="">
                                 </div>
 
                             </div>
@@ -1605,31 +1605,31 @@
                                     aria-label="Close">×</a>
                                 <div class="ec-360-panel-body">
                                     <div id="circlr" class="ec-circlr">
-                                        <img data-src="assets/images/product-360/00.jpg" src="assets/images/product-360/00.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/01.jpg" src="assets/images/product-360/01.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/02.jpg" src="assets/images/product-360/02.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/03.jpg" src="assets/images/product-360/03.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/04.jpg" src="assets/images/product-360/04.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/05.jpg" src="assets/images/product-360/05.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/06.jpg" src="assets/images/product-360/06.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/07.jpg" src="assets/images/product-360/07.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/08.jpg" src="assets/images/product-360/08.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/09.jpg" src="assets/images/product-360/09.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/10.jpg" src="assets/images/product-360/10.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/11.jpg" src="assets/images/product-360/11.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/12.jpg" src="assets/images/product-360/12.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/13.jpg" src="assets/images/product-360/13.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/14.jpg" src="assets/images/product-360/14.jpg" alt="product image">
-                                        <img data-src="assets/images/product-360/15.jpg" src="assets/images/product-360/15.jpg" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/00.jpg')}}" src="{{asset('assets/images/product-360/00.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/01.jpg')}}" src="{{asset('assets/images/product-360/01.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/02.jpg')}}" src="{{asset('assets/images/product-360/02.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/03.jpg')}}" src="{{asset('assets/images/product-360/03.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/04.jpg')}}" src="{{asset('assets/images/product-360/04.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/05.jpg')}}" src="{{asset('assets/images/product-360/05.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/06.jpg')}}" src="{{asset('assets/images/product-360/06.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/07.jpg')}}" src="{{asset('assets/images/product-360/07.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/08.jpg')}}" src="{{asset('assets/images/product-360/08.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/09.jpg')}}" src="{{asset('assets/images/product-360/09.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/10.jpg')}}" src="{{asset('assets/images/product-360/10.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/11.jpg')}}" src="{{asset('assets/images/product-360/11.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/12.jpg')}}" src="{{asset('assets/images/product-360/12.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/13.jpg')}}" src="{{asset('assets/images/product-360/13.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/14.jpg')}}" src="{{asset('assets/images/product-360/14.jpg')}}" alt="product image">
+                                        <img data-src="{{asset('assets/images/product-360/15.jpg')}}" src="{{asset('assets/images/product-360/15.jpg')}}" alt="product image">
                                         <div id="loader" class="ec-img-loader"></div>
                                     </div>
                                 </div>
                                 <p class="ec-tool-play">
                                     <a href="#" class="btn btn-default ec-360-btn"
-                                        onclick="crl.play(); return false;"><img src="assets/images/icons/play.svg"
+                                        onclick="crl.play(); return false;"><img src="{{asset('assets/images/icons/play.svg')}}"
                                             class="svg_img pro_svg" alt="play image" /></a>
                                     <a href="#" class="btn btn-default ec-360-btn"
-                                        onclick="crl.stop(); return false;"><img src="assets/images/icons/stop.svg"
+                                        onclick="crl.stop(); return false;"><img src="{{asset('assets/images/icons/stop.svg')}}"
                                             class="svg_img pro_svg" alt="stop image" /></a>
                                 </p>
                             </div>
@@ -1731,36 +1731,36 @@
                             <!-- Swiper -->
                             <div class="qty-product-cover">
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_1.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_1.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_2.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_2.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_3.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_3.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_4.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_4.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_5.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_5.jpg')}}" alt="">
                                 </div>
                             </div>
                             <div class="qty-nav-thumb">
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_1.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_1.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_2.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_2.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_3.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_3.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_4.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_4.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_5.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_5.jpg')}}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -1814,7 +1814,7 @@
                                         <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
                                     </div>
                                     <div class="ec-quickview-cart ">
-                                        <button class="btn btn-primary"><img src="assets/images/icons/cart.svg"
+                                        <button class="btn btn-primary"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                                 class="svg_img pro_svg" alt="" /> Add To Cart</button>
                                     </div>
                                 </div>
@@ -1833,23 +1833,23 @@
             <div class="ec-nav-panel">
                 <div class="ec-nav-panel-icons">
                     <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img
-                            src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="" /></a>
+                            src="{{asset('assets/images/icons/menu.svg')}}" class="svg_img header_svg" alt="" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img
-                            src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /><span
+                            src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img header_svg" alt="" /><span
                             class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="index.html" class="ec-header-btn"><img src="assets/images/icons/home.svg"
+                    <a href="index.html" class="ec-header-btn"><img src="{{asset('assets/images/icons/home.svg')}}"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="wishlist.html" class="ec-header-btn"><img src="assets/images/icons/wishlist.svg"
+                    <a href="wishlist.html" class="ec-header-btn"><img src="{{asset('assets/images/icons/wishlist.svg')}}"
                             class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="login.html" class="ec-header-btn"><img src="assets/images/icons/user.svg"
+                    <a href="login.html" class="ec-header-btn"><img src="{{asset('assets/images/icons/user.svg')}}"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
 
@@ -1860,7 +1860,7 @@
 
     <!-- Recent Purchase Popup  -->
     <div class="recent-purchase">
-        <img src="assets/images/product-image/1.jpg" alt="payment image">
+        <img src="{{asset('assets/images/product-image/1.jpg')}}" alt="payment image">
         <div class="detail">
             <p>Someone in new just bought</p>
             <h6>stylish baby shoes</h6>
@@ -1873,7 +1873,7 @@
     <!-- Cart Floating Button -->
     <div class="ec-cart-float">
         <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-            <div class="header-icon"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /></div>
+            <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img header_svg" alt="" /></div>
             <span class="ec-cart-count cart-count-lable">3</span>
         </a>
     </div>
@@ -1898,7 +1898,7 @@
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_01.jpg" class="ec-user-img"
+                                    <img src="{{asset('assets/images/whatsapp/profile_01.jpg')}}" class="ec-user-img"
                                         alt="Profile image">
                                     <span class="ec-status-icon"></span>
                                 </div>
@@ -1922,7 +1922,7 @@
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_02.jpg" class="ec-user-img"
+                                    <img src="{{asset('assets/images/whatsapp/profile_02.jpg')}}" class="ec-user-img"
                                         alt="Profile image">
                                     <span class="ec-status-icon ec-online"></span>
                                 </div>
@@ -1946,7 +1946,7 @@
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_03.jpg" class="ec-user-img"
+                                    <img src="{{asset('assets/images/whatsapp/profile_03.jpg')}}" class="ec-user-img"
                                         alt="Profile image">
                                     <span class="ec-status-icon ec-offline"></span>
                                 </div>
@@ -1970,7 +1970,7 @@
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_04.jpg" class="ec-user-img"
+                                    <img src="{{asset('assets/images/whatsapp/profile_04.jpg')}}" class="ec-user-img"
                                         alt="Profile image">
                                     <span class="ec-status-icon ec-offline"></span>
                                 </div>
@@ -1995,7 +1995,7 @@
         <div class="ec-right-bottom">
             <div class="ec-box">
                 <div class="ec-button rotateBackward">
-                    <img class="whatsapp" src="assets/images/common/whatsapp.png" alt="whatsapp icon" />
+                    <img class="whatsapp" src="{{asset('assets/images/common/whatsapp.png')}}" alt="whatsapp icon" />
                 </div>
             </div>
         </div>
@@ -2010,7 +2010,7 @@
             <h3>Features</h3>
         </div>
         <a href="#" class="ec-tools-sidebar-toggle in-out">
-            <img alt="icon" src="assets/images/common/settings.png" />
+            <img alt="icon" src="{{asset('assets/images/common/settings.png')}}" />
         </a>
         <div class="ec-tools-detail">
             <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
@@ -2077,31 +2077,31 @@
     <!-- Feature tools end -->
 
     <!-- Vendor JS -->
-    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
-    <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="{{asset('assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="{{asset('assets/js/vendor/popper.min.js"></script>
+    <script src="{{asset('assets/js/vendor/bootstrap.min.js"></script>
+    <script src="{{asset('assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="{{asset('assets/js/vendor/modernizr-3.11.2.min.js"></script>
 
     <!--Plugins JS-->
-    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
-    <script src="assets/js/plugins/countdownTimer.min.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/jquery.zoom.min.js"></script>
-    <script src="assets/js/plugins/slick.min.js"></script>
-    <script src="assets/js/plugins/infiniteslidev2.js"></script>
-    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/plugins/jquery.sticky-sidebar.js"></script>
+    <script src="{{asset('assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="{{asset('assets/js/plugins/countdownTimer.min.js"></script>
+    <script src="{{asset('assets/js/plugins/scrollup.js"></script>
+    <script src="{{asset('assets/js/plugins/jquery.zoom.min.js"></script>
+    <script src="{{asset('assets/js/plugins/slick.min.js"></script>
+    <script src="{{asset('assets/js/plugins/infiniteslidev2.js"></script>
+    <script src="{{asset('assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="{{asset('assets/js/plugins/jquery.sticky-sidebar.js"></script>
     <!-- Google translate Js -->
-    <script src="assets/js/vendor/google-translate.js"></script>
+    <script src="{{asset('assets/js/vendor/google-translate.js"></script>
     <script>
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
         }
     </script>
     <!-- Main Js -->
-    <script src="assets/js/vendor/index.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset('assets/js/vendor/index.js"></script>
+    <script src="{{asset('assets/js/main.js"></script>
 
 </body>
 </html>

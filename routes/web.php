@@ -4,6 +4,7 @@ use App\Http\Controllers\DetailTransaksiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanTransaksiController;
 use App\Http\Controllers\MerkController;
+use App\Http\Controllers\PelangganController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransaksiController;
@@ -24,7 +25,7 @@ use App\Http\Controllers\TransaksiController;
 // });
 // COBA LAYOUT ===========================================
 Route::get('/cobalayout', function () {
-    return view('checkout.cart');
+    return view('checkout.index');
 });
 
 // PROJECT ===========================================
@@ -90,7 +91,8 @@ Route::resource('promo', PromoController::class);
     Route::put('/merkUpdate', [MerkController::class, 'update'])->name('merkUpdate');
     Route::get('/master/merkDelete/{id}', [MerkController::class, 'destroy'])->name("merkDelete");
 // Pelanggan
-    Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
+    // Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
+    Route::get('customer/listProduct', [PelangganController::class, 'katalog'])->name('listProduct');
 // Toko
     Route::get('toko', [TokoController::class, 'index'])->name("tokoList");
 // Ruang
