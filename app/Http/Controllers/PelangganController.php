@@ -23,11 +23,17 @@ class PelangganController extends Controller
 
     public function katalog()
     {
-
         $listProduct = DB::table('produks')->select('*')->get();
 
         return view('checkout.index',compact('listProduct'));
         // dd($listProduct);
+    }
+
+    public function addCart($id)
+    {
+
+        $data = array('produk_id'=>$id, 'pelanggan_id'=>$pelanggan, 'kuantitas'=>$jumlah);
+        DB::table('hospitals')->insert($data);
     }
 
     /**

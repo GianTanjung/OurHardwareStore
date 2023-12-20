@@ -19,28 +19,28 @@
     <meta name="author" content="ashishmaraviya">
 
     <!-- site Favicon -->
-    <link rel="icon" href="assets/images/favicon/favicon.png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="assets/images/favicon/favicon.png" />
-    <meta name="msapplication-TileImage" content="assets/images/favicon/favicon.png" />
+    <link rel="icon" href="{{asset('assets/images/favicon/favicon.png')}}" sizes="32x32" />
+    <link rel="apple-touch-icon" href="{{asset('assets/images/favicon/favicon.png')}}" />
+    <meta name="msapplication-TileImage" content="{{asset('assets/images/favicon/favicon.png')}}" />
 
     <!-- css Icon Font -->
-    <link rel="stylesheet" href="assets/css/vendor/ecicons.min.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/vendor/ecicons.min.css')}}" />
 
     <!-- css All Plugins Files -->
-    <link rel="stylesheet" href="assets/css/plugins/animate.css" />
-    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/countdownTimer.css" />
-    <link rel="stylesheet" href="assets/css/plugins/slick.min.css" />
-    <link rel="stylesheet" href="assets/css/plugins/nouislider.css" />
-    <link rel="stylesheet" href="assets/css/plugins/bootstrap.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/animate.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/swiper-bundle.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/jquery-ui.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/countdownTimer.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/slick.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/nouislider.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/bootstrap.css')}}" />
 
     <!-- Main Style -->
-    <link rel="stylesheet" href="assets/css/ekkastyle.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link rel="stylesheet" href="{{asset('assets/css/ekkastyle.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}" />
 
     <!-- Background css -->
-    <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
+    <link rel="stylesheet" id="bg-switcher-css" href="{{asset('assets/css/backgrounds/bg-4.css')}}">
     
 </head>
 <body class="shop_page">
@@ -105,7 +105,7 @@
                             <!-- Header User Start -->
                             <div class="ec-header-user dropdown">
                                 <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
-                                        src="assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
+                                        src="{{asset('assets/images/icons/user.svg')}}" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     <li><a class="dropdown-item" href="register.html">Register</a></li>
                                     <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
@@ -115,21 +115,21 @@
                             <!-- Header User End -->
                             <!-- Header Cart Start -->
                             <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
-                                <div class="header-icon"><img src="assets/images/icons/wishlist.svg"
+                                <div class="header-icon"><img src="{{asset('assets/images/icons/wishlist.svg')}}"
                                         class="svg_img header_svg" alt="" /></div>
                                 <span class="ec-header-count">4</span>
                             </a>
                             <!-- Header Cart End -->
                             <!-- Header Cart Start -->
                             <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-                                <div class="header-icon"><img src="assets/images/icons/cart.svg"
+                                <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                         class="svg_img header_svg" alt="" /></div>
                                 <span class="ec-header-count cart-count-lable">3</span>
                             </a>
                             <!-- Header Cart End -->
                             <!-- Header menu Start -->
                             <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
-                                <img src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="icon" />
+                                <img src="{{asset('assets/images/icons/menu.svg')}}" class="svg_img header_svg" alt="icon" />
                             </a>
                             <!-- Header menu End -->
                         </div>
@@ -147,8 +147,8 @@
                         <!-- Ec Header Logo Start -->
                         <div class="align-self-center">
                             <div class="header-logo">
-                                <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo" /><img
-                                        class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
+                                <a href="index.html"><img src="{{asset('assets/images/logo/logo.png')}}" alt="Site Logo" /><img
+                                        class="dark-logo" src="{{asset('assets/images/logo/dark-logo.png')}}" alt="Site Logo"
                                         style="display: none;" /></a>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                             <div class="header-search">
                                 <form class="ec-btn-group-form" action="#">
                                     <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                                    <button class="submit" type="submit"><img src="assets/images/icons/search.svg"
+                                    <button class="submit" type="submit"><img src="{{asset('assets/images/icons/search.svg')}}"
                                             class="svg_img header_svg" alt="" /></button>
                                 </form>
                             </div>
@@ -173,7 +173,7 @@
                                 <!-- Header User Start -->
                                 <div class="ec-header-user dropdown">
                                     <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
-                                            src="assets/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
+                                            src="{{asset('assets/images/icons/user.svg')}}" class="svg_img header_svg" alt="" /></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a class="dropdown-item" href="register.html">Register</a></li>
                                         <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
@@ -183,14 +183,14 @@
                                 <!-- Header User End -->
                                 <!-- Header wishlist Start -->
                                 <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
-                                    <div class="header-icon"><img src="assets/images/icons/wishlist.svg"
+                                    <div class="header-icon"><img src="{{asset('assets/images/icons/wishlist.svg')}}"
                                             class="svg_img header_svg" alt="" /></div>
                                     <span class="ec-header-count">4</span>
                                 </a>
                                 <!-- Header wishlist End -->
                                 <!-- Header Cart Start -->
                                 <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-                                    <div class="header-icon"><img src="assets/images/icons/cart.svg"
+                                    <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                             class="svg_img header_svg" alt="" /></div>
                                     <span class="ec-header-count cart-count-lable">3</span>
                                 </a>
@@ -210,8 +210,8 @@
                     <!-- Ec Header Logo Start -->
                     <div class="col">
                         <div class="header-logo">
-                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo" /><img
-                                    class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
+                            <a href="index.html"><img src="{{asset('assets/images/logo/logo.png')}}" alt="Site Logo" /><img
+                                    class="dark-logo" src="{{asset('assets/images/logo/dark-logo.png')}}" alt="Site Logo"
                                     style="display: none;" /></a>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                         <div class="header-search">
                             <form class="ec-btn-group-form" action="#">
                                 <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                                <button class="submit" type="submit"><img src="assets/images/icons/search.svg"
+                                <button class="submit" type="submit"><img src="{{asset('assets/images/icons/search.svg')}}"
                                         class="svg_img header_svg" alt="icon" /></button>
                             </form>
                         </div>
@@ -294,16 +294,16 @@
                                         <li>
                                             <ul class="ec-main-banner w-100">
                                                 <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img
-                                                            class="img-responsive" src="assets/images/menu-banner/1.jpg"
+                                                            class="img-responsive" src="{{asset('assets/images/menu-banner/1.jpg')}}"
                                                             alt=""></a></li>
                                                 <li><a class="p-0" href="shop-left-sidebar-col-4.html"><img
-                                                            class="img-responsive" src="assets/images/menu-banner/2.jpg"
+                                                            class="img-responsive" src="{{asset('assets/images/menu-banner/2.jpg')}}"
                                                             alt=""></a></li>
                                                 <li><a class="p-0" href="shop-right-sidebar-col-3.html"><img
-                                                            class="img-responsive" src="assets/images/menu-banner/3.jpg"
+                                                            class="img-responsive" src="{{asset('assets/images/menu-banner/3.jpg')}}"
                                                             alt=""></a></li>
                                                 <li><a class="p-0" href="shop-right-sidebar-col-4.html"><img
-                                                            class="img-responsive" src="assets/images/menu-banner/4.jpg"
+                                                            class="img-responsive" src="{{asset('assets/images/menu-banner/4.jpg')}}"
                                                             alt=""></a></li>
                                             </ul>
                                         </li>
@@ -539,7 +539,7 @@
                                     </ul>
                                 </li>
                                 <li><a class="p-0" href="shop-left-sidebar-col-3.html"><img class="img-responsive"
-                                            src="assets/images/menu-banner/1.jpg" alt=""></a>
+                                            src="{{asset('assets/images/menu-banner/1.jpg')}}" alt=""></a>
                                 </li>
                             </ul>
                         </li>
@@ -770,8 +770,8 @@
                     <div class="row">
                         <div class="col-sm-12 col-lg-3 ec-footer-contact">
                             <div class="ec-footer-widget">
-                                <div class="ec-footer-logo"><a href="#"><img src="assets/images/logo/footer-logo.png"
-                                            alt=""><img class="dark-footer-logo" src="assets/images/logo/dark-logo.png"
+                                <div class="ec-footer-logo"><a href="#"><img src="{{asset('assets/images/logo/footer-logo.png')}}"
+                                            alt=""><img class="dark-footer-logo" src="{{asset('assets/images/logo/dark-logo.png')}}"
                                             alt="Site Logo" style="display: none;" /></a></div>
                                 <h4 class="ec-footer-heading">Contact us</h4>
                                 <div class="ec-footer-links">
@@ -879,7 +879,7 @@
                         <div class="col footer-bottom-right">
                             <div class="footer-bottom-payment d-flex justify-content-end">
                                 <div class="payment-link">
-                                    <img src="assets/images/icons/payment.png" alt="">
+                                    <img src="{{asset('assets/images/icons/payment.png')}}" alt="">
                                 </div>
 
                             </div>
@@ -903,36 +903,36 @@
                             <!-- Swiper -->
                             <div class="qty-product-cover">
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_1.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_1.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_2.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_2.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_3.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_3.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_4.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_4.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_5.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_5.jpg')}}" alt="">
                                 </div>
                             </div>
                             <div class="qty-nav-thumb">
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_1.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_1.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_2.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_2.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_3.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_3.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_4.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_4.jpg')}}" alt="">
                                 </div>
                                 <div class="qty-slide">
-                                    <img class="img-responsive" src="assets/images/product-image/3_5.jpg" alt="">
+                                    <img class="img-responsive" src="{{asset('assets/images/product-image/3_5.jpg')}}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -986,7 +986,7 @@
                                         <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
                                     </div>
                                     <div class="ec-quickview-cart ">
-                                        <button class="btn btn-primary"><img src="assets/images/icons/cart.svg"
+                                        <button class="btn btn-primary"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                                 class="svg_img pro_svg" alt="" /> Add To Cart</button>
                                     </div>
                                 </div>
@@ -1005,23 +1005,23 @@
             <div class="ec-nav-panel">
                 <div class="ec-nav-panel-icons">
                     <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img
-                            src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="" /></a>
+                            src="{{asset('assets/images/icons/menu.svg')}}" class="svg_img header_svg" alt="" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img
-                            src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /><span
+                            src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img header_svg" alt="" /><span
                             class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="index.html" class="ec-header-btn"><img src="assets/images/icons/home.svg"
+                    <a href="index.html" class="ec-header-btn"><img src="{{asset('assets/images/icons/home.svg')}}"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="wishlist.html" class="ec-header-btn"><img src="assets/images/icons/wishlist.svg"
+                    <a href="wishlist.html" class="ec-header-btn"><img src="{{asset('assets/images/icons/wishlist.svg')}}"
                             class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
-                    <a href="login.html" class="ec-header-btn"><img src="assets/images/icons/user.svg"
+                    <a href="login.html" class="ec-header-btn"><img src="{{asset('assets/images/icons/user.svg')}}"
                             class="svg_img header_svg" alt="icon" /></a>
                 </div>
 
@@ -1032,7 +1032,7 @@
 
      <!-- Recent Purchase Popup  -->
      <div class="recent-purchase">
-        <img src="assets/images/product-image/1.jpg" alt="payment image">
+        <img src="{{asset('assets/images/product-image/1.jpg')}}" alt="payment image">
         <div class="detail">
             <p>Someone in new just bought</p>
             <h6>stylish baby shoes</h6>
@@ -1045,7 +1045,7 @@
     <!-- Cart Floating Button -->
     <div class="ec-cart-float">
         <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-            <div class="header-icon"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /></div>
+            <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img header_svg" alt="" /></div>
             <span class="ec-cart-count cart-count-lable">3</span>
         </a>
     </div>
@@ -1070,7 +1070,7 @@
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_01.jpg" class="ec-user-img"
+                                    <img src="{{asset('assets/images/whatsapp/profile_01.jpg')}}" class="ec-user-img"
                                         alt="Profile image">
                                     <span class="ec-status-icon"></span>
                                 </div>
@@ -1094,7 +1094,7 @@
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_02.jpg" class="ec-user-img"
+                                    <img src="{{asset('assets/images/whatsapp/profile_02.jpg')}}" class="ec-user-img"
                                         alt="Profile image">
                                     <span class="ec-status-icon ec-online"></span>
                                 </div>
@@ -1118,7 +1118,7 @@
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_03.jpg" class="ec-user-img"
+                                    <img src="{{asset('assets/images/whatsapp/profile_03.jpg')}}" class="ec-user-img"
                                         alt="Profile image">
                                     <span class="ec-status-icon ec-offline"></span>
                                 </div>
@@ -1142,7 +1142,7 @@
                             <div class="d-flex bd-highlight">
                                 <!-- Profile Picture -->
                                 <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_04.jpg" class="ec-user-img"
+                                    <img src="{{asset('assets/images/whatsapp/profile_04.jpg')}}" class="ec-user-img"
                                         alt="Profile image">
                                     <span class="ec-status-icon ec-offline"></span>
                                 </div>
@@ -1167,7 +1167,7 @@
         <div class="ec-right-bottom">
             <div class="ec-box">
                 <div class="ec-button rotateBackward">
-                    <img class="whatsapp" src="assets/images/common/whatsapp.png" alt="whatsapp icon" />
+                    <img class="whatsapp" src="{{asset('assets/images/common/whatsapp.png')}}" alt="whatsapp icon" />
                 </div>
             </div>
         </div>
@@ -1182,7 +1182,7 @@
             <h3>Features</h3>
         </div>
         <a href="#" class="ec-tools-sidebar-toggle in-out">
-            <img alt="icon" src="assets/images/common/settings.png" />
+            <img alt="icon" src="{{asset('assets/images/common/settings.png')}}" />
         </a>
         <div class="ec-tools-detail">
             <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
@@ -1249,31 +1249,31 @@
     <!-- Feature tools end -->
 
     <!-- Vendor JS -->
-    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
-    <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="{{asset('assets/js/vendor/jquery-3.5.1.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/jquery-migrate-3.3.0.min.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/modernizr-3.11.2.min.js')}}"></script>
 
     <!--Plugins JS-->
-    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
-    <script src="assets/js/plugins/nouislider.js"></script>
-    <script src="assets/js/plugins/countdownTimer.min.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/jquery.zoom.min.js"></script>
-    <script src="assets/js/plugins/slick.min.js"></script>
-    <script src="assets/js/plugins/infiniteslidev2.js"></script>
-    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/plugins/jquery.sticky-sidebar.js"></script>
+    <script src="{{asset('assets/js/plugins/swiper-bundle.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/nouislider.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/countdownTimer.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/scrollup.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery.zoom.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/slick.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/infiniteslidev2.js')}}"></script>
+    <script src="{{asset('assets/js/vendor/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery.sticky-sidebar.js')}}"></script>
     <!-- Google translate Js -->
-    <script src="assets/js/vendor/google-translate.js"></script>
+    <script src="{{asset('assets/js/vendor/google-translate.js')}}"></script>
     <script>
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
         }
     </script>
     <!-- Main Js -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
 
 </body>
 </html>
