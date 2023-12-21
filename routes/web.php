@@ -93,6 +93,9 @@ Route::resource('promo', PromoController::class);
 // Pelanggan
     // Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
     Route::get('customer/listProduct', [PelangganController::class, 'katalog'])->name('listProduct');
+    Route::post('customer/addCart/{id}', [PelangganController::class, 'addCart'])->name('addCart');
+    Route::get('customer/cart', [PelangganController::class, 'cart'])->name('cart');
+    Route::delete('customer/deleteCart/{id}', [PelangganController::class, 'deleteCart'])->name('deleteCart');
 // Toko
     Route::get('toko', [TokoController::class, 'index'])->name("tokoList");
 // Ruang
