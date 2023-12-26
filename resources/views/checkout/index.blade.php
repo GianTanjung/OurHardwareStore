@@ -65,7 +65,7 @@
                                                         src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img pro_svg"
                                                         alt="" /> Add To Cart</button>
                                                 </form>
-
+                                                
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                         src="{{asset('assets/images/icons/wishlist.svg')}}"
                                                         class="svg_img pro_svg" alt="" /></a>
@@ -233,7 +233,7 @@
                         <div class="qty-plus-minus">
                             <input class="qty-input" type="text" name="ec_qtybtn" value={{$c->kuantitas}} />
                         </div>
-                        <a href="javascript:void(0)" class="remove">×</a>
+                        <a href="../customer/deleteOutCart/{{$c->id}}" class="remove">×</a>
                     </div>
                 </li>
                 @endforeach
@@ -266,3 +266,12 @@
     </div>
 </div>
 @endsection
+
+@if(count($listCart) != 0)
+    @section('cartAmount')
+        <span class="ec-cart-count cart-count-lable">{{count($listCart)}}</span>
+    @endsection
+    @section('cartAmountHeader')
+        <span class="ec-header-count cart-count-lable">{{count($listCart)}}</span>
+    @endsection
+@endif

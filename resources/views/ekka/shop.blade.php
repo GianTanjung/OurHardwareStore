@@ -124,7 +124,8 @@
                             <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
                                 <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                         class="svg_img header_svg" alt="" /></div>
-                                <span class="ec-header-count cart-count-lable">3</span>
+                                        @yield('cartAmountHeader')
+                                {{-- <span class="ec-header-count cart-count-lable">3</span> --}}
                             </a>
                             <!-- Header Cart End -->
                             <!-- Header menu Start -->
@@ -192,7 +193,8 @@
                                 <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
                                     <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                             class="svg_img header_svg" alt="" /></div>
-                                    <span class="ec-header-count cart-count-lable">3</span>
+                                            @yield('cartAmountHeader')
+                                    {{-- <span class="ec-header-count cart-count-lable">3</span> --}}
                                 </a>
                                 <!-- Header Cart End -->
                             </div>
@@ -1034,7 +1036,7 @@
     <div class="ec-cart-float">
         <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
             <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img header_svg" alt="" /></div>
-            <span class="ec-cart-count cart-count-lable">3</span>
+            @yield('cartAmount')
         </a>
     </div>
     <!-- Cart Floating Button end -->
@@ -1164,7 +1166,7 @@
     <!-- Whatsapp end -->
 
     <!-- Feature tools -->
-    <div class="ec-tools-sidebar-overlay"></div>
+    {{-- <div class="ec-tools-sidebar-overlay"></div>
     <div class="ec-tools-sidebar">
         <div class="tool-title">
             <h3>Features</h3>
@@ -1233,7 +1235,7 @@
                 <a class="clear-cach" href="javascript:void(0)">Clear Cache & Default</a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Feature tools end -->
 
     <!-- Vendor JS -->

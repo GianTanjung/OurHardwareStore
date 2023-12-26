@@ -1846,7 +1846,7 @@
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="wishlist.html" class="ec-header-btn"><img src="{{asset('assets/images/icons/wishlist.svg')}}"
-                            class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
+                            class="svg_img header_  svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
                 </div>
                 <div class="ec-nav-panel-icons">
                     <a href="login.html" class="ec-header-btn"><img src="{{asset('assets/images/icons/user.svg')}}"
@@ -1992,7 +1992,7 @@
     <!-- Whatsapp end -->
 
     <!-- Feature tools -->
-    <div class="ec-tools-sidebar-overlay"></div>
+    {{-- <div class="ec-tools-sidebar-overlay"></div>
     <div class="ec-tools-sidebar">
         <div class="tool-title">
             <h3>Features</h3>
@@ -2061,7 +2061,7 @@
                 <a class="clear-cach" href="javascript:void(0)">Clear Cache & Default</a>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Feature tools end -->
 
     <!-- Vendor JS -->

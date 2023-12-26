@@ -160,6 +160,7 @@ Route::get('/laporan/transaksipenjualan', [LaporanTransaksiController::class, 'i
     Route::post('customer/addCart/{id}', [PelangganController::class, 'addCart'])->name('addCart');
     Route::get('customer/cart', [PelangganController::class, 'cart'])->name('cart');
     Route::delete('customer/deleteCart/{id}', [PelangganController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('customer/deleteOutCart/{id}', [PelangganController::class, 'deleteOutCart'])->name('deleteOutCart');
     Route::get('customer/detail/{id}', [PelangganController::class, 'detail'])->name('detail');
 
 // Auth::routes();

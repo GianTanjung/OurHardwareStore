@@ -56,7 +56,7 @@
                                     <div class="col-lg-12">
                                         <div class="ec-cart-update-bottom">
                                             <a href="#">Continue Shopping</a>
-                                            <button class="btn btn-primary">Check Out</button>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                         <div class="ec-sb-title">
                             <h3 class="ec-sidebar-title">Summary</h3>
                         </div>
-                        <div class="ec-sb-block-content">
+                        {{-- <div class="ec-sb-block-content">
                             <h4 class="ec-ship-title">Estimate Shipping</h4>
                             <div class="ec-cart-form">
                                 <p>Enter your destination to get a shipping estimate</p>
@@ -114,18 +114,22 @@
                                     </span>
                                 </form>
                             </div>
-                        </div>
+                        </div> --}}
             
                         <div class="ec-sb-block-content">
                             <div class="ec-cart-summary-bottom">
                                 <div class="ec-cart-summary">
                                     <div>
                                         <span class="text-left">Sub-Total</span>
-                                        <span class="text-right">$80.00</span>
+                                        <span class="text-right">Rp {{number_format($subTotal / 1, 2, '.', ',')}}</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-left">VAT (20%)</span>
+                                        <span class="text-right">Rp {{number_format($vat / 1, 2, '.', ',')}}</span>
                                     </div>
                                     <div>
                                         <span class="text-left">Delivery Charges</span>
-                                        <span class="text-right">$80.00</span>
+                                        <span class="text-right">Rp {{number_format(100000 / 1, 2, '.', ',')}}</span></span>
                                     </div>
                                     <div>
                                         <span class="text-left">Coupan Discount</span>
@@ -142,12 +146,13 @@
                                     </div>
                                     <div class="ec-cart-summary-total">
                                         <span class="text-left">Total Amount</span>
-                                        <span class="text-right">$80.00</span>
+                                        <span class="text-right">Rp {{number_format(($total) / 1, 2, '.', ',')}}</span></span>
                                     </div>
                                 </div>
             
                             </div>
                         </div>
+                        <button class="btn btn-primary">Check Out</button>
                     </div>
                     <!-- Sidebar Summary Block -->
                 </div>
