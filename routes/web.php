@@ -26,7 +26,7 @@ use App\Http\Controllers\TransaksiController;
 // });
 // COBA LAYOUT ===========================================
 Route::get('/cobalayout', function () {
-    return view('checkout.index');
+    return view('checkout.cart');
 });
 
 // PROJECT ===========================================
@@ -109,16 +109,58 @@ Route::get('/laporan/transaksipenjualan', [LaporanTransaksiController::class, 'i
     Route::get('/master/merkDelete/{id}', [MerkController::class, 'destroy'])->name("merkDelete");
 // Pelanggan
     // Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
-    Route::get('customer/listProduct', [PelangganController::class, 'katalog'])->name('listProduct');
-    Route::post('customer/addCart/{id}', [PelangganController::class, 'addCart'])->name('addCart');
-    Route::get('customer/cart', [PelangganController::class, 'cart'])->name('cart');
-    Route::delete('customer/deleteCart/{id}', [PelangganController::class, 'deleteCart'])->name('deleteCart');
+    // Route::get('customer/listProduct', [PelangganController::class, 'katalog'])->name('listProduct');
+    // Route::post('customer/addCart/{id}', [PelangganController::class, 'addCart'])->name('addCart');
+    // Route::get('customer/cart', [PelangganController::class, 'cart'])->name('cart');
+    // Route::delete('customer/deleteCart/{id}', [PelangganController::class, 'deleteCart'])->name('deleteCart');
 // Toko
     Route::get('toko', [TokoController::class, 'index'])->name("tokoList");
 // Ruang
     Route::get('ruang', [RuanganController::class, 'index'])->name("ruangList");
     Route::get('ruang/{id}', [RuanganController::class, 'listProduk'])->name("ruangProduk");
 
-Auth::routes();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Pelanggan
+    // Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
+    Route::get('customer/listProduct', [PelangganController::class, 'katalog'])->name('listProduct');
+    Route::post('customer/addCart/{id}', [PelangganController::class, 'addCart'])->name('addCart');
+    Route::get('customer/cart', [PelangganController::class, 'cart'])->name('cart');
+    Route::delete('customer/deleteCart/{id}', [PelangganController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('customer/detail/{id}', [PelangganController::class, 'detail'])->name('detail');
+
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

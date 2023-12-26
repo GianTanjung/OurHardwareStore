@@ -58,9 +58,9 @@ class PelangganController extends Controller
         // dd($listCart);
     }
 
-    public function addCart($id)
+    public function addCart(Request $request, $id)
     {
-        $jumlah = 1;
+        $jumlah = $request->input('kuantitas');
         // $pelanggan = Auth::user()->id;
         $pelanggan = 1;
         $data = array('produk_id'=>$id, 'pelanggan_id'=>$pelanggan, 'kuantitas'=>$jumlah);
@@ -80,6 +80,16 @@ class PelangganController extends Controller
         $listCart = DB::table('keranjangs')->where('id', '=', $id);
         $listCart->destroy();
         return redirect()->back();
+    }
+
+    public function detail($id)
+    {
+        $produk = DB::table('produks as p')->select('p.*', 'pt.stok')->join('produk_tokos as pt', 'pt.produk_id', '=', 'p.id')->join('tokos as t', 't.id', '=', 'pt.toko_id')->where('p.id', '=', $id)->first();
+        $lokasi = DB::table('tokos as t')->select('t.nama', 't.id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('pt.produk_id', '=', $id)->where('pt.stok', '>', 0)->get();
+        $stok = DB::table('produk_tokos')->select('stok')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.produk_id')->sum('stok');
+
+        return view('checkout.detail', compact('produk', 'lokasi', 'stok'));
+        // dd($produk);
     }
 
     /**
