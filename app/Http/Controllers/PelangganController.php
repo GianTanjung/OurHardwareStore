@@ -23,17 +23,38 @@ class PelangganController extends Controller
         return view('pelanggan.pelangganList',compact('pelangganList'));
     }
 
-    public function katalog()
+    public function katalog(Request $request)
     {
+        $selectedkategori = $request->input('kategori', []);
+        $selectedstore = $request->input('store', []);
+
         $listProduct = DB::table('produks')->select('id', 'fotoProduk', 'nama', 'harga', (DB::raw("CONCAT(SUBSTRING_INDEX(deskripsi, ' ', 20),'...') AS deskripsi")))->get();
+
+        if($selectedkategori != null){
+            $listProduct = DB::table('produks as p')->select('p.id', 'p.fotoProduk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
+            ->join('produk_tokos as t', 't.produk_id', '=', 'p.id')->whereIn('p.kategori_id', $selectedkategori)->where('t.stok', '>', 0)->get();
+        }
+
+        if($selectedstore != null){
+            $listProduct = DB::table('produks as p')->select('p.id', 'p.fotoProduk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
+        ->join('produk_tokos as t', 't.produk_id', '=', 'p.id')->whereIn('t.toko_id', $selectedstore)->where('t.stok', '>', 0)->get();
+        }
+
+        if($selectedstore && $selectedkategori != null){
+            $listProduct = DB::table('produks as p')->select('p.id', 'p.fotoProduk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
+        ->join('produk_tokos as t', 't.produk_id', '=', 'p.id')->whereIn('t.toko_id', $selectedstore)->whereIn('p.kategori_id', $selectedkategori)->where('t.stok', '>', 0)->get();
+        }
+
         // $listCart = DB::table('keranjangs as k')->select('p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', Auth::user()->id)->get();
         $listCart = DB::table('keranjangs as k')->select('p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', 1)->get();
         $subTotal = DB::table('keranjangs as k')->select('p.harga')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', 1)->sum('p.harga');
         $vat = $subTotal*20/100;
         $total = $subTotal+$vat;
         $count = DB::table('keranjangs as k')->select('p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', 1)->count();
+        $kategoris = DB::table('kategoris')->select('*')->get();
+        $stores = DB::table('tokos')->select('*')->get();
 
-        return view('checkout.index',compact('listProduct', 'listCart', 'subTotal', 'vat', 'total', 'count'));
+        return view('checkout.index',compact('listProduct', 'listCart', 'subTotal', 'vat', 'total', 'count', 'kategoris', 'stores', 'selectedkategori', 'selectedstore'));
         // dd($listCart);
     }
 
