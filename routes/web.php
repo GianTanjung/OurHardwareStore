@@ -6,6 +6,7 @@ use App\Http\Controllers\LaporanTransaksiController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\PelangganController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransaksiController;
 
@@ -29,7 +30,7 @@ Route::get('/cobalayout', function () {
 });
 
 // PROJECT ===========================================
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('dashboard.analytics');
 })->name('home');
 
@@ -42,11 +43,39 @@ Route::get('/dasboard/sales', function () {
     return view('dashboard.sales');
 })->name('dashboard.sales');
 
+Route::get('/dasboard/sales', [TransaksiController::class, 'grafikSales'])->name('dashboard.sales');
+
+Route::resources([
+    'produk' => ProdukController::class,
+    'merk' => MerkController::class,
+    'ruangan' => RuanganController::class,
+    'kategori' => KategoriController::class,
+    // 'notabeli' => ProdukController::class,
+    'transaksi' => TransaksiController::class,
+    'pelanggan' => PelangganController::class,
+    'toko' => TokoController::class,
+]);
+
+Route::resource('role', RoleController::class);
+Route::resource('user', UserController::class);
+// Route::resource('pelanggan', PelangganController::class);
+// Route::get('ruangan', [RuanganController::class, 'index']);
+// Route::get('toko', [TokoController::class, 'index']);
+
+// Route::resource('transaksi', TransaksiController::class);
+Route::resource('detailtransaksi', DetailTransaksiController::class);
+Route::resource('promo', PromoController::class);
+
 // Master ===========================================
 Route::get('/master/produk', [ProdukController::class, 'index'])->name('produk.index');
 Route::get('/master/kategori', [KategoriController::class, 'index'])->name('kategori.index');
 Route::get('/master/merk', [MerkController::class, 'index'])->name('merk.index');
+Route::get('/master/pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
+Route::get('/master/toko', [TokoController::class, 'index'])->name('toko.index');
 
+// Laporan ===========================================
+// Route::get('laporan/pembelian', [TransaksiController::class, 'laporanpembelian'])->name('laporan.pembelian');
+Route::get('laporan/penjualan', [TransaksiController::class, 'laporanpenjualan'])->name('laporan.penjualan');
 
 //Produk
 Route::get('/produk/detail/{id}', [ProdukController::class, 'show'])->name('detailproduk.detail');
@@ -63,20 +92,8 @@ Route::get('/transaksi/penjualan', [TransaksiController::class, 'index'])->name(
 Route::get('/transaksi/penjualan/{id}', [DetailTransaksiController::class, 'show'])->name('detailtransaksi.jual');
 // Route::get('/transaksi/pembelian', [TransaksiController::class, 'index'])->name('transaksi.beli');
 
-
-
 // Laporan ===========================================
-Route::get('/laporan/penjualan', [LaporanTransaksiController::class, 'index'])->name('laporanpenjualan.index');
-
-Route::resource('role', RoleController::class);
-Route::resource('user', UserController::class);
-Route::resource('pelanggan', PelangganController::class);
-Route::get('ruangan', [RuanganController::class, 'index']);
-Route::get('toko', [TokoController::class, 'index']);
-
-Route::resource('transaksi', TransaksiController::class);
-Route::resource('detailtransaksi', DetailTransaksiController::class);
-Route::resource('promo', PromoController::class);
+Route::get('/laporan/transaksipenjualan', [LaporanTransaksiController::class, 'index'])->name('laporanpenjualan.index');
 
 // Kategori
     Route::get('kategori/{id}', [KategoriController::class, 'listProduk'])->name("kategoriProduk");
@@ -101,4 +118,7 @@ Route::resource('promo', PromoController::class);
 // Ruang
     Route::get('ruang', [RuanganController::class, 'index'])->name("ruangList");
     Route::get('ruang/{id}', [RuanganController::class, 'listProduk'])->name("ruangProduk");
-?>
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

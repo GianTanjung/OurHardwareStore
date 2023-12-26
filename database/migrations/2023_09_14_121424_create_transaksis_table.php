@@ -15,20 +15,27 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('tanggal_transaksi');
-            $table->dateTime('tanggal_jatuh_tempo');
-            $table->datetime('tanggal_bayar');
-            $table->enum('status',['Sudah Bayar','Menunggu Pembayaran','Dibatalkan','Selesai']);
-            $table->double('grand_total');
-            $table->enum('pengiriman', ['Ambil Toko','Antar Di tempat']);      
+            $table->string('kode_nota')->unique();
             $table->unsignedBigInteger('pelanggan_id');
             $table->foreign('pelanggan_id')->references('id')->on('pelanggans');
-            $table->unsignedBigInteger('promo_id');
+            $table->unsignedBigInteger('promo_id')->nullable();
             $table->foreign('promo_id')->references('id')->on('promos');
             $table->unsignedBigInteger('pembayaran_id');
-            $table->foreign('pembayaran_id')->references('id')->on('pembayarans');   
+            $table->foreign('pembayaran_id')->references('id')->on('pembayarans');
             $table->unsignedBigInteger('toko_id');
             $table->foreign('toko_id')->references('id')->on('tokos');
+            $table->timestamp('tanggal_transaksi')->default(now());
+            $table->timestamp('tanggal_jatuh_tempo')->default(now());
+            $table->timestamp('tanggal_bayar')->default(now());
+            $table->enum('status',['Sudah Bayar','Menunggu Pembayaran','Dibatalkan','Selesai']);
+            $table->double('subtotal');
+            $table->enum('pengiriman', ['Ambil Toko','Antar Di tempat']);
+            $table->double('biaya_pengiriman');
+            $table->double('harga_diskon')->nullable();
+            $table->double('biaya_pajak');
+            $table->double('grand_total');
+            $table->text('keterangan')->nullable();      
+            $table->timestamps();
         });
     }
 

@@ -14,110 +14,17 @@
     href="{{ asset('assets/src/plugins/css/dark/table/datatable/dt-global_style.css') }}">
 <link rel="stylesheet" type="text/css"
     href="{{ asset('assets/src/plugins/css/dark/table/datatable/custom_dt_custom.css') }}">
+
+<link rel="stylesheet" href="{{ asset('assets/src/plugins/src/sweetalerts2/sweetalerts2.css') }}">
+
+<link href="{{ asset('assets/src/assets/css/light/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/src/plugins/css/light/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet"
+    type="text/css" />
+
+<link href="{{ asset('assets/src/assets/css/dark/scrollspyNav.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/src/plugins/css/dark/sweetalerts2/custom-sweetalert.css') }}" rel="stylesheet"
+    type="text/css" />
 <!-- END PAGE LEVEL STYLES -->
-@endsection
-
-@section('sidebardaftarkategori')
-<ul class="list-unstyled menu-categories" id="accordionExample">
-
-    <li class="menu">
-        <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="home"></i>
-                <span>Dashboard</span>
-            </div>
-            <div>
-                <i data-feather="chevron-right"></i>
-                <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </a>
-        <ul class="collapse submenu list-unstyled" id="dashboard" data-bs-parent="#accordionExample">
-            <li>
-                <a href="{{ route('dashboard.analytics') }}"> Analytics </a>
-            </li>
-            <li>
-                <a href="{{ route('dashboard.sales') }}"> Sales </a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="menu active">
-        <a href="#master" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="grid"></i>
-                <span>Master</span>
-            </div>
-            <div>
-                <i data-feather="chevron-right"></i>
-                <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </a>
-        <ul class="collapse submenu list-unstyled show" id="master" data-bs-parent="#accordionExample">
-            <li>
-                <a href="{{ route('produk.index') }}"> Produk </a>
-            </li>
-            <li>
-                <a href="{{ route('merk.index') }}"> Merk </a>
-            </li>
-            <li class="active">
-                <a href="{{ route('kategori.index') }}"> Kategori </a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="menu">
-        <a href="#transaksi" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="shopping-bag"></i>
-                <span>Transaksi</span>
-            </div>
-            <div>
-                <i data-feather="chevron-right"></i>
-                <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </a>
-        <ul class="collapse submenu list-unstyled" id="transaksi" data-bs-parent="#accordionExample">
-            <li>
-                <a href="{{ route('transaksi.jual') }}"> Penjualan </a>
-            </li>
-            <li>
-                <a href="#"> Pembelian </a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="menu">
-        <a href="#laporan" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="file-text"></i>
-                <span>Laporan</span>
-            </div>
-            <div>
-                <i data-feather="chevron-right"></i>
-                <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </a>
-        <ul class="collapse submenu list-unstyled" id="laporan" data-bs-parent="#accordionExample">
-            <li>
-                <a href="{{ route('laporanpenjualan.index') }}"> Penjualan </a>
-            </li>
-        </ul>
-    </li>
-
-    <li class="menu">
-        <a href="#" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="settings"></i>
-                <span>Pengaturan</span>
-            </div>
-        </a>
-    </li>
-
-</ul>
 @endsection
 
 @section('kontendaftarkategori')
@@ -133,46 +40,58 @@
 <!-- /BREADCRUMB -->
 
 <div class="page-meta">
-    <a href="{{route('master.insertKategori')}}">
+    <a href="{{ route('kategori.create') }}">
         <button class="btn btn-primary  mb-2 me-4">
             <i data-feather="plus"></i>
             <span class="btn-text-inner">Tambah Data</span>
         </button>
     </a>
 </div>
-
-
-<div class="row layout-spacing">
-    <div class="col-lg-12">
-        @if (session('status'))
+@if (session('status'))
                 <div class="row alert alert-success" id="status-messages">
                     <span id="status-text">{{ session('status') }}</span>
                 </div>
             @endif
             @php
             $sessionData = session('data');
-        @endphp
+        @endphp 
+
+<div class="row layout-spacing">
+    <div class="col-lg-12">
         <div class="statbox widget box box-shadow">
             <div class="widget-content widget-content-area">
-                <table id="style-3" class="table style-3 table-hover">
+                <table id="style-3" class="table style-3 dt-table-hover">
                     <thead>
                         <tr>
+                        <tr>
+                            <th>Id</th>
                             <th>Nama</th>
                             <th class="text-center dt-no-sorting">Action</th>
+                        </tr>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($listKategori as $datakategori)
                         <tr>
-                            <td>{{ $datakategori->nama }}</td>
+                            <td>{{ $datakategori->id }}</a></td>
+                            <td>{{ $datakategori->nama }}</a></td>
 
                             <td class="text-center">
-                                <a class="badge badge-light-primary text-start me-2 action-edit bs-tooltip"
-                                    href="kategoriEdit/{{$datakategori->id}}" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="Edit" data-original-title="Edit"><i data-feather="edit-3"></i></a>
-                                <a class="badge badge-light-danger text-start action-delete bs-tooltip"
-                                    href="kategoriDelete/{{$datakategori->id}}" data-bs-toggle="tooltip" data-bs-placement="top"
-                                    title="Delete" data-original-title="Delete"><i data-feather="trash"></i></a>
+
+                                <form method="POST" action="{{ route('kategori.destroy', $datakategori->id) }}">
+                                    @csrf
+                                    @method("DELETE")
+
+                                    <a class="btn btn-light-primary btn-icon bs-tooltip"
+                                        href="{{ route('kategori.edit', $datakategori->id) }}" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Edit" data-original-title="Edit"><i
+                                            data-feather="edit-3"></i></a>
+
+                                    <a class="btn btn-light-danger btn-icon bs-tooltip"
+                                        href="{{ route('kategori.destroy', $datakategori->id) }}" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Delete" data-confirm-delete="true"
+                                        data-original-title="Delete" type="submit"><i data-feather="trash"></i></a>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -189,6 +108,7 @@
 <script src="{{ asset('assets/src/plugins/src/global/vendors.min.js') }}"></script>
 <script src="{{ asset('assets/src/assets/js/custom.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/src/table/datatable/datatables.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/src/sweetalerts2/sweetalerts2.min.js') }}"></script>
 
 <script>
     c3 = $('#style-3').DataTable({
@@ -207,12 +127,32 @@
             },
             "stripeClasses": [],
             "lengthMenu": [5, 10, 20, 50],
-            "pageLength": 10,
+            "pageLength": 10
         });
 
         multiCheck(c3);
+</script>
 
-        
+<script>
+    document.querySelector('.warning-confirm1').addEventListener('click', function() {
+    Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+    if (result.isConfirmed) {
+    Swal.fire(
+    'Deleted!',
+    'Your file has been deleted.',
+    'success'
+    )
+    }
+    })
+    })
 </script>
 <!-- END PAGE LEVEL SCRIPTS -->
 @endsection

@@ -21,7 +21,8 @@ class TokoSeeder extends Seeder
             'kode_pos' => '61254',
             'kecamatan' => 'Gedangan',
             'kota' => 'Sidoarjo',
-            'provinsi' => 'Jawa timur'
+            'provinsi' => 'Jawa timur',
+            'negara' => 'Indonesia',
         ]);
         DB::table('tokos')->insert([
             'nama' => 'Depo Malang',
@@ -30,7 +31,8 @@ class TokoSeeder extends Seeder
             'kode_pos' => '65153',
             'kecamatan' => 'Blimbing',
             'kota' => 'Malanng',
-            'provinsi' => 'Jawa timur'
+            'provinsi' => 'Jawa timur',
+            'negara' => 'Indonesia',
         ]);
         DB::table('tokos')->insert([
             'nama' => 'Depo Surabaya',
@@ -39,7 +41,8 @@ class TokoSeeder extends Seeder
             'kode_pos' => '60175',
             'kecamatan' => 'Krembangan',
             'kota' => 'Surabaya',
-            'provinsi' => 'Jawa timur'
+            'provinsi' => 'Jawa timur',
+            'negara' => 'Indonesia',
         ]);
     }
 }

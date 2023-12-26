@@ -22,7 +22,8 @@ class PelangganSeeder extends Seeder
             'negara' => 'Indonesia',
             'kecamatan' => 'Sukolilo',
             'kode_pos' => '10101',
-            'user_id' => '1'
+            'user_id' => '1',
+            'poin' => 10,
         ]);
         DB::table('pelanggans')->insert([
             'nama' => 'Gian Tanjung',
@@ -33,7 +34,8 @@ class PelangganSeeder extends Seeder
             'negara' => 'Indonesia',
             'kecamatan' => 'Sukolilo',
             'kode_pos' => '20202',
-            'user_id' => '2'
+            'user_id' => '2',
+            'poin' => 10,
         ]);
         DB::table('pelanggans')->insert([
             'nama' => 'Frederick Nelson Halim',
@@ -44,7 +46,8 @@ class PelangganSeeder extends Seeder
             'negara' => 'Indonesia',
             'kecamatan' => 'Sawahan',
             'kode_pos' => '30303',
-            'user_id' => '3'
+            'user_id' => '3',
+            'poin' => 10,
         ]);
         DB::table('pelanggans')->insert([
             'nama' => 'Bagus Surya Bumi',
@@ -55,7 +58,8 @@ class PelangganSeeder extends Seeder
             'negara' => 'Indonesia',
             'kecamatan' => 'Sukosuko',
             'kode_pos' => '40404',
-            'user_id' => '4'
+            'user_id' => '4',
+            'poin' => 10,
         ]);
     }
 }

@@ -51,7 +51,7 @@ class KategoriController extends Controller
         $kategori = new Kategori();
         $kategori->nama = $request->input('input-name');
         $kategori->save();
-        $notif = "Success adding ".$kategori->nama." to list of Category";
+        $notif = "Success Adding ".$kategori->nama." To List of Category";
         return redirect()->route('kategori.index')->with("status",$notif);
     }
 
@@ -92,7 +92,7 @@ class KategoriController extends Controller
             $kategori->nama = $request->input("input-name");
         }
         $kategori->save();
-        $notif = "Success adding ".$kategori->nama." to list of Category";
+        $notif = "Success Updating ".$kategori->nama." In Category List";
         return redirect()->route('kategori.index')->with("status",$notif);
     }
 
@@ -106,7 +106,7 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::find($id);
         $kategori->delete();
-        $notif = "Success deleting ".$kategori->nama." from list of Merk";
+        $notif = "Success Deleting ".$kategori->nama." From Category List";
         return redirect()->route('kategori.index')->with("status",$notif);
     }
 }

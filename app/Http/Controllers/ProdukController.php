@@ -61,6 +61,7 @@ class ProdukController extends Controller
         $produk->merk_id = $request->input("input-merk");
         $produk->ruangan_id = $request->input("input-ruangan");
         $produk->kategori_id = $request->input("input-kategori");
+        // Publikasi
         $produk->save();
         $notif = "Success adding ".$produk->nama." to list of Product";
         return redirect()->route('produk.index')->with("status",$notif);
@@ -74,8 +75,13 @@ class ProdukController extends Controller
      */
     public function show($id)
     {
-        $detailProduk = Produk::where('id', $id)
-        ->get();
+        $detailProduk = Produk::join('merks', 'merks.id', '=', 'produks.merk_id')
+            ->join('kategoris', 'kategoris.id', '=', 'produks.kategori_id')
+            ->join('sales_uoms', 'sales_uoms.id', '=', 'produks.sales_uoms_id')
+            ->join('ruangans', 'ruangans.id', '=', 'produks.ruangan_id')
+            ->select('produks.*', 'merks.nama as nama_merk', 'kategoris.nama as nama_kategori', 'sales_uoms.nama as nama_sales_uom', 'ruangans.nama as nama_ruangan')
+            ->where('produks.id', $id)
+            ->get();
 
         // dd($detailProduk);
 

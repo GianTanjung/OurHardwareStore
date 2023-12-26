@@ -22,6 +22,7 @@ class CreateTokosTable extends Migration
             $table->string('kecamatan');
             $table->string('kota');
             $table->string('provinsi');
+            $table->string('negara');
             $table->timestamps();
         });
 

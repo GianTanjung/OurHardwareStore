@@ -7,6 +7,7 @@ use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Carbon\Carbon;
 
 class TransaksiController extends Controller
 {
@@ -17,49 +18,12 @@ class TransaksiController extends Controller
      */
     public function index()
     {
-        $listTransaksiJual = Transaksi::all();
+        $listPenjualan = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
+            ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
+            ->select('transaksis.*', 'tokos.nama as nama_toko', 'pelanggans.nama as nama_pelanggan')
+            ->get();
 
-        return view('transaksi.jual', compact('listTransaksiJual'));
-        // $queryRaw = DB::select(DB::raw('select * from transaksis'));    
-
-        // $transactionId = 1; // Ganti dengan ID transaksi yang diinginkan
-
-        // $queryRaw = DB::select('SELECT * FROM transaksis WHERE id = ?', [$transactionId]);
-
-        if (!empty($queryRaw)) {
-            // Data ditemukan
-            $queryRaw = $queryRaw[0];
-            // Lakukan operasi lainnya di sini jika diperlukan
-        } else {
-            // Data tidak ditemukan
-        }
-
-        // $queryRaw = DB::select(DB::raw("SELECT * FROM transaksis WHERE grandTotal > ?", [1000000]));;
-
-
-        // $queryBuilder = DB::table('transaksis')->get();
-
-        // $queryBuilder = DB::table('transaksis')->where('id', 1)->first();
-
-        // $queryBuilder = DB::table('transaksis')->where('grandTotal', '>', 1000000)->get();
-
-
-        // $queryModel = Transaksi::all();
-
-        // Kondisi mencari spesifik dengan ID (PK) yang ditentukan
-        // $queryModel = Transaksi::find(1);
-
-        // Dengan menggunakan try catch apabila ID yang diinginkan tidak ditemukan
-        try {
-            $queryModel = Transaksi::findOrFail(1);
-        } catch (ModelNotFoundException $e) {
-            // Penanganan jika data tidak ditemukan
-        }
-
-        // Kondisi mencari data dengan kolom dan nilai selain ID (PK)
-        // $queryModel = Transaksi::where('kolom', 'nilai')->get();
-        // $queryModel = Transaksi::where('grandTotal', '>', 10000000)->get();
-
+        return view('transaksi.daftarpenjualan', compact('listPenjualan'));
         
     }
 
@@ -92,7 +56,25 @@ class TransaksiController extends Controller
      */
     public function show($id)
     {
-        
+        $detailPenjualan = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
+        ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
+        ->join('promos', 'promos.id', '=', 'transaksis.promo_id')
+        ->select('transaksis.*', 'pelanggans.*', 'tokos.nama as nama_toko', 'tokos.nama as nama _toko', 'tokos.alamat as alamat_toko','tokos.kota as kota_toko','tokos.provinsi as provinsi_toko', 'tokos.negara as negara_toko','tokos.kode_pos as kode_pos_toko','tokos.no_hp as no_hp_toko', 'promos.*')
+        ->orderBy('transaksis.id', 'asc')
+        ->get();
+
+    
+
+        $rincianPenjualan = DetailTransaksi::join('produk_tokos', 'produk_tokos.id', '=', 'detail_transaksis.produk_toko_id')
+        ->join('produks', 'produks.id', '=', 'produk_tokos.produk_id')
+        ->select('detail_transaksis.*', 'produks.*')
+        ->where('detail_transaksis.transaksi_id', $id)
+        ->get();
+
+    // dd($rincianPenjualan);
+
+
+    return view('transaksi.detailpenjualan', compact('detailPenjualan', 'rincianPenjualan'));
     }
 
     /**
@@ -127,5 +109,80 @@ class TransaksiController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function laporanpenjualan()
+    {
+        $listTransaksi = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
+            ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
+            ->select('transaksis.*', 'tokos.nama as nama_toko', 'pelanggans.nama as nama_pelanggan')
+            ->orderBy('transaksis.id', 'asc')
+            ->get();
+
+
+        return view('laporan.daftarlaporanpenjualan', compact('listTransaksi'));
+    }
+
+    public function grafikSales()
+    {
+        $startDate = Carbon::now()->startOfMonth();
+        $tglSekarang = Carbon::now();
+
+        $tglSekarangOnly = $tglSekarang->format('m');
+
+        $arraySalesSidoarjo = [];
+        $arraySalesSidoarjo2 = [38, 65, 38, 52, 36, 40, 28, 38, 60, 38, 52, 36, 40, 28, 38, 60, 38, 52, 36, 40, 28, 38, 60, 38, 52, 36, 40, 28];
+        $arraySalesMalang = [];
+        $arraySalesSurabaya = [];
+
+        for ($i=1; $i <= $tglSekarangOnly; $i++) {
+            //  Sidoarjo
+            $depoSidoarjo = Transaksi::where('tanggal_transaksi', '=', Carbon::now()->day($i))
+                ->where('toko_id', 1)
+                ->get();
+
+            $grandTotalSidoarjo = 0;
+
+            foreach ($depoSidoarjo as $data) {
+                $grandTotalSidoarjo += $data['grand_total'];
+            }
+
+            $arraySalesSidoarjo[] = [
+                $grandTotalSidoarjo
+            ];
+
+            // Malang
+            $depoMalang = Transaksi::where('tanggal_transaksi', '=', Carbon::now()->day($i))
+                ->where('toko_id', 2)
+                ->get();
+
+            $grandTotalMalang = 0;
+
+            foreach ($depoMalang as $data) {
+                $grandTotalMalang += $data['grand_total'];
+            }
+
+            $arraySalesMalang[] = [
+                $grandTotalMalang
+            ];
+
+            //  Surabaya
+            $depoSurabaya = Transaksi::where('tanggal_transaksi', '=', Carbon::now()->day($i))
+                ->where('toko_id', 3)
+                ->get();
+
+            $grandTotalSurabaya = 0;
+
+            foreach ($depoSurabaya as $data) {
+                $grandTotalSurabaya += $data['grand_total'];
+            }
+
+            $arraySalesSurabaya[] = [
+                $grandTotalSurabaya
+            ];
+        }
+
+
+        // dd($arraySalesSidoarjo, $arraySalesMalang, $arraySalesSurabaya, $tglSekarang, $startDate);
+        return view('dashboard.sales', compact('arraySalesSidoarjo2', 'arraySalesMalang','arraySalesSurabaya', 'tglSekarang', 'startDate'));
     }
 }

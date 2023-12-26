@@ -1,130 +1,38 @@
 @extends('cork.cork')
 
-$id = {{ $detailTransaksiJual[0]->id }};
-
-@section('title', 'Invoice #1')
-
-@section('cssdetailtransaksijual')
-<!--  BEGIN CUSTOM STYLE FILE  -->
-<link href="{{ asset('assets/src/assets/css/light/apps/invoice-preview.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/src/assets/css/dark/apps/invoice-preview.css') }}" rel="stylesheet" type="text/css" />
-<!--  END CUSTOM STYLE FILE  -->
+@section('title')
+{{ $detailPenjualan[0]->kode_nota }}
 @endsection
 
-@section('sidebardetailtransaksijual')
-<ul class="list-unstyled menu-categories" id="accordionExample">
+@section('cssdetailpenjualan')
+{{-- <link href="{{ asset('assets/src/assets/css/light/components/list-group.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/src/assets/css/light/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
 
-    <li class="menu">
-        <a href="#dashboard" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="home"></i>
-                <span>Dashboard</span>
-            </div>
-            <div>
-                <i data-feather="chevron-right"></i>
-                <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </a>
-        <ul class="collapse submenu list-unstyled" id="dashboard" data-bs-parent="#accordionExample">
-            <li>
-                <a href="{{ route('dashboard.analytics') }}"> Analytics </a>
-            </li>
-            <li>
-                <a href="{{ route('dashboard.sales') }}"> Sales </a>
-            </li>
-        </ul>
-    </li>
+<link href="{{ asset('assets/src/assets/css/dark/components/list-group.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/src/assets/css/dark/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
 
-    <li class="menu">
-        <a href="#master" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="grid"></i>
-                <span>Master</span>
-            </div>
-            <div>
-                <i data-feather="chevron-right"></i>
-                <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </a>
-        <ul class="collapse submenu list-unstyled" id="master" data-bs-parent="#accordionExample">
-            <li>
-                <a href="{{ route('produk.index') }}"> Produk </a>
-            </li>
-            <li>
-                <a href="{{ route('merk.index') }}"> Merk </a>
-            </li>
-            <li>
-                <a href="{{ route('kategori.index') }}"> Kategori </a>
-            </li>
-        </ul>
-    </li>
 
-    <li class="menu active">
-        <a href="#transaksi" data-bs-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="shopping-bag"></i>
-                <span>Transaksi</span>
-            </div>
-            <div>
-                <i data-feather="chevron-right"></i>
-                <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </a>
-        <ul class="collapse submenu list-unstyled show" id="transaksi" data-bs-parent="#accordionExample">
-            <li class="active">
-                <a href="{{ route('transaksi.jual') }}"> Penjualan </a>
-            </li>
-            <li>
-                <a href="#"> Pembelian </a>
-            </li>
-        </ul>
-    </li>
+<link href="{{ asset('assets/src/assets/css/light/components/tabs.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/src/assets/css/light/apps/ecommerce-details.css') }}" rel="stylesheet" type="text/css"> --}}
 
-    <li class="menu">
-        <a href="#laporan" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="file-text"></i>
-                <span>Laporan</span>
-            </div>
-            <div>
-                <i data-feather="chevron-right"></i>
-                <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </div>
-        </a>
-        <ul class="collapse submenu list-unstyled" id="laporan" data-bs-parent="#accordionExample">
-            <li>
-                <a href="{{ route('laporanpenjualan.index') }}"> Penjualan </a>
-            </li>
-        </ul>
-    </li>
+<link href="{{ asset('assets/src/assets/css/light/apps/invoice-preview.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/src/assets/css/dark/apps/invoice-preview.css') }}" rel="stylesheet" type="text/css">
 
-    <li class="menu">
-        <a href="#" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-                <i data-feather="settings"></i>
-                <span>Pengaturan</span>
-            </div>
-        </a>
-    </li>
-
-</ul>
 @endsection
 
-@section('kontendetailtransaksijual')
+
+@section('kontendetailpenjualan')
 <!-- BREADCRUMB -->
 <div class="page-meta">
     <nav class="breadcrumb-style-one" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('transaksi.jual') }}">Transaksi Penjualan</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $detailTransaksiJual[0]->id }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('transaksi.index') }}">Penjualan</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $detailPenjualan[0]->kode_nota }}</li>
         </ol>
     </nav>
 </div>
 <!-- /BREADCRUMB -->
+
 <div class="row invoice layout-top-spacing layout-spacing">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
@@ -148,25 +56,24 @@ $id = {{ $detailTransaksiJual[0]->id }};
 
                                                 <div class="col-sm-6 col-12 mr-auto">
                                                     <div class="d-flex">
-                                                        <img class="company-logo" src="../src/assets/img/cork-logo.png"
+                                                        <img class="company-logo" src="{{ asset('assets/src/assets/img/cork-logo.png') }}"
                                                             alt="company">
-                                                        <h3 class="in-heading align-self-center">Mitra10</h3>
+                                                        <h3 class="in-heading align-self-center">Mitra 10</h3>
                                                     </div>
-                                                    <p class="inv-street-addr mt-3">Jalan Kalirungkut No. 10</p>
-                                                    <p class="inv-street-addr mt-1">Surabaya, Jawa Timur</p>
-                                                    <p class="inv-email-address">mitra10@gmail.com</p>
+                                                    <p class="inv-street-addr mt-3">www.mitra10.com</p>
+                                                    <p class="inv-email-address">info@mitra10.com</p>
                                                     <p class="inv-email-address">0812345678</p>
                                                 </div>
 
                                                 <div class="col-sm-6 text-sm-end">
                                                     <p class="inv-list-number mt-sm-3 pb-sm-2 mt-4"><span
                                                             class="inv-title">Invoice : </span> <span
-                                                            class="inv-number">#{{ $detailTransaksiJual[0]->id }}</span></p>
+                                                            class="inv-number">{{ $detailPenjualan[0]->kode_nota }}</span></p>
                                                     <p class="inv-created-date mt-sm-5 mt-3"><span
                                                             class="inv-title">Invoice Date : </span> <span
-                                                            class="inv-date">{{ $detailTransaksiJual[0]->tanggal_transaksi }}</span></p>
+                                                            class="inv-date">{{ $detailPenjualan[0]->tanggal_transaksi }}</span></p>
                                                     <p class="inv-due-date"><span class="inv-title">Due Date : </span>
-                                                        <span class="inv-date">{{ $detailTransaksiJual[0]->tanggal_jatuh_tempo }}</span></p>
+                                                        <span class="inv-date">{{ $detailPenjualan[0]->tanggal_jatuh_tempo }}</span></p>
                                                 </div>
                                             </div>
 
@@ -180,25 +87,28 @@ $id = {{ $detailTransaksiJual[0]->id }};
                                                     <p class="inv-to">Invoice To</p>
                                                 </div>
 
-                                                {{-- <div
+                                                <div
                                                     class="col-xl-4 col-lg-5 col-md-6 col-sm-8 align-self-center order-sm-0 order-1 text-sm-end mt-sm-0 mt-5">
                                                     <h6 class=" inv-title">Invoice From</h6>
-                                                </div> --}}
-
-                                                <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
-                                                    <p class="inv-customer-name">Jesse Cory</p>
-                                                    <p class="inv-street-addr">405 Mulberry Rd., NC, 28649</p>
-                                                    <p class="inv-email-address">jcory@company.com</p>
-                                                    <p class="inv-email-address">(128) 666 070</p>
                                                 </div>
 
-                                                {{-- <div
+                                                <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
+                                                    <p class="inv-customer-name">{{ $detailPenjualan[0]->nama }}</p>
+                                                    <p class="inv-street-addr">{{ $detailPenjualan[0]->alamat }}</p>
+                                                    <p class="inv-street-addr">{{ $detailPenjualan[0]->kota }}, {{
+                                                        $detailPenjualan[0]->provinsi }}, {{ $detailPenjualan[0]->negara }}</p>
+                                                    <p class="inv-email-address">({{ $detailPenjualan[0]->kode_pos }})</p>
+                                                    <p class="inv-email-address">{{ $detailPenjualan[0]->no_hp }}</p>
+                                                </div>
+
+                                                <div
                                                     class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1 text-sm-end">
-                                                    <p class="inv-customer-name">Oscar Garner</p>
-                                                    <p class="inv-street-addr">2161 Ferrell Street, MN, 56545 </p>
-                                                    <p class="inv-email-address">info@mail.com</p>
-                                                    <p class="inv-email-address">(218) 356 9954</p>
-                                                </div> --}}
+                                                    <p class="inv-customer-name">Mitra 10 - {{ $detailPenjualan[0]->nama_toko }}</p>
+                                                    <p class="inv-street-addr">{{ $detailPenjualan[0]->alamat_toko }} </p>
+                                                    <p class="inv-street-addr">{{ $detailPenjualan[0]->kota_toko }}, {{ $detailPenjualan[0]->provinsi_toko }}, {{ $detailPenjualan[0]->negara_toko }}</p>
+                                                    <p class="inv-email-address">({{ $detailPenjualan[0]->kode_pos_toko }})</p>
+                                                    <p class="inv-email-address">{{ $detailPenjualan[0]->no_hp_toko }}</p>
+                                                </div>
 
                                             </div>
 
@@ -213,19 +123,21 @@ $id = {{ $detailTransaksiJual[0]->id }};
                                                             <th scope="col">Items</th>
                                                             <th class="text-end" scope="col">Qty</th>
                                                             <th class="text-end" scope="col">Price</th>
-                                                            <th class="text-end" scope="col">Amount</th>
+                                                            <th class="text-end" scope="col">Disc(%)</th>
+                                                            <th class="text-end" scope="col">Subtotal</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach ($detailTransaksiJual as $item)
+                                                        @foreach ($rincianPenjualan as $index=>$item)
                                                             <tr>
-                                                                <td>1</td>
+                                                                <td>{{ $index + 1 }}</td>
                                                                 <td>{{ $item->nama }}</td>
                                                                 <td class="text-end">{{ $item->kuantitas }}</td>
                                                                 <td class="text-end">@currency($item->harga)</td>
-                                                                <td class="text-end">@currency($item->kuantitas * $item->harga)</td>
+                                                                <td class="text-end">{{ $item->diskon }}</td>
+                                                                <td class="text-end">@currency($item->total)</td>
                                                             </tr>
-                                                        @endforeach                                               
+                                                        @endforeach                                                       
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -243,31 +155,42 @@ $id = {{ $detailTransaksiJual[0]->id }};
                                                                 <p class="">Sub Total :</p>
                                                             </div>
                                                             <div class="col-sm-4 col-5">
-                                                                <p class="">@currency($item->grand_total)</p>
-                                                            </div>
+                                                                <p class="">@currency($detailPenjualan[0]->subtotal)</p>
+                                                            </div>                                                           
                                                             <div class="col-sm-8 col-7">
-                                                                <p class="">Tax 10% :</p>
+                                                                <p class=" discount-rate">Pengiriman ({{ $detailPenjualan[0]->pengiriman }}):</p>
                                                             </div>
-                                                            <div class="col-sm-4 col-5">
-                                                                <p class="">@currency($item->grand_total * 0.1)</p>
-                                                            </div>
+                                                            @if ($detailPenjualan[0]->pengiriman == "Ambil Toko")
+                                                                <div class="col-sm-4 col-5">
+                                                                    <p class="">@currency(0)</p>
+                                                                </div>
+                                                            @else
+                                                                <div class="col-sm-4 col-5">
+                                                                    <p class="">@currency($detailPenjualan[0]->biaya_pengiriman)</p>
+                                                                </div>
+                                                            @endif
+                                                            
+                                                            @if ($detailPenjualan[0]->promos_id != null)
+                                                                <div class="col-sm-8 col-7">
+                                                                    <p class=" discount-rate">Discount {{ $detailPenjualan[0]->angka_diskon_cb }}% :</p>
+                                                                </div>
+                                                                <div class="col-sm-4 col-5">
+                                                                    <p class="">@currency($detailPenjualan[0]->harga_diskon)</p>
+                                                                </div>
+                                                            @else
+                                                                
+                                                            @endif                                                         
                                                             <div class="col-sm-8 col-7">
-                                                                <p class=" discount-rate">Shipping :</p>
+                                                                <p class="">Tax 11% :</p>
                                                             </div>
                                                             <div class="col-sm-4 col-5">
-                                                                <p class="">@currency(20000)</p>
+                                                                <p class="">@currency($detailPenjualan[0]->biaya_pajak)</p>
                                                             </div>
-                                                            {{-- <div class="col-sm-8 col-7">
-                                                                <p class=" discount-rate">Discount 5% :</p>
-                                                            </div>
-                                                            <div class="col-sm-4 col-5">
-                                                                <p class="">@currency($item->grand_total)</p>
-                                                            </div> --}}
                                                             <div class="col-sm-8 col-7 mt-3">
                                                                 <h4 class="">Grand Total : </h4>
                                                             </div>
                                                             <div class="col-sm-4 col-5 mt-3">
-                                                                <h4 class="">@currency($item->grand_total + 20000)</h4>
+                                                                <h4 class="">@currency($detailPenjualan[0]->grand_total)</h4>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -335,6 +258,8 @@ $id = {{ $detailTransaksiJual[0]->id }};
 
 @endsection
 
-@section('jsdetailtransaksijual')
+@section('jsdetailpenjualan')
+
 <script src="{{ asset('assets/src/assets/js/apps/invoice-preview.js') }}"></script>
+
 @endsection

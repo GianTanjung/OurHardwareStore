@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('promos', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
             $table->string('kode_promo');
+            $table->enum('tipe', ['Diskon', 'Cashback', 'Gratis Ongkir']);
+            $table->double('angka_diskon_cb')->nullable();
+            $table->double('harga_maks')->nullable();
             $table->string('deskripsi');
+            $table->timestamps();
         });
     }
 

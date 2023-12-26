@@ -103,7 +103,7 @@
         </a>
         <ul class="collapse submenu list-unstyled" id="laporan" data-bs-parent="#accordionExample">
             <li>
-                <a href="{{ route('laporanpenjualan.index') }}"> Penjualan </a>
+                <a href="{{ route('laporan.penjualan') }}"> Penjualan </a>
             </li>
         </ul>
     </li>

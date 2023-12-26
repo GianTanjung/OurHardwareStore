@@ -15,6 +15,8 @@ class CreatePelanggansTable extends Migration
     {
         Schema::create('pelanggans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('nama');
             $table->string('no_hp');
             $table->string('alamat');
@@ -23,8 +25,7 @@ class CreatePelanggansTable extends Migration
             $table->string('kota');
             $table->string('provinsi');
             $table->string('negara');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->double('poin')->nullable();
             $table->timestamps();
         });
     }

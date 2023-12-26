@@ -16,6 +16,7 @@ class Ruangans extends Migration
         Schema::create('ruangans', function(Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->timestamps();
         });
     }
 

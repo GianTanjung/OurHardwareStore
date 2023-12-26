@@ -27,4 +27,8 @@ class Produk extends Model
     {
         return $this->belongsTo(Ruangan::class);
     }
+    public function salesuoms()
+    {
+        return $this->belongsTo(SalesUom::class);
+    }
 }

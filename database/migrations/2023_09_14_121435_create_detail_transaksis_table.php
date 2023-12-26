@@ -14,11 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('detail_transaksis', function (Blueprint $table) {
-            $table->unsignedBigInteger('produk_id');
-            $table->foreign('produk_id')->references('id')->on('produks');
+            $table->unsignedBigInteger('produk_toko_id');
+            $table->foreign('produk_toko_id')->references('id')->on('produk_tokos');
             $table->unsignedBigInteger('transaksi_id');
             $table->foreign('transaksi_id')->references('id')->on('transaksis');
+            $table->double('diskon');
             $table->integer('kuantitas');
+            $table->double('total');
         });
     }
 
@@ -29,12 +31,14 @@ return new class extends Migration
      */
     public function down()
     {
+        
         Schema::table('detail_transaksis', function (Blueprint $table) {
-            $table->dropForeign(['produk_id']);
-            $table->dropColumn('produk_id');
+            $table->dropForeign(['produk_toko_id']);
+            $table->dropColumn('produk_toko_id');
             $table->dropForeign(['transaksi_id']);
             $table->dropColumn('transaksi_id');
         });
         Schema::dropIfExists('detail_transaksis');
+       
     }
 };

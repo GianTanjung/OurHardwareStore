@@ -17,8 +17,10 @@ class DatabaseSeeder extends Seeder
             MerkSeeder::class,
             RuanganSeeder::class,
             KategoriSeeder::class,
+            SalesUomsSeeder::class,
             TokoSeeder::class,
             ProdukSeeder::class,
+            ProdukTokoSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
             PelangganSeeder::class,
@@ -27,8 +29,8 @@ class DatabaseSeeder extends Seeder
             PromoSeeder::class,
             PembayaranSeeder::class,
             TransaksiSeeder::class,
-            DetailTransaksiSeeder::class
-
+            DetailTransaksiSeeder::class,
+            
         ]);
         // User::factory(10)->create();
     }

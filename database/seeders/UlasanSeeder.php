@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UlasanSeeder extends Seeder
 {
@@ -25,14 +26,14 @@ class UlasanSeeder extends Seeder
             'ulasan' => 'Bagus',
             'rating' => '3',
             'produk_id' => '1',
-            'pelaggan_id' => '2',
+            'pelaggans_id' => '2',
         ]);
         DB::table('ulasans')->insert([
             'judul' => 'Review Barang',
             'ulasan' => 'Bagus',
             'rating' => '4',
             'produk_id' => '1',
-            'pelaggan_id' => '3',
+            'pelaggans_id' => '3',
         ]);
         DB::table('ulasans')->insert([
             'judul' => 'Review Barang',

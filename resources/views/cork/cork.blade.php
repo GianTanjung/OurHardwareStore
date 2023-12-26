@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>Mitra 10 - @yield('title') </title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/src/assets/img/favicon.ico') }}" />
-    <link href="{{ asset('assets/layouts/modern-light-menu/css/light/loader.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/layouts/modern-light-menu/css/light/loader.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('assets/layouts/modern-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('assets/layouts/modern-light-menu/loader.js') }}"></script>
     <script src="https://unpkg.com/feather-icons"></script>
@@ -29,37 +30,49 @@
     @yield('cssdaftarproduk')
     @yield('cssdaftarkategori')
     @yield('cssdaftarmerk')
+    @yield('cssdaftarruangan')
+
     @yield('cssinsertproduk')
+    @yield('cssinsertkategori')
+    @yield('cssinsertmerk')
+    @yield('cssinsertruangan')
+
     @yield('cssdetailproduk')
+    @yield('cssdetailkategori')
+    @yield('cssdetailmerk')
+    @yield('cssdetailruangan')
+
+    @yield('csseditproduk')
+    @yield('csseditkategori')
+    @yield('csseditmerk')
+    @yield('csseditruangan')
 
     <!-- Transaksi -->
-    @yield('csstransaksibeli')
-    @yield('csstransaksijual')
-    @yield('cssdetailtransaksijual')
+    @yield('cssdaftarpenjualan')
+
+    @yield('cssinsertpenjualan')
+
+    @yield('cssdetailpenjualan')
+
+    @yield('csseditpenjualan')
 
     <!-- Laporan -->
-    @yield('csslaporanpenjualan')
-    @yield('csslaporanpembeliankain')
-    @yield('csslaporanproduksi')
+    @yield('cssdaftarlaporanpenjualan')
+    @yield('cssdaftarlaporanpembelian')
 
-    <!-- HRD -->
-    @yield('cssdaftaruser')
-    @yield('cssdetailuser')
-    @yield('csssettinguser')
 
-    <!-- Peramalan -->
-    @yield('cssperamalanbulankhusus')
-    @yield('cssperamalanbulanan')
-    @yield('cssperamalantahunan')
+    <!-- Pengaturan -->
+    @yield('cssdaftarpelanggan')
+    @yield('cssdaftartoko')
 
-    <!-- Konfirmasi Aktivitas -->
-    @yield('csskonfirmasiaktivitas')
+    @yield('cssinsertpelanggan')
+    @yield('cssinserttoko')
 
-    <!-- Log Aktivitas -->
-    @yield('csslogaktivitas')
+    @yield('cssdetailpelanggan')
+    @yield('cssdetailtoko')
 
-    <!-- Setting -->
-    @yield('csspengaturan')
+    @yield('csseditpelanggan')
+    @yield('cssedittoko')
 </head>
 
 <body class="layout-boxed">
@@ -92,8 +105,7 @@
                 </i>
                 <form class="form-inline search-full form-inline search" role="search">
                     <div class="search-bar">
-                        <input type="text" class="form-control search-form-control  ml-lg-auto"
-                            placeholder="Search...">
+                        <input type="text" class="form-control search-form-control  ml-lg-auto" placeholder="Search...">
                         <i data-feather="x" class="search-close">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -284,9 +296,9 @@
 
                             <div class="dropdown-item">
                                 <div class="media ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-heart">
                                         <path
                                             d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
                                         </path>
@@ -299,8 +311,8 @@
 
                                         <div class="icon-status">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
                                                 class="feather feather-x">
                                                 <line x1="18" y1="6" x2="6" y2="18">
                                                 </line>
@@ -400,8 +412,7 @@
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
                             <a href="{{ route('home') }}">
-                                <img src="{{ asset('assets/src/assets/img/logo3.svg') }}" class="navbar-logo"
-                                    alt="logo">
+                                <img src="{{ asset('assets/src/assets/img/logo3.svg') }}" alt="logo">
                             </a>
                         </div>
                         <div class="nav-item theme-text">
@@ -422,52 +433,147 @@
                         </div>
                         <div class="profile-content">
                             <h6 class="">Bagus Surya Bumi</h6>
-                            <p class="">Admin</p>
+                            <p class="">Pemilik</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="shadow-bottom"></div>
 
-                <!-- Dashboard -->
-                @yield('sidebaranalytics')
-                @yield('sidebarsales')
+                <ul class="list-unstyled menu-categories" id="accordionExample">
 
-                <!-- Master -->
-                @yield('sidebardaftarproduk')
-                @yield('sidebardaftarkategori')
-                @yield('sidebardaftarmerk')
-                @yield('sidebarinsertproduk')
-                @yield('sidebardetailproduk')
+                    <li class="menu {{ request()->routeIs(['dashboard.*','home']) ? 'active' : '' }}">
+                        <a href="#dashboard" data-bs-toggle="collapse"
+                            aria-expanded="{{ request()->routeIs(['dashboard.*','home']) ? 'true' : 'false' }}"
+                            class="dropdown-toggle">
+                            <div class="">
+                                <i data-feather="home"></i>
+                                <span>Dashboard</span>
+                            </div>
+                            <div>
+                                <i data-feather="chevron-right"></i>
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['dashboard.*', 'home']) ? 'show' : '' }}"
+                            id="dashboard" data-bs-parent="#accordionExample">
+                            <li class="{{ request()->routeIs(['dashboard.analytics*', 'home']) ? 'active' : '' }}">
+                                <a href="{{ route('dashboard.analytics') }}"> Analytics </a>
+                            </li>
+                            <li class="{{ request()->routeIs('dashboard.sales*') ? 'active' : '' }}">
+                                <a href="{{ route('dashboard.sales') }}"> Sales </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <!-- Transaksi -->
-                @yield('sidebartransaksibeli')
-                @yield('sidebartransaksijual')
-                @yield('sidebardetailtransaksijual')
+                    <li
+                        class="menu {{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*', 'ruangan.*']) ? 'active' : '' }}">
+                        <a href="#master" data-bs-toggle="collapse"
+                            aria-expanded="{{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*', 'ruangan.*']) ? 'true' : 'false' }}"
+                            class="dropdown-toggle">
+                            <div class="">
+                                <i data-feather="grid"></i>
+                                <span>Master</span>
+                            </div>
+                            <div>
+                                <i data-feather="chevron-right"></i>
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*', 'ruangan.*']) ? 'show' : '' }}"
+                            id="master" data-bs-parent="#accordionExample">
+                            <li class="{{ request()->routeIs('produk.*') ? 'active' : '' }}">
+                                <a href="{{ route('produk.index') }}"> Produk </a>
+                            </li>
+                            <li class="{{ request()->routeIs('merk.*') ? 'active' : '' }}">
+                                <a href="{{ route('merk.index') }}"> Merk </a>
+                            </li>
+                            <li class="{{ request()->routeIs('kategori.*') ? 'active' : '' }}">
+                                <a href="{{ route('kategori.index') }}"> Kategori </a>
+                            </li>
+                            <li class="{{ request()->routeIs('ruangan.*') ? 'active' : '' }}">
+                                <a href="{{ route('ruangan.index') }}"> Ruangan </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <!-- Laporan -->
-                @yield('sidebarlaporanpenjualan')
-                @yield('sidebarlaporanpembeliankain')
-                @yield('sidebarlaporanproduksi')
+                    <li class="menu {{ request()->routeIs(['notabeli.*', 'transaksi.*']) ? 'active' : '' }}">
+                        <a href="#transaksi" data-bs-toggle="collapse"
+                            aria-expanded="{{ request()->routeIs(['notabeli.*', 'transaksi.*']) ? 'true' : 'false' }}"
+                            class="dropdown-toggle">
+                            <div class="">
+                                <i data-feather="shopping-bag"></i>
+                                <span>Transaksi</span>
+                            </div>
+                            <div>
+                                <i data-feather="chevron-right"></i>
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['notabeli.*', 'transaksi.*']) ? 'show' : '' }}"
+                            id="transaksi" data-bs-parent="#accordionExample">
+                            {{-- <li class="{{ request()->routeIs(['notabeli*']) ? 'active' : '' }}">
+                                <a href="{{ route('notabeli.index') }}"> Pembelian </a>
+                            </li> --}}
+                            <li class="{{ request()->routeIs(['transaksi.*']) ? 'active' : '' }}">
+                                <a href="{{ route('transaksi.index') }}"> Penjualan </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <!-- HRD -->
-                @yield('sidebardaftaruser')
-                @yield('sidebardetailuser')
-                @yield('sidebarsettinguser')
+                    <li class="menu {{ request()->routeIs(['laporan.*']) ? 'active' : '' }}">
+                        <a href="#laporan" data-bs-toggle="collapse"
+                            aria-expanded="{{ request()->routeIs(['laporan.*']) ? 'true' : 'false' }}"
+                            class="dropdown-toggle">
+                            <div class="">
+                                <i data-feather="file-text"></i>
+                                <span>Laporan</span>
+                            </div>
+                            <div>
+                                <i data-feather="chevron-right"></i>
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['laporan.*']) ? 'show' : '' }}"
+                            id="laporan" data-bs-parent="#accordionExample">
+                            <li class="{{ request()->routeIs(['laporan.penjualan']) ? 'active' : '' }}">
+                                <a href="{{ route('laporan.penjualan') }}"> Penjualan </a>
+                            </li>
+                            {{-- <li class="{{ request()->routeIs(['laporan.pembelian']) ? 'active' : '' }}">
+                                <a href="{{ route('laporan.pembelian') }}"> Pembelian </a>
+                            </li> --}}
+                        </ul>
+                    </li>
 
-                <!-- Peramalan -->
-                @yield('sidebarperamalanbulankhusus')
-                @yield('sidebarperamalanbulanan')
-                @yield('sidebarperamalantahunan')
-
-                <!-- Konfirmasi Aktivitas -->
-                @yield('sidebarkonfirmasiaktivitas')
-
-                <!-- Log Aktivitas -->
-                @yield('sidebarlogaktivitas')
-
-                <!-- Setting -->
-                @yield('sidebarpengaturan')
+                    <li class="menu {{ request()->routeIs(['pelanggan.*', 'toko.*']) ? 'active' : '' }}">
+                        <a href="#pengaturan" data-bs-toggle="collapse"
+                            aria-expanded="{{ request()->routeIs(['pelanggan.*', 'toko.*']) ? 'true' : 'false' }}"
+                            class="dropdown-toggle">
+                            <div class="">
+                                <i data-feather="settings"></i>
+                                <span>Pengaturan</span>
+                            </div>
+                            <div>
+                                <i data-feather="chevron-right"></i>
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </a>
+                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['pelanggan.*', 'toko.*']) ? 'show' : '' }}"
+                            id="pengaturan" data-bs-parent="#accordionExample">
+                            <li class="{{ request()->routeIs(['pelanggan.*']) ? 'active' : '' }}">
+                                <a href="{{ route('pelanggan.index') }}"> Pelanggan </a>
+                            </li>
+                            <li class="{{ request()->routeIs(['toko.*']) ? 'active' : '' }}">
+                                <a href="{{ route('toko.index') }}"> Toko </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
 
             </nav>
 
@@ -487,21 +593,48 @@
                     @yield('kontendaftarproduk')
                     @yield('kontendaftarkategori')
                     @yield('kontendaftarmerk')
+                    @yield('kontendaftarruangan')
+
                     @yield('konteninsertproduk')
+                    @yield('konteninsertkategori')
+                    @yield('konteninsertmerk')
+                    @yield('konteninsertruangan')
+
                     @yield('kontendetailproduk')
+                    @yield('kontendetailkategori')
+                    @yield('kontendetailmerk')
+                    @yield('kontendetailruangan')
+
+                    @yield('konteneditproduk')
+                    @yield('konteneditkategori')
+                    @yield('konteneditmerk')
+                    @yield('konteneditruangan')
 
                     <!-- Transaksi -->
-                    @yield('kontentransaksibeli')
-                    @yield('kontentransaksijual')
-                    @yield('kontendetailtransaksijual')
+                    @yield('kontendaftarpenjualan')
+
+                    @yield('konteninsertpenjualan')
+
+                    @yield('kontendetailpenjualan')
+
+                    @yield('konteneditpenjualan')
 
                     <!-- Laporan -->
-                    @yield('kontenlaporanpenjualan')
-                    @yield('kontenlaporanpembeliankain')
-                    @yield('kontenlaporanproduksi')
+                    @yield('kontendaftarlaporanpenjualan')
+                    @yield('kontendaftarlaporanpembelian')
 
-                    <!-- Setting -->
-                    @yield('kontenpengaturan')
+                    <!-- Pengaturan -->
+                    @yield('kontendaftarpelanggan')
+                    @yield('kontendaftartoko')
+
+                    @yield('konteninsertpelanggan')
+                    @yield('konteninserttoko')
+
+                    @yield('kontendetailpelanggan')
+                    @yield('kontendetailtoko')
+
+                    @yield('konteneditpelanggan')
+                    @yield('kontenedittoko')
                 </div>
 
             </div>
@@ -542,21 +675,48 @@
     @yield('jsdaftarproduk')
     @yield('jsdaftarkategori')
     @yield('jsdaftarmerk')
+    @yield('jsdaftarruangan')
+
     @yield('jsinsertproduk')
+    @yield('jsinsertkategori')
+    @yield('jsinsertmerk')
+    @yield('jsinsertruangan')
+
     @yield('jsdetailproduk')
+    @yield('jsdetailkategori')
+    @yield('jsdetailmerk')
+    @yield('jsdetailruangan')
+
+    @yield('jseditproduk')
+    @yield('jseditkategori')
+    @yield('jseditmerk')
+    @yield('jseditruangan')
 
     <!-- Transaksi -->
-    @yield('jstransaksibeli')
-    @yield('jstransaksijual')
-    @yield('jsdetailtransaksijual')
+    @yield('jsdaftarpenjualan')
+
+    @yield('jsinsertpenjualan')
+
+    @yield('jsdetailpenjualan')
+
+    @yield('jseditpenjualan')
 
     <!-- Laporan -->
-    @yield('jslaporanpenjualan')
-    @yield('jslaporanpembeliankain')
-    @yield('jslaporanproduksi')
+    @yield('jsdaftarlaporanpenjualan')
+    @yield('jsdaftarlaporanpembelian')
 
-    <!-- Setting -->
-    @yield('jspengaturan')
+    <!-- Pengaturan -->
+    @yield('jsdaftarpelanggan')
+    @yield('jsdaftartoko')
+
+    @yield('jsinsertpelanggan')
+    @yield('jsinserttoko')
+
+    @yield('jsdetailpelanggan')
+    @yield('jsdetailtoko')
+
+    @yield('jseditpelanggan')
+    @yield('jsedittoko')
 
 </body>
 

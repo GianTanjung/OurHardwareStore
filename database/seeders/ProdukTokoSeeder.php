@@ -21,17 +21,17 @@ class ProdukTokoSeeder extends Seeder
         ]);
         DB::table('produk_tokos')->insert([
             'produk_id' => '1',
-            'toko_id' => '2',
+            'toko_id' => '1',
             'stok' => '200'
         ]);
         DB::table('produk_tokos')->insert([
             'produk_id' => '1',
-            'toko_id' => '3',
+            'toko_id' => '2',
             'stok' => '50'
         ]);
         DB::table('produk_tokos')->insert([
             'produk_id' => '1',
-            'toko_id' => '4',
+            'toko_id' => '2',
             'stok' => '110'
         ]);
     }

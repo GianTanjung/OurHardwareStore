@@ -16,18 +16,28 @@ class PromoSeeder extends Seeder
     public function run()
     {
         DB::table('promos')->insert([
-            'nama' => '10 Maret',
-            'kode_promo' => 'DEPOBANGUNANMAR10',
-            'deskripsi' => 'Promo 10 Maret nih bosque'
+            'kode_promo' => 'DEPOBANGUNANDISC10',
+            'tipe' => 'Diskon',
+            'angka_diskon_cb' => '10',
+            'harga_maks' => '50000',
+            'deskripsi' => 'Diskon 10% dengan maksimal diskon senilai Rp50.000. Promo berlaku mulai tanggal 1 Desember 2023 - 31 Desember 2023'
+        ]);
+        // DB::table('promos')->insert([
+        //     'kode_promo' => 'DEPOBANGUNANCB10',
+        //     'tipe' => 'Cashback',
+        //     'angka_diskon_cb' => '10',
+        //     'harga_maks' => '50000',
+        //     'deskripsi' => 'Cashback 10% dengan maksimal cashback senilai Rp50.000. Promo berlaku mulai tanggal 1 Desember 2023 - 31 Desember 2023. Cashback berupa poin'
+        // ]);
+        DB::table('promos')->insert([
+            'kode_promo' => 'DPBNGNGRATISONGKIR',
+            'tipe' => 'Gratis Ongkir',
+            'deskripsi' => 'Gratis ongkir ke seluruh Indonesia. Promo berlaku mulai tanggal 1 Desember 2023 - 31 Desember 2023'
         ]);
         DB::table('promos')->insert([
-            'nama' => '11 Mei',
-            'kode_promo' => 'DEPOBANGUNANMEI11',
-            'deskripsi' => 'Promo 11 Mei nih bosque'
-        ]);
-        DB::table('promos')->insert([
-            'nama' => '1 Januari',
             'kode_promo' => 'DEPOBANGUNANJAN1',
+            'angka_diskon_cb' => '15',
+            'harga_maks' => '100000',
             'deskripsi' => 'Promo 1 Januari nih bosque, Tahun Baru'
         ]);
     }

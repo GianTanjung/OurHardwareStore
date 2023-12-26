@@ -15,17 +15,25 @@ class Produks extends Migration
     {
         Schema::create('produks', function(Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('merk_id');
+            $table->foreign('merk_id')->references('id')->on('merks');
+            $table->unsignedBigInteger('ruangan_id');
+            $table->foreign('ruangan_id')->references('id')->on('ruangans');
+            $table->unsignedBigInteger('kategori_id');
+            $table->foreign('kategori_id')->references('id')->on('kategoris');
+            $table->unsignedBigInteger('sales_uoms_id');
+            $table->foreign('sales_uoms_id')->references('id')->on('sales_uoms');
+            $table->string('sku')->unique();
             $table->string('nama');
-            $table->text('deskripsi')->nullable();
             $table->string('fotoProduk');
             $table->string('tipe');
             $table->double('harga');
-            $table->unsignedBigInteger('merk_id')->nullable();
-            $table->foreign('merk_id')->references('id')->on('merks');
-            $table->unsignedBigInteger('ruangan_id')->nullable();
-            $table->foreign('ruangan_id')->references('id')->on('ruangans');
-            $table->unsignedBigInteger('kategori_id')->nullable();
-            $table->foreign('kategori_id')->references('id')->on('kategoris');
+            $table->enum('publikasi', ['Ya', 'Tidak']);
+            $table->double('lebar');
+            $table->double('panjang');
+            $table->double('tinggi');
+            $table->double('berat');
+            $table->text('deskripsi')->nullable();
             $table->timestamps();
         });
 
@@ -45,6 +53,8 @@ class Produks extends Migration
             $table->dropColumn('ruangan_id');
             $table->dropForeign(['kategori_id']);
             $table->dropColumn('kategori_id');
+            $table->dropForeign(['sales_uoms_id']);
+            $table->dropColumn('sales_uoms_id');
         });
         Schema::dropIfExists('produks');
     }

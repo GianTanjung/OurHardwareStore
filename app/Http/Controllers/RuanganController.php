@@ -57,6 +57,13 @@ class RuanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function edit($id)
+    {
+        $detailRuangan = Ruangan::where('id', $id)
+            ->get();
+
+        return view('ruangan.editruangan', compact('detailRuangan'));
+    }
     public function update(Request $request, $id)
     {
         //
