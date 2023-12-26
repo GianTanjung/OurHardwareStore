@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Pelanggan;
+use App\Models\Province;
+use App\Models\City;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -41,6 +43,11 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    public function showRegistrationForm()
+    {
+        $provinceList = Province::all(); // Retrieve the list of roles from the database
+        return view('auth.register', compact('provinceList'));
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -70,7 +77,7 @@ class RegisterController extends Controller
         $user->nama = $data['name'];
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
-        $user->role_id = 2;
+        $user->role_id = 3;
         $user->save();
         $p = new Pelanggan();
         $p->nama = $user->nama;

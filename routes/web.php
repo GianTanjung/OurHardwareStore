@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\CheckOngkirController;
 
 /*
 |--------------------------------------------------------------------------
@@ -162,5 +163,9 @@ Route::get('/laporan/transaksipenjualan', [LaporanTransaksiController::class, 'i
     Route::get('customer/detail/{id}', [PelangganController::class, 'detail'])->name('detail');
 
 // Auth::routes();
+// City & Province
+    Route::get('/getCity/{id}', [CheckOngkirController::class, 'getCity'])->name('getCity');
+    
+Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             PembayaranSeeder::class,
             TransaksiSeeder::class,
             DetailTransaksiSeeder::class,
-            
+            LocationsSeeder::class,
         ]);
         // User::factory(10)->create();
     }
