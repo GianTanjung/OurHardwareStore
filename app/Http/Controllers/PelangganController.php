@@ -68,6 +68,9 @@ class PelangganController extends Controller
         // dd($user->id);
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
 
+        $selectedstore = $request->input('lokasi');
+        // $store = DB::table('tokos')->select('id')->where('id', '=', $selectedstore)->first();
+
         if($request->input('kuantitas') > 0){
             $jumlah = $request->input('kuantitas');
         }else{
@@ -75,7 +78,7 @@ class PelangganController extends Controller
         }
         $helper = DB::table('keranjangs')->select('*')->get()->where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->first();
 
-        if($helper != null){
+        if($helper != null && $helper->toko_id == $selectedstore){
             DB::table('keranjangs')
                 ->where('id', $helper->id)
                 ->update([
@@ -83,7 +86,7 @@ class PelangganController extends Controller
                     // Add more columns as needed
                 ]);
         }else{
-            $data = array('produk_id'=>$id, 'pelanggan_id'=>$pelanggan->id, 'kuantitas'=>$jumlah);
+            $data = array('produk_id'=>$id, 'pelanggan_id'=>$pelanggan->id, 'kuantitas'=>$jumlah, 'toko_id'=>$selectedstore);
             DB::table('keranjangs')->insert($data);
         }
 
@@ -97,11 +100,12 @@ class PelangganController extends Controller
     public function cart()
     {
         $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
-        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas    ')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
         $vat = $subTotal*20/100;
         $total = $subTotal+$vat;
-        return view('checkout.cart', compact('listCart','subTotal','vat','total'));
+        $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
+        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store'));
     }
 
     public function deleteCart($id)

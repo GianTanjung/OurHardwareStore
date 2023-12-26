@@ -10,11 +10,13 @@
                     <div class="ec-cart-inner">
                         <div class="row">
                             <form action="#">
+                                @foreach ($listCart as $c)
                                 <div class="table-content cart-table-content">
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th>Product</th>
+                                                <th></th>
+                                                <th>{{$c->namastore}}</th>
                                                 <th>Price</th>
                                                 <th style="text-align: center;">Quantity</th>
                                                 <th>Total</th>
@@ -22,8 +24,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($listCart as $c)
+                                            {{-- @foreach ($listCart as $c) --}}
                                             <tr>
+                                                <td><input type="checkbox" name="produk[]" value={{$c->id}}></td>
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
@@ -48,10 +51,11 @@
                                                 </td>
                                                 
                                             </tr>
-                                            @endforeach
+                                            {{-- @endforeach --}}
                                         </tbody>
                                     </table>
                                 </div>
+                                @endforeach
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="ec-cart-update-bottom">

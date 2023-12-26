@@ -1,6 +1,8 @@
 @extends('ekka.shop')
 
 @section('content')
+<form action="{{route('addCart', $produk->id)}}" method="post">
+    @csrf
 {{-- @foreach ($produk as $p) --}}
     <!-- Sart Single product -->
     <section class="ec-page-content section-space-p">
@@ -66,7 +68,10 @@
                                                     
                                                     {{-- <ul> --}}
                                                         @foreach ($lokasi as $l)
-                                                        <li class="active" style="width: 100px;"><span>{{$l->nama}}</span></li> 
+                                                        <tr>
+                                                            <td><li style="width: 130px;"><input type="radio" name="lokasi" value="{{$l->id}}" style="width: 20px; height: 20px;"> {{$l->nama}}</li></td>
+                                                        </tr>
+                                                        {{-- <li style="width: 100px;"><input type="radio" style="width: 20px; height: 20px;" name="lokasi" value="{{$l->id}}">{{$l->nama}}</li>  --}}
                                                         {{-- <div class="button-radio" onclick="selectOption('option1')">{{$l->nama}}</div> --}}
                                                         @endforeach
                                                         
@@ -78,8 +83,8 @@
                                             </div>
 
                                         </div>
-                                        <form action="{{route('addCart', $produk->id)}}" method="post">
-                                            @csrf
+                                        {{-- <form action="{{route('addCart', $produk->id)}}" method="post">
+                                            @csrf --}}
                                         <div class="ec-single-qty">
                                             <div class="qty-plus-minus">
                                                 <input class="qty-input" type="text" name="kuantitas" value="1" />
@@ -100,7 +105,7 @@
                                                         alt="" /></a>
                                             </div>
                                         </div>
-                                    </form>
+                                    {{-- </form> --}}
                                         <div class="ec-single-social">
                                             <ul class="mb-0">
                                                 <li class="list-inline-item facebook"><a href="#"><i
@@ -134,4 +139,5 @@
     </section>
     <!-- End Single product -->
     {{-- @endforeach --}}
+</form>
     @endsection
