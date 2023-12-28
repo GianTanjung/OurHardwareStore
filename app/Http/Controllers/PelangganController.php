@@ -97,15 +97,51 @@ class PelangganController extends Controller
         return redirect()->back();
     }
 
-    public function cart()
+    public function cart(Request $request)
     {
         $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
-        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas    ')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
         $vat = $subTotal*20/100;
         $total = $subTotal+$vat;
         $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
-        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store'));
+        $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
+        $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
+        $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
+
+        $coba = 1;
+        $products = [11,13];
+
+        // $products = $request->input('produk', []);
+        $check = DB::table('keranjangs as k')->select('k.id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $products)->count();
+
+        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'check', 'products', 'coba'));
+        // dd($coba);
+    }
+
+    public function cartHandler(Request $request)
+    {
+        $submitAction = $request->input('button');
+
+        // Perform different actions based on the button clicked
+        switch ($submitAction) {
+            case 'delete':
+                // Handle action 1
+                $id = $request->input('id');
+                return $this->deleteCart($id);
+                break;
+
+            case 'checkout':
+                // Handle action 2
+                $products = $request->input('produk', []);
+                return $this->checkout($products);
+                // dd($count);
+                break;
+
+            default:
+                // Handle the default case or return an error
+                return response()->json(['error' => 'Invalid action'], 400);
+        }
     }
 
     public function deleteCart($id)
@@ -129,6 +165,24 @@ class PelangganController extends Controller
 
         return view('checkout.detail', compact('produk', 'lokasi', 'stok'));
         // dd($produk);
+    }
+
+    public function checkout($products)
+    {
+        $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
+        // $products = $request->input('produk', []);
+        $listCart = DB::table('keranjangs as k')->select('k.id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $products)->groupBy('k.toko_id')->get();
+        $count = $listCart->count();
+        if ($count > 1)
+        {
+            return redirect()->back()->with('message', 'Products must be from the same store.');
+            // dd($count);
+        }
+        else
+        {
+            return redirect()->back();
+        }
+        // dd($listCart);
     }
 
     /**

@@ -21,6 +21,7 @@ class CreateKeranjangs extends Migration
             $table->unsignedBigInteger('produk_id');
             $table->foreign('produk_id')->references('id')->on('produks');
             $table->timestamps();
+            $table->foreign('kota_id')->references('id')->on('kotas');
         });
     }
 

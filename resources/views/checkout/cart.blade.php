@@ -1,6 +1,17 @@
 @extends('ekka.shop')
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 @section('content')
+<form action="{{route('handleCart')}}" method="post">
+    @csrf<div style="width: 100%;">
+        @if (Session::has('message'))
+          <div class="alert bg-danger alert-danger text-white text-center" role="alert">
+            {{ Session::get('message') }}
+          </div>
+        @endif
 <section class="ec-page-content section-space-p">
     <div class="container">
         <div class="row">
@@ -10,13 +21,14 @@
                     <div class="ec-cart-inner">
                         <div class="row">
                             <form action="#">
-                                @foreach ($listCart as $c)
+                                {{-- @foreach ($listCart as $c) --}}
+                                @if ($sidoarjo > 0)
                                 <div class="table-content cart-table-content">
                                     <table>
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>{{$c->namastore}}</th>
+                                                <th>Depo Sidoarjo</th>
                                                 <th>Price</th>
                                                 <th style="text-align: center;">Quantity</th>
                                                 <th>Total</th>
@@ -24,7 +36,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @foreach ($listCart as $c) --}}
+                                            @foreach ($listCart as $c)
+                                            @if ($c->idstore == 1)
                                             <tr>
                                                 <td><input type="checkbox" name="produk[]" value={{$c->id}}></td>
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
@@ -43,19 +56,121 @@
                                                 <td data-label="Total" class="ec-cart-pro-subtotal">{{$c->harga*$c->kuantitas}}</td>
                                                  
                                                 <td data-label="Remove" class="ec-cart-pro-remove">
-                                                    <form action="{{route('deleteCart', $c->id)}}" method="post">
-                                                        @csrf
+                                                    {{-- <form action="{{route('deleteCart', $c->id)}}" method="post">
+                                                        @csrf --}}
                                                         @method('DELETE') 
-                                                    <button class="ecicon eci-trash-o"></button>
-                                                </form>
+                                                        <input type="hidden" name="id" value={{$c->id}}>
+                                                    <button class="ecicon eci-trash-o" name="button" value="delete"></button>
+                                                {{-- </form> --}}
                                                 </td>
                                                 
                                             </tr>
-                                            {{-- @endforeach --}}
+                                            @endif
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                                @endforeach
+                                @endif
+                                @if ($malang > 0)
+                                <div class="table-content cart-table-content">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Depo Malang</th>
+                                                <th>Price</th>
+                                                <th style="text-align: center;">Quantity</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($listCart as $c)
+                                            @if ($c->idstore == 2)
+                                            <tr>
+                                                <td><input type="checkbox" name="produk[]" value={{$c->id}}></td>
+                                                <td data-label="Product" class="ec-cart-pro-name"><a
+                                                        href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
+                                                            src={{$c->fotoProduk}}
+                                                            alt="" />{{$c->nama}}</a></td>
+                                                <td data-label="Price" class="ec-cart-pro-price"><span
+                                                        class="amount">{{$c->harga}}</span></td>
+                                                <td data-label="Quantity" class="ec-cart-pro-qty"
+                                                    style="text-align: center;">
+                                                    <div class="cart-qty-plus-minus">
+                                                        <input class="cart-plus-minus" type="text"
+                                                            name="cartqtybutton" value={{$c->kuantitas}} />
+                                                    </div>
+                                                </td>
+                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{$c->harga*$c->kuantitas}}</td>
+                                                 
+                                                <td data-label="Remove" class="ec-cart-pro-remove">
+                                                    {{-- <form action="{{route('deleteCart', $c->id)}}" method="post">
+                                                        @csrf --}}
+                                                        @method('DELETE') 
+                                                        <input type="hidden" name="id" value={{$c->id}}>
+                                                    <button class="ecicon eci-trash-o" name="button" value="delete"></button>
+                                                {{-- </form> --}}
+                                                </td>
+                                                
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @endif
+                                @if ($surabaya > 0)
+                                <div class="table-content cart-table-content">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Depo Surabaya</th>
+                                                <th>Price</th>
+                                                <th style="text-align: center;">Quantity</th>
+                                                <th>Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($listCart as $c)
+                                            @if ($c->idstore == 3)
+                                            <tr>
+                                                <td><input type="checkbox" name="produk[]" value={{$c->id}}></td>
+                                                <td data-label="Product" class="ec-cart-pro-name"><a
+                                                        href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
+                                                            src={{$c->fotoProduk}}
+                                                            alt="" />{{$c->nama}}</a></td>
+                                                <td data-label="Price" class="ec-cart-pro-price"><span
+                                                        class="amount">{{$c->harga}}</span></td>
+                                                <td data-label="Quantity" class="ec-cart-pro-qty"
+                                                    style="text-align: center;">
+                                                    <div class="cart-qty-plus-minus">
+                                                        <input class="cart-plus-minus" type="text"
+                                                            name="cartqtybutton" value={{$c->kuantitas}} />
+                                                    </div>
+                                                </td>
+                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{$c->harga*$c->kuantitas}}</td>
+                                                 
+                                                <td data-label="Remove" class="ec-cart-pro-remove">
+                                                    {{-- <form action="{{route('deleteCart', $c->id)}}" method="post">
+                                                        @csrf --}}
+                                                        @method('DELETE') 
+                                                        <input type="hidden" name="id" value={{$c->id}}>
+                                                    <button class="ecicon eci-trash-o" name="button" value="delete"></button>
+                                                {{-- </form> --}}
+                                                </td>
+                                                
+                                            </tr>
+                                            @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @endif
+                                
+                                {{-- @endforeach --}}
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="ec-cart-update-bottom">
@@ -156,12 +271,21 @@
             
                             </div>
                         </div>
-                        <button class="btn btn-primary">Check Out</button>
+                        {{-- <form action="{{route('checkout')}}" method="post">
+                            @csrf --}}
+                            {{-- <input type="checkbox" name="produk[]" value="11">
+                            <input type="checkbox" name="produk[]" value="13"> --}}
+                        <button class="btn btn-primary" name="button" value="checkout">Check Out</button>
+                        
                     </div>
+                    {{-- </form> --}}
                     <!-- Sidebar Summary Block -->
                 </div>
             </div>
         </div>
     </div>
 </section>
+</form>
 @endsection
+
+
