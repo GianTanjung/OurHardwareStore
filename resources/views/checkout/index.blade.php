@@ -59,12 +59,12 @@
                                                         class="svg_img pro_svg" alt="" /></a>
 
                                                 {{-- add to cart --}}
-                                                <form action="{{route('addCart', $p->id)}}" method="post">
+                                                {{-- <form action="{{route('addCart', $p->id)}}" method="post">
                                                 @csrf
                                                 <button title="Add To Cart" class=" add-to-cart"><img
                                                         src="{{asset('assets/images/icons/cart.svg')}}" class="svg_img pro_svg"
                                                         alt="" /> Add To Cart</button>
-                                                </form>
+                                                </form> --}}
                                                 
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                         src="{{asset('assets/images/icons/wishlist.svg')}}"
@@ -240,27 +240,8 @@
             </ul>
         </div>
         <div class="ec-cart-bottom">
-            <div class="cart-sub-total">
-                <table class="table cart-table">
-                    <tbody>
-                        <tr>
-                            <td class="text-left">Sub-Total :</td>
-                            <td class="text-right">{{$subTotal}}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">VAT (20%) :</td>
-                            <td class="text-right">{{$vat}}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-left">Total :</td>
-                            <td class="text-right primary-color">{{$total}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
             <div class="cart_btn">
-                <a href="{{route('cart')}}" class="btn btn-primary">View Cart</a>
-                <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+                <a href="{{route('cart')}}" style="width: 100%" class="btn btn-primary">View Cart</a>
             </div>
         </div>
     </div>
