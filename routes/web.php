@@ -157,7 +157,7 @@ Route::get('/laporan/transaksipenjualan', [LaporanTransaksiController::class, 'i
 // Pelanggan
     // Route::get('pelanggan', [PelangganController::class, 'index'])->name("pelangganList");
     Route::get('customer/listProduct', [PelangganController::class, 'katalog'])->name('listProduct');
-    Route::post('customer/addCart', [PelangganController::class, 'addCart'])->name('addCart');
+    Route::post('customer/addCart/{id}', [PelangganController::class, 'addCart'])->name('addCart');
     Route::get('customer/cart', [PelangganController::class, 'cart'])->name('cart');
     Route::delete('customer/handle', [PelangganController::class, 'cartHandler'])->name('handleCart');
     Route::get('customer/deleteOutCart/{id}', [PelangganController::class, 'deleteOutCart'])->name('deleteOutCart');
