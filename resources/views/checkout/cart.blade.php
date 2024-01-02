@@ -97,9 +97,10 @@
                                                         class="amount">{{$c->harga}}</span></td>
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
+                                                    <div>
                                                     <div class="cart-qty-plus-minus">
                                                         <input class="cart-plus-minus" type="text"
-                                                            name="cartqtybutton" value={{$c->kuantitas}} />
+                                                            name="cartqtybutton" value={{$c->kuantitas}} data-product-id="{{ $c->id }}"/>
                                                     </div>
                                                 </td>
                                                 <td data-label="Total" class="ec-cart-pro-subtotal">{{$c->harga*$c->kuantitas}}</td>
@@ -147,8 +148,8 @@
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
                                                     <div class="cart-qty-plus-minus">
-                                                        <input class="cart-plus-minus" type="text"
-                                                            name="cartqtybutton" value={{$c->kuantitas}} />
+                                                        <input class="cart-plus-minus" id="plusButton" type="number"
+                                                            name="cartqtybutton" value={{$c->kuantitas}} data-product-id="{{ $c->id }}"/>
                                                     </div>
                                                 </td>
                                                 <td data-label="Total" class="ec-cart-pro-subtotal">{{$c->harga*$c->kuantitas}}</td>
@@ -286,6 +287,33 @@
     </div>
 </section>
 </form>
+@push('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Attach a click event handler to the plus button
+                $('#plusButton').click(function() {
+                    // Get the product ID from your view
+                    var productId = $(this).data('product-id');
+
+                    // Make an AJAX request to increase the count
+                    $.ajax({
+                        url: '/products/increase-count/' + productId,
+                        type: 'POST',
+                        dataType: 'json',
+                        success: function(response) {
+                            // Update the count in the view
+                            // $('#count').text(parseInt($('#count').text()) + 1);
+                            alert(response.message); // Optional: Show a success message
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                });
+            });
+        </script>
+    @endpush
 @endsection
 
 

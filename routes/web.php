@@ -162,6 +162,8 @@ Route::get('/laporan/transaksipenjualan', [LaporanTransaksiController::class, 'i
     Route::delete('customer/handle', [PelangganController::class, 'cartHandler'])->name('handleCart');
     Route::get('customer/deleteOutCart/{id}', [PelangganController::class, 'deleteOutCart'])->name('deleteOutCart');
     Route::get('customer/detail/{id}', [PelangganController::class, 'detail'])->name('detail');
+    Route::post('products/increase-count/{id}', [PelangganController::class, 'updateQuantity'])->name('updateQuantity');
+    
 
 // Auth::routes();
 // City & Province

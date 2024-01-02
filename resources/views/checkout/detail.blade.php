@@ -90,7 +90,7 @@
                                                 <input class="qty-input" type="text" name="kuantitas" value="1" />
                                             </div>
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary">Add To Cart</button>
+                                                <button class="btn btn-primary" id="submitButton" disabled>Add To Cart</button>
                                             </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
@@ -140,7 +140,20 @@
     <!-- End Single product -->
     {{-- @endforeach --}}
 </form>
-    @endsection
+
+@push('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Attach a change event handler to the radio buttons
+                $('input[name="lokasi"]').change(function() {
+                    // Enable or disable the submit button based on whether a radio button is checked
+                    $('#submitButton').prop('disabled', !$('input[name="lokasi"]:checked').val());
+                });
+            });
+        </script>
+@endpush
+@endsection
 
     @section('cart')
     <div class="ec-side-cart-overlay"></div>

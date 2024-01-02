@@ -109,13 +109,13 @@ class PelangganController extends Controller
         $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
         $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
 
-        $coba = 1;
-        $products = [11,13];
+        // $coba = 1;
+        // $products = [11,13];
 
         // $products = $request->input('produk', []);
-        $check = DB::table('keranjangs as k')->select('k.id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $products)->count();
+        // $check = DB::table('keranjangs as k')->select('k.id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $products)->count();
 
-        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'check', 'products', 'coba'));
+        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya'));
         // dd($coba);
     }
 
@@ -163,11 +163,11 @@ class PelangganController extends Controller
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
         $listCart = DB::table('keranjangs as k')->select('k.id','p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         $produk = DB::table('produks as p')->select('p.*', 'pt.stok')->join('produk_tokos as pt', 'pt.produk_id', '=', 'p.id')->join('tokos as t', 't.id', '=', 'pt.toko_id')->where('p.id', '=', $id)->first();
-        $lokasi = DB::table('tokos as t')->select('t.nama', 't.id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('pt.produk_id', '=', $id)->where('pt.stok', '>', 0)->get();
+        $lokasi = DB::table('tokos as t')->select('t.nama', 't.id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('pt.produk_id', '=', $id)->where('pt.stok', '>', 0)->distinct('t.nama')->get();
         $stok = DB::table('produk_tokos')->select('stok')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.produk_id')->sum('stok');
 
         return view('checkout.detail', compact('produk', 'lokasi', 'stok', 'listCart'));
-        // dd($produk);
+        // dd($lokasi);
     }
 
     public function checkout($products)
@@ -186,6 +186,15 @@ class PelangganController extends Controller
             return redirect()->back();
         }
         // dd($listCart);
+    }
+
+    public function updateQuantity($id)
+    {
+        $quantity = DB::table('keranjangs')->find($id);
+        $quantity->kuantitas += 1;
+        $quantity->save();
+
+        return response()->json(['success' => true, 'message' => 'Count increased successfully']);
     }
 
     /**
