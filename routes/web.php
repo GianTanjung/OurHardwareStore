@@ -61,7 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/getCity/{id}', [CheckOngkirController::class, 'getCity'])->name('getCity');
 
     Route::get('customer/profile', [PelangganController::class, 'profile'])->name('customer.profile');
-    Route::get('customer/profile/update/{id}', [PelangganController::class, 'update'])->name('customer.profile.update');
+    Route::get('customer/profile/update', [PelangganController::class, 'update'])->name('customer.profile.update');
 
     Route::get('customer/transaction/history', [PelangganController::class, 'transactionHistory'])->name('customer.transaction.history');
 });

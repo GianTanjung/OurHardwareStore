@@ -31,6 +31,7 @@ class PelangganController extends Controller
         $user = Auth::user();
         // dd($user->id);
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
+        // dd($pelanggan);
         $selectedkategori = $request->input('kategori', []);
         $selectedstore = $request->input('store', []);
 
@@ -252,6 +253,7 @@ class PelangganController extends Controller
         $user = Auth::user();
         $pelanggan = Pelanggan::where("user_id",$user->id)->first();
         $transactionList = Transaksi::where("pelanggan_id",$pelanggan->id)->get();
+        return view('pelanggan.profile.transactionHIstory',compact('transactionList'));
         dd($transactionList);
     }
     public function edit(Pelanggan $pelanggan)
@@ -266,9 +268,35 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pelanggan $pelanggan)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where('user_id',$user->id)->first();
+        // dd($request);
+        if($pelanggan->nama != $request->input('name')){
+            $pelanggan->nama = $request->input('name');
+            $user->nama = $pelanggan->nama;
+        }
+        if($user->email != $request->input('email')){
+            $user->email = $request->input('email');
+        }
+        if($pelanggan->no_hp != $request->input('phone')){
+            $pelanggan->no_hp = $request->input('phone');
+        }
+        if($pelanggan->alamat != $request->input('address')){
+            $pelanggan->alamat = $request->input('address');
+        }
+        if($pelanggan->kode_pos != $request->input('postal')){
+            $pelanggan->kode_pos = $request->input('postal');
+        }
+        if($pelanggan->provinsi != $request->input("province")){
+            $pelanggan->provinsi = $request->input('province');
+        }
+        if($pelanggan->kota != $request->input('kota')){
+            $pelanggan->kota = $request->input('kota');
+        }
+        $pelanggan->update();
+        return redirect()->route('customer.profile');
     }
 
     /**
