@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Pelanggan::class);
     }
+    public function hasRole($role)
+    {
+        // Implement your logic to check if the user has the specified role
+        return $this->role_id === $role;
+    }
 }

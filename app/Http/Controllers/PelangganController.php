@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Merk;
 use App\Models\Pelanggan;
 use App\Models\Produk;
+use App\Models\Province;
+use App\Models\City;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -235,6 +238,22 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
+    public function profile(){
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where("user_id",$user->id)->first();
+        $pelanggan->email = $user->email;
+        $pelanggan->role_id = $user->role_id;
+        $provinceList = Province::all();
+        $cityList = City::all();
+        return view('pelanggan.profile.profile',compact('pelanggan','provinceList','cityList'));
+        dd($pelanggan);
+    }
+    public function transactionHistory(){
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where("user_id",$user->id)->first();
+        $transactionList = Transaksi::where("pelanggan_id",$pelanggan->id)->get();
+        dd($transactionList);
+    }
     public function edit(Pelanggan $pelanggan)
     {
         //
