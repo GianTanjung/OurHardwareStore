@@ -90,7 +90,7 @@
                                                 <input class="qty-input" type="text" name="kuantitas" value="1" />
                                             </div>
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary">Add To Cart</button>
+                                                <button class="btn btn-primary" id="submitButton" disabled>Add To Cart</button>
                                             </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
@@ -140,4 +140,62 @@
     <!-- End Single product -->
     {{-- @endforeach --}}
 </form>
+
+@push('scripts')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // Attach a change event handler to the radio buttons
+                $('input[name="lokasi"]').change(function() {
+                    // Enable or disable the submit button based on whether a radio button is checked
+                    $('#submitButton').prop('disabled', !$('input[name="lokasi"]:checked').val());
+                });
+            });
+        </script>
+@endpush
+@endsection
+
+    @section('cart')
+    <div class="ec-side-cart-overlay"></div>
+    <div id="ec-side-cart" class="ec-side-cart">
+        <div class="ec-cart-inner">
+            <div class="ec-cart-top">
+                <div class="ec-cart-title">
+                    <span class="cart_title">My Cart</span>
+                    <button class="ec-close">×</button>
+                </div>
+                <ul class="eccart-pro-items">
+                    @foreach ($listCart as $c)
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src={{$c->fotoProduk}} alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">{{$c->nama}}</a>
+                            <span class="cart-price"><span>{{$c->harga}}</span> x {{$c->kuantitas}}</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value={{$c->kuantitas}} />
+                            </div>
+                            <a href="../customer/deleteOutCart/{{$c->id}}" class="remove">×</a>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="ec-cart-bottom">
+                <div class="cart_btn">
+                    <a href="{{route('cart')}}" style="width: 100%" class="btn btn-primary">View Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
     @endsection
+
+
+    @if(count($listCart) != 0)
+    @section('cartAmount')
+        <span class="ec-cart-count cart-count-lable">{{count($listCart)}}</span>
+    @endsection
+    @section('cartAmountHeader')
+        <span class="ec-header-count cart-count-lable">{{count($listCart)}}</span>
+    @endsection
+@endif

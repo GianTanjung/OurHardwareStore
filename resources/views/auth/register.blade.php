@@ -54,7 +54,7 @@
                                     <select id="province" name="province" class="ec-register-select" onchange="getCity()">
                                         <option selected disabled>Select Province</option>
                                         @foreach($provinceList as $province )
-                                            <option value="{{ $province->id }}" {{ old('province') == $province->id ? 'selected' : '' }}>{{ $province->name }}</option>
+                                            <option value="{{ $province->name }}" {{ old('province') == $province->id ? 'selected' : '' }}>{{ $province->name }}</option>
                                         @endforeach
                                     </select>
                                 </span>                            </span>
@@ -107,7 +107,7 @@
             data.forEach(city => {
                 let option = document.createElement('option');
                 option.text = city.name; // Replace with your subcategory name field
-                option.value = city.id; // Replace with your subcategory ID field
+                option.value = city.name; // Replace with your subcategory ID field
                 citySelect.appendChild(option);
             });
         })

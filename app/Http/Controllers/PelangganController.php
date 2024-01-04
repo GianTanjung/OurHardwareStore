@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Merk;
 use App\Models\Pelanggan;
 use App\Models\Produk;
+use App\Models\Province;
+use App\Models\City;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -28,6 +31,7 @@ class PelangganController extends Controller
         $user = Auth::user();
         // dd($user->id);
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
+        // dd($pelanggan);
         $selectedkategori = $request->input('kategori', []);
         $selectedstore = $request->input('store', []);
 
@@ -109,13 +113,13 @@ class PelangganController extends Controller
         $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
         $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
 
-        $coba = 1;
-        $products = [11,13];
+        // $coba = 1;
+        // $products = [11,13];
 
         // $products = $request->input('produk', []);
-        $check = DB::table('keranjangs as k')->select('k.id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $products)->count();
+        // $check = DB::table('keranjangs as k')->select('k.id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $products)->count();
 
-        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'check', 'products', 'coba'));
+        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya'));
         // dd($coba);
     }
 
@@ -159,12 +163,15 @@ class PelangganController extends Controller
     }
     public function detail($id)
     {
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where('user_id',$user->id)->first();
+        $listCart = DB::table('keranjangs as k')->select('k.id','p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         $produk = DB::table('produks as p')->select('p.*', 'pt.stok')->join('produk_tokos as pt', 'pt.produk_id', '=', 'p.id')->join('tokos as t', 't.id', '=', 'pt.toko_id')->where('p.id', '=', $id)->first();
-        $lokasi = DB::table('tokos as t')->select('t.nama', 't.id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('pt.produk_id', '=', $id)->where('pt.stok', '>', 0)->get();
+        $lokasi = DB::table('tokos as t')->select('t.nama', 't.id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('pt.produk_id', '=', $id)->where('pt.stok', '>', 0)->distinct('t.nama')->get();
         $stok = DB::table('produk_tokos')->select('stok')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.produk_id')->sum('stok');
 
-        return view('checkout.detail', compact('produk', 'lokasi', 'stok'));
-        // dd($produk);
+        return view('checkout.detail', compact('produk', 'lokasi', 'stok', 'listCart'));
+        // dd($lokasi);
     }
 
     public function checkout($products)
@@ -183,6 +190,15 @@ class PelangganController extends Controller
             return redirect()->back();
         }
         // dd($listCart);
+    }
+
+    public function updateQuantity($id)
+    {
+        $quantity = DB::table('keranjangs')->find($id);
+        $quantity->kuantitas += 1;
+        $quantity->save();
+
+        return response()->json(['success' => true, 'message' => 'Count increased successfully']);
     }
 
     /**
@@ -223,6 +239,23 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
+    public function profile(){
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where("user_id",$user->id)->first();
+        $pelanggan->email = $user->email;
+        $pelanggan->role_id = $user->role_id;
+        $provinceList = Province::all();
+        $cityList = City::all();
+        return view('pelanggan.profile.profile',compact('pelanggan','provinceList','cityList'));
+        dd($pelanggan);
+    }
+    public function transactionHistory(){
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where("user_id",$user->id)->first();
+        $transactionList = Transaksi::where("pelanggan_id",$pelanggan->id)->get();
+        return view('pelanggan.profile.transactionHIstory',compact('transactionList'));
+        dd($transactionList);
+    }
     public function edit(Pelanggan $pelanggan)
     {
         //
@@ -235,9 +268,35 @@ class PelangganController extends Controller
      * @param  \App\Models\Pelanggan  $pelanggan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pelanggan $pelanggan)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where('user_id',$user->id)->first();
+        // dd($request);
+        if($pelanggan->nama != $request->input('name')){
+            $pelanggan->nama = $request->input('name');
+            $user->nama = $pelanggan->nama;
+        }
+        if($user->email != $request->input('email')){
+            $user->email = $request->input('email');
+        }
+        if($pelanggan->no_hp != $request->input('phone')){
+            $pelanggan->no_hp = $request->input('phone');
+        }
+        if($pelanggan->alamat != $request->input('address')){
+            $pelanggan->alamat = $request->input('address');
+        }
+        if($pelanggan->kode_pos != $request->input('postal')){
+            $pelanggan->kode_pos = $request->input('postal');
+        }
+        if($pelanggan->provinsi != $request->input("province")){
+            $pelanggan->provinsi = $request->input('province');
+        }
+        if($pelanggan->kota != $request->input('kota')){
+            $pelanggan->kota = $request->input('kota');
+        }
+        $pelanggan->update();
+        return redirect()->route('customer.profile');
     }
 
     /**
