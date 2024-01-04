@@ -1,5 +1,13 @@
 @extends('ekka.shop')
 
+@section('search')
+<form class="ec-btn-group-form" action="{{route('listProduct')}}" action="get">
+    <input class="form-control" placeholder="Enter Your Product Name..." type="text" id="search" name="search">
+    <button class="submit" type="submit"><img src="{{asset('assets/images/icons/search.svg')}}"
+            class="svg_img header_svg" alt="" /></button>
+</form>
+@endsection
+
 @section('content')
 <section class="ec-page-content section-space-p">
     <div class="container">
@@ -15,7 +23,7 @@
                                     class="svg_img gl_svg" alt="" /></button>
                         </div>
                     </div>
-                    <div class="col-md-6 ec-sort-select">
+                    {{-- <div class="col-md-6 ec-sort-select">
                         <span class="sort-by">Sort by</span>
                         <div class="ec-select-inner">
                             <select name="ec-select" id="ec-select">
@@ -27,7 +35,7 @@
                                 <option value="5">Price, high to low</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <!-- Shop Top End -->
 

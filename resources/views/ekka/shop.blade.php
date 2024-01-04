@@ -53,7 +53,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <!-- Header Top social Start -->
-                    <div class="col text-left header-top-left d-none d-lg-block">
+                    {{-- <div class="col text-left header-top-left d-none d-lg-block">
                         <div class="header-top-social">
                             <span class="social-text text-upper">Follow us on:</span>
                             <ul class="mb-0">
@@ -63,37 +63,37 @@
                                 <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Header Top social End -->
                     <!-- Header Top Message Start -->
-                    <div class="col text-center header-top-center">
+                    {{-- <div class="col text-center header-top-center">
                         <div class="header-top-message text-upper">
                             <span>Free Shipping</span>This Week Order Over - $75
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Header Top Message End -->
                     <!-- Header Top Language Currency -->
                     <div class="col header-top-right d-none d-lg-block">
                         <div class="header-top-lan-curr d-flex justify-content-end">
                             <!-- Currency Start -->
-                            <div class="header-top-curr dropdown">
+                            {{-- <div class="header-top-curr dropdown">
                                 <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
                                         class="ecicon eci-caret-down" aria-hidden="true"></i></button>
                                 <ul class="dropdown-menu">
                                     <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
                                     <li><a class="dropdown-item" href="#">EUR €</a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <!-- Currency End -->
                             <!-- Language Start -->
-                            <div class="header-top-lan dropdown">
+                            {{-- <div class="header-top-lan dropdown">
                                 <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
                                         class="ecicon eci-caret-down" aria-hidden="true"></i></button>
                                 <ul class="dropdown-menu">
                                     <li class="active"><a class="dropdown-item" href="#">English</a></li>
                                     <li><a class="dropdown-item" href="#">Italiano</a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <!-- Language End -->
 
                         </div>
@@ -158,11 +158,12 @@
                         <!-- Ec Header Search Start -->
                         <div class="align-self-center">
                             <div class="header-search">
-                                <form class="ec-btn-group-form" action="#">
+                                @yield('search')
+                                {{-- <form class="ec-btn-group-form" action="#">
                                     <input class="form-control" placeholder="Enter Your Product Name..." type="text">
                                     <button class="submit" type="submit"><img src="{{asset('assets/images/icons/search.svg')}}"
                                             class="svg_img header_svg" alt="" /></button>
-                                </form>
+                                </form> --}}
                             </div>
                         </div>
                         <!-- Ec Header Search End -->
@@ -183,11 +184,11 @@
                                 </div>
                                 <!-- Header User End -->
                                 <!-- Header wishlist Start -->
-                                <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
+                                {{-- <a href="wishlist.html" class="ec-header-btn ec-header-wishlist">
                                     <div class="header-icon"><img src="{{asset('assets/images/icons/wishlist.svg')}}"
                                             class="svg_img header_svg" alt="" /></div>
                                     <span class="ec-header-count">4</span>
-                                </a>
+                                </a> --}}
                                 <!-- Header wishlist End -->
                                 <!-- Header Cart Start -->
                                 <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
@@ -238,7 +239,7 @@
             <div class="container position-relative">
                 <div class="row">
                     <div class="col-md-12 align-self-center">
-                        <div class="ec-main-menu">
+                        {{-- <div class="ec-main-menu">
                             <ul>
                                 <li><a href="index.html">Home</a></li>
                                 <li class="dropdown position-static"><a href="javascript:void(0)">Categories</a>
@@ -478,7 +479,9 @@
                                 </li>
                                 <li><a href="offer.html">Hot Offers</a></li>
                             </ul>
-                        </div>
+                        </div> --}}
+
+
                     </div>
                 </div>
             </div>
@@ -681,6 +684,8 @@
                         <li><a href="offer.html">Hot Offers</a></li>
                     </ul>
                 </div>
+
+                
                 <div class="header-res-lan-curr">
                     <div class="header-top-lan-curr">
                         <!-- Language Start -->
@@ -728,7 +733,7 @@
     <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->
-    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+    {{-- <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -748,14 +753,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Ec breadcrumb end -->
 
     <!-- Ec Shop page -->
 @yield('content')
 
     <!-- Footer Start -->
-    <footer class="ec-footer section-space-mt">
+    {{-- <footer class="ec-footer section-space-mt">
         <div class="footer-container">
             <div class="footer-offer">
                 <div class="container">
@@ -891,7 +896,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer> --}}
     <!-- Footer Area End -->
 
     <!-- Modal -->
@@ -1042,7 +1047,7 @@
     <!-- Cart Floating Button end -->
 
     <!-- Whatsapp -->
-    <div class="ec-style ec-right-bottom">
+    {{-- <div class="ec-style ec-right-bottom">
         <!-- Start Floating Panel Container -->
         <div class="ec-panel">
             <!-- Panel Header -->
@@ -1162,7 +1167,7 @@
             </div>
         </div>
         <!--/ End Right Floating Button-->
-    </div>
+    </div> --}}
     <!-- Whatsapp end -->
 
     <!-- Feature tools -->
