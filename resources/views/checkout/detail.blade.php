@@ -53,7 +53,7 @@
                                         <div class="ec-single-price-stoke">
                                             <div class="ec-single-price">
                                                 <span class="ec-single-ps-title">As low as</span>
-                                                <span class="new-price">Rp. {{$produk->harga}}</span>
+                                                <span class="new-price">Rp {{number_format(($produk->harga) / 1, 2, '.', ',')}}</span>
                                             </div>
                                             <div class="ec-single-stoke">
                                                 <span class="ec-single-ps-title">IN STOCK</span>
@@ -171,7 +171,7 @@
                                 src={{$c->fotoProduk}} alt="product"></a>
                         <div class="ec-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">{{$c->nama}}</a>
-                            <span class="cart-price"><span>{{$c->harga}}</span> x {{$c->kuantitas}}</span>
+                            <span class="cart-price"><span>{{number_format(($c->harga) / 1, 2, '.', ',')}}</span> x {{$c->kuantitas}}</span>
                             <div class="qty-plus-minus">
                                 <input class="qty-input" type="text" name="ec_qtybtn" value={{$c->kuantitas}} />
                             </div>

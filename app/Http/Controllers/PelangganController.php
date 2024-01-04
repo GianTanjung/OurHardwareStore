@@ -7,11 +7,13 @@ use App\Models\Pelanggan;
 use App\Models\Produk;
 use App\Models\Province;
 use App\Models\City;
+use App\Models\Keranjang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Produks;
 
 class PelangganController extends Controller
 {
@@ -103,23 +105,47 @@ class PelangganController extends Controller
 
     public function cart(Request $request)
     {
-        $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
-        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
-        $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas    ')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
-        $vat = $subTotal*20/100;
-        $total = $subTotal+$vat;
-        $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
-        $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
-        $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
-        $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
+        // $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
+        // $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        // $subTotal = 0;
+        //     $vat = 0;
+        //     $total = 0;
+        // $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
+        // $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
+        // $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
+        // $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
 
-        // $coba = 1;
-        // $products = [11,13];
+        $choosen = $request->input('produk', []);
+        if($choosen == null)
+        {
+            $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
+            $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+            $subTotal = 0;
+            $vat = 0;
+            $total = 0;
+            $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
+            $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
+            $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
+            $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
+            // echo "works";
+        }
+        else{
+            $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
+            $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+            $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $choosen)->sum(DB::raw('harga * kuantitas'));
+            
+            $vat = $subTotal*11/100;
+            $total = $subTotal+$vat; 
+            
+            $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
+            $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
+            $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
+            $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
+            
+            // dd($subTotal);
+        }
 
-        // $products = $request->input('produk', []);
-        // $check = DB::table('keranjangs as k')->select('k.id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $products)->count();
-
-        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya'));
+        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'choosen'));
         // dd($coba);
     }
 
@@ -144,7 +170,8 @@ class PelangganController extends Controller
 
             default:
                 // Handle the default case or return an error
-                return response()->json(['error' => 'Invalid action'], 400);
+                // $products = $request->input('produk', []);
+                return $this->cart($request);
         }
     }
 

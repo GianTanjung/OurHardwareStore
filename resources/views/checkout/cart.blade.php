@@ -5,7 +5,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 @section('content')
-<form action="{{route('handleCart')}}" method="post">
+<form action="{{route('handleCart')}}" method="post" id="myForm">
     @csrf<div style="width: 100%;">
         @if (Session::has('message'))
           <div class="alert bg-danger alert-danger text-white text-center" role="alert">
@@ -39,21 +39,28 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 1)
                                             <tr>
-                                                <td><input type="checkbox" name="produk[]" value={{$c->id}}></td>
+                                                <td><input type="checkbox" name="produk[]" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
                                                             alt="" />{{$c->nama}}</a></td>
                                                 <td data-label="Price" class="ec-cart-pro-price"><span
-                                                        class="amount">{{$c->harga}}</span></td>
+                                                        class="amount">{{number_format(($c->harga) / 1, 2, '.', ',')}}</span></td>
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
                                                     <div class="cart-qty-plus-minus">
                                                         <input class="cart-plus-minus" type="text"
-                                                            name="cartqtybutton" value={{$c->kuantitas}} />
+                                                            name="cartqtybutton" id="quantityInput" value={{$c->kuantitas}} />
                                                     </div>
+                                                    {{-- <div>
+                                                        <input type="number" name="quantity" value="{{$c->kuantitas}}" min="1">
+
+                                                        <!-- Plus and minus buttons -->
+                                                        <button type="button" class="quantity-control" data-action="minus" data-id="{{ $c->id }}">-</button>
+                                                        <button type="button" class="quantity-control" data-action="plus" data-id="{{ $c->id }}">+</button>
+                                                    </div> --}}
                                                 </td>
-                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{$c->harga*$c->kuantitas}}</td>
+                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{number_format(($c->harga*$c->kuantitas) / 1, 2, '.', ',')}}</td>
                                                  
                                                 <td data-label="Remove" class="ec-cart-pro-remove">
                                                     {{-- <form action="{{route('deleteCart', $c->id)}}" method="post">
@@ -88,13 +95,13 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 2)
                                             <tr>
-                                                <td><input type="checkbox" name="produk[]" value={{$c->id}}></td>
+                                                <td><input type="checkbox" id="produk" name="produk[]" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
                                                             alt="" />{{$c->nama}}</a></td>
                                                 <td data-label="Price" class="ec-cart-pro-price"><span
-                                                        class="amount">{{$c->harga}}</span></td>
+                                                        class="amount">{{number_format(($c->harga) / 1, 2, '.', ',')}}</span></td>
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
                                                     <div>
@@ -103,7 +110,7 @@
                                                             name="cartqtybutton" value={{$c->kuantitas}} data-product-id="{{ $c->id }}"/>
                                                     </div>
                                                 </td>
-                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{$c->harga*$c->kuantitas}}</td>
+                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{number_format(($c->harga*$c->kuantitas) / 1, 2, '.', ',')}}</td>
                                                  
                                                 <td data-label="Remove" class="ec-cart-pro-remove">
                                                     {{-- <form action="{{route('deleteCart', $c->id)}}" method="post">
@@ -138,13 +145,13 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 3)
                                             <tr>
-                                                <td><input type="checkbox" name="produk[]" value={{$c->id}}></td>
+                                                <td><input type="checkbox" name="produk[]" id="produk" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
                                                             alt="" />{{$c->nama}}</a></td>
                                                 <td data-label="Price" class="ec-cart-pro-price"><span
-                                                        class="amount">{{$c->harga}}</span></td>
+                                                        class="amount">{{number_format(($c->harga) / 1, 2, '.', ',')}}</span></td>
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
                                                     <div class="cart-qty-plus-minus">
@@ -152,7 +159,7 @@
                                                             name="cartqtybutton" value={{$c->kuantitas}} data-product-id="{{ $c->id }}"/>
                                                     </div>
                                                 </td>
-                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{$c->harga*$c->kuantitas}}</td>
+                                                <td data-label="Total" class="ec-cart-pro-subtotal">{{number_format(($c->harga*$c->kuantitas) / 1, 2, '.', ',')}}</td>
                                                  
                                                 <td data-label="Remove" class="ec-cart-pro-remove">
                                                     {{-- <form action="{{route('deleteCart', $c->id)}}" method="post">
@@ -241,28 +248,11 @@
                                 <div class="ec-cart-summary">
                                     <div>
                                         <span class="text-left">Sub-Total</span>
-                                        <span class="text-right">Rp {{number_format($subTotal / 1, 2, '.', ',')}}</span>
+                                        <span class="text-right" id="subtotal">Rp {{number_format($subTotal / 1, 2, '.', ',')}}</span>
                                     </div>
                                     <div>
-                                        <span class="text-left">VAT (20%)</span>
-                                        <span class="text-right">Rp {{number_format($vat / 1, 2, '.', ',')}}</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-left">Delivery Charges</span>
-                                        <span class="text-right">Rp {{number_format(100000 / 1, 2, '.', ',')}}</span></span>
-                                    </div>
-                                    <div>
-                                        <span class="text-left">Coupan Discount</span>
-                                        <span class="text-right"><a class="ec-cart-coupan">Apply Coupan</a></span>
-                                    </div>
-                                    <div class="ec-cart-coupan-content">
-                                        <form class="ec-cart-coupan-form" name="ec-cart-coupan-form" method="post"
-                                            action="#">
-                                            <input class="ec-coupan" type="text" required=""
-                                                placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
-                                            <button class="ec-coupan-btn button btn-primary" type="submit"
-                                                name="subscribe" value="">Apply</button>
-                                        </form>
+                                        <span class="text-left">PPN (11%)</span>
+                                        <span class="text-right">Rp {{number_format(($vat) / 1, 2, '.', ',')}}</span>
                                     </div>
                                     <div class="ec-cart-summary-total">
                                         <span class="text-left">Total Amount</span>
@@ -288,6 +278,18 @@
 </section>
 </form>
 @push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Attach a change event handler to the input field
+            $('#quantityInput').on('change', function() {
+                // Trigger the form submission when the input value changes
+                $('#myForm').submit();
+            });
+        });
+    </script>
+@endpush
+{{-- @push('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function() {
@@ -312,8 +314,22 @@
                     });
                 });
             });
-        </script>
-    @endpush
+        </script> --}}
+
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Attach a change event handler to the checkbox
+        $('#produk').change(function() {
+            // Get the value of the checked checkbox
+            var checkboxValue = $(this).is(':checked') ? $(this).val() : '';
+
+            // Change the text dynamically based on the checkbox value
+            $('#subtotal').text(checkboxValue);
+        });
+    });
+</script> --}}
+    {{-- @endpush --}}
 @endsection
 
 

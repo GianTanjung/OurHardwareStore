@@ -84,7 +84,7 @@
                                         <div class="ec-pro-list-desc">{{$p->deskripsi}}</div>
                                         <span class="ec-price">
                                             {{-- <span class="old-price">$27.00</span> --}}
-                                            <span class="new-price">{{$p->harga}}</span>
+                                            <span class="new-price">Rp {{number_format(($p->harga) / 1, 2, '.', ',')}}</span>
                                         </span>
                                         {{-- <div class="ec-pro-option">
                                             <div class="ec-pro-color">
@@ -158,7 +158,7 @@
                                     @foreach ($kategoris as $k)
                                     <li>
                                         <div class="ec-sidebar-block-item">
-                                            <input type="checkbox" name="kategori[]" value="{{$k->id}}" onchange="this.form.submit()" @if(in_array($k->id, $selectedkategori)) checked @endif/>{{$k->nama}}<span
+                                            <input type="checkbox" name="kategori[]" value="{{$k->id}}" onchange="this.form.submit()" @if(in_array($k->id, $selectedkategori)) checked @endif/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$k->nama}}<span
                                                 class="checked"></span>
                                         </div>
                                     </li>
@@ -177,7 +177,7 @@
                                     @foreach ($stores as $s)
                                     <li>
                                         <div class="ec-sidebar-block-item">
-                                            <input type="checkbox" name="store[]" value="{{$s->id}}" onchange="this.form.submit()" @if(in_array($s->id, $selectedstore)) checked @endif/>{{$s->nama}}<span
+                                            <input type="checkbox" name="store[]" value="{{$s->id}}" onchange="this.form.submit()" @if(in_array($s->id, $selectedstore)) checked @endif/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$s->nama}}<span
                                                 class="checked"></span>
                                         </div>
                                     </li>
@@ -186,7 +186,7 @@
                             </div>
                         </div>
                         <!-- Sidebar Price Block -->
-                        <div class="ec-sidebar-block">
+                        {{-- <div class="ec-sidebar-block">
                             <div class="ec-sb-title">
                                 <h3 class="ec-sidebar-title">Price</h3>
                             </div>
@@ -203,7 +203,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </form>
                     </div>
                 </div>
@@ -229,7 +229,7 @@
                             src={{$c->fotoProduk}} alt="product"></a>
                     <div class="ec-pro-content">
                         <a href="product-left-sidebar.html" class="cart_pro_title">{{$c->nama}}</a>
-                        <span class="cart-price"><span>{{$c->harga}}</span> x {{$c->kuantitas}}</span>
+                        <span class="cart-price"><span>{{number_format(($c->harga) / 1, 2, '.', ',')}}</span> x {{$c->kuantitas}}</span>
                         <div class="qty-plus-minus">
                             <input class="qty-input" type="text" name="ec_qtybtn" value={{$c->kuantitas}} />
                         </div>
