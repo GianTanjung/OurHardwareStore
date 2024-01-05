@@ -6,10 +6,12 @@
 
 @section('content')
 <form action="{{route('handleCart')}}" method="post" id="myForm">
-    @csrf<div style="width: 100%;">
-        @if (Session::has('message'))
+    @csrf
+    <div style="width: 100%;">
+        @if ($count > 1)
           <div class="alert bg-danger alert-danger text-white text-center" role="alert">
-            {{ Session::get('message') }}
+            {{$message}}
+            {{-- {{ Session::get('message') }} --}}
           </div>
         @endif
 <section class="ec-page-content section-space-p">
@@ -277,18 +279,18 @@
     </div>
 </section>
 </form>
-@push('scripts')
+{{-- @push('scripts') --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             // Attach a change event handler to the input field
-            $('#quantityInput').on('change', function() {
+            $('#quantityInput').change(function() {
                 // Trigger the form submission when the input value changes
                 $('#myForm').submit();
             });
         });
     </script>
-@endpush
+{{-- @endpush --}}
 {{-- @push('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>

@@ -122,6 +122,8 @@ class PelangganController extends Controller
         // $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
 
         $choosen = $request->input('produk', []);
+        $message = '';
+        $count = 0;
         if($choosen == null)
         {
             $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
@@ -149,9 +151,22 @@ class PelangganController extends Controller
             $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
             
             // dd($subTotal);
+
+            $toko = DB::table('keranjangs')->select('toko_id')->whereIn('id', $choosen)->get();
+            foreach($toko as $t)
+            {
+                $count += 1;
+                if($count > 1)
+                {
+                    // return redirect()->back()->with('message', 'Products must be from the same store.');
+                    // echo 'works';
+                    $message = 'Products must be from the same store.';
+                }
+            }
+            
         }
 
-        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'choosen'));
+        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'choosen', 'message', 'count'));
         // dd($coba);
     }
 
@@ -161,23 +176,24 @@ class PelangganController extends Controller
 
         // Perform different actions based on the button clicked
         switch ($submitAction) {
+            case 'checkout':
+                // Handle action 2
+                // $products = $request->input('produk', []);
+                // return $this->checkout($products);
+                // dd($count);
+                break;
+
             case 'delete':
                 // Handle action 1
                 $id = $request->input('id');
                 return $this->deleteCart($id);
                 break;
 
-            case 'checkout':
-                // Handle action 2
-                $products = $request->input('produk', []);
-                return $this->checkout($products);
-                // dd($count);
-                break;
-
             default:
                 // Handle the default case or return an error
                 // $products = $request->input('produk', []);
                 return $this->cart($request);
+                break;
         }
     }
 
