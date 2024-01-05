@@ -1,7 +1,7 @@
 @extends('ekka.shop')
 
 @section('content')
-<form action="{{route('addCart', $produk->id)}}" method="post">
+<form action="{{route('addCart', $produk->id)}}" method="post" id="myForm">
     @csrf
 {{-- @foreach ($produk as $p) --}}
     <!-- Sart Single product -->
@@ -69,7 +69,11 @@
                                                     {{-- <ul> --}}
                                                         @foreach ($lokasi as $l)
                                                         <tr>
-                                                            <td><li style="width: 130px;"><input type="radio" name="lokasi" value="{{$l->id}}" style="width: 20px; height: 20px;"> {{$l->nama}}</li></td>
+                                                            <td>
+                                                            <li style="width: 130px;">
+                                                                <input class="lokasi" type="radio" name="lokasi" value="{{$l->id}}" id="lokasi" style="width: 20px; height: 20px;"> {{$l->nama}}
+                                                            </li>
+                                                            </td>
                                                         </tr>
                                                         {{-- <li style="width: 100px;"><input type="radio" style="width: 20px; height: 20px;" name="lokasi" value="{{$l->id}}">{{$l->nama}}</li>  --}}
                                                         {{-- <div class="button-radio" onclick="selectOption('option1')">{{$l->nama}}</div> --}}
@@ -90,7 +94,7 @@
                                                 <input class="qty-input" type="text" name="kuantitas" value="1" />
                                             </div>
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary" id="submitButton" disabled>Add To Cart</button>
+                                                <button class="btn btn-primary" id="submitButton" type="submit" disabled>Add To Cart</button>
                                             </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
@@ -141,7 +145,7 @@
     {{-- @endforeach --}}
 </form>
 
-@push('scripts')
+{{-- @push('scripts') --}}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function() {
@@ -152,7 +156,7 @@
                 });
             });
         </script>
-@endpush
+{{-- @endpush --}}
 @endsection
 
     @section('cart')

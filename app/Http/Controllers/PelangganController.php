@@ -204,7 +204,7 @@ class PelangganController extends Controller
         $stok = DB::table('produk_tokos')->select('stok')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.produk_id')->sum('stok');
 
         return view('checkout.detail', compact('produk', 'lokasi', 'stok', 'listCart'));
-        // dd($lokasi);
+        // dd($produk);
     }
 
     public function checkout($products)
