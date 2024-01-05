@@ -22,7 +22,7 @@ class PelangganSeeder extends Seeder
             'negara' => 'Indonesia',
             'kecamatan' => 'Sukolilo',
             'kode_pos' => '10101',
-            'user_id' => '1',
+            'user_id' => '5',
             'poin' => 10,
         ]);
         DB::table('pelanggans')->insert([
@@ -34,7 +34,7 @@ class PelangganSeeder extends Seeder
             'negara' => 'Indonesia',
             'kecamatan' => 'Sukolilo',
             'kode_pos' => '20202',
-            'user_id' => '2',
+            'user_id' => '6',
             'poin' => 10,
         ]);
         DB::table('pelanggans')->insert([
@@ -46,7 +46,7 @@ class PelangganSeeder extends Seeder
             'negara' => 'Indonesia',
             'kecamatan' => 'Sawahan',
             'kode_pos' => '30303',
-            'user_id' => '3',
+            'user_id' => '7',
             'poin' => 10,
         ]);
         DB::table('pelanggans')->insert([
@@ -58,7 +58,7 @@ class PelangganSeeder extends Seeder
             'negara' => 'Indonesia',
             'kecamatan' => 'Sukosuko',
             'kode_pos' => '40404',
-            'user_id' => '4',
+            'user_id' => '8',
             'poin' => 10,
         ]);
     }

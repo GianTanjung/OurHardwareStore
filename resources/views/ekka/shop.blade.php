@@ -48,6 +48,7 @@
 
     <!-- Header start  -->
     <header class="ec-header">
+<<<<<<< Updated upstream
         <!--Ec Header Top Start -->
         <div class="header-top">
             <div class="container">
@@ -140,6 +141,8 @@
             </div>
         </div>
         <!-- Ec Header Top  End -->
+=======
+>>>>>>> Stashed changes
         <!-- Ec Header Bottom  Start -->
         <div class="ec-header-bottom d-none d-lg-block">
             <div class="container position-relative">
@@ -762,16 +765,6 @@
     <!-- Footer Start -->
     {{-- <footer class="ec-footer section-space-mt">
         <div class="footer-container">
-            <div class="footer-offer">
-                <div class="container">
-                    <div class="row">
-                        <div class="text-center footer-off-msg">
-                            <span>Win a contest! Get this limited-editon</span><a href="#" target="_blank">View
-                                Detail</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="footer-top section-space-footer-p">
                 <div class="container">
                     <div class="row">
@@ -1046,6 +1039,7 @@
     </div>
     <!-- Cart Floating Button end -->
 
+<<<<<<< Updated upstream
     <!-- Whatsapp -->
     {{-- <div class="ec-style ec-right-bottom">
         <!-- Start Floating Panel Container -->
@@ -1170,6 +1164,8 @@
     </div> --}}
     <!-- Whatsapp end -->
 
+=======
+>>>>>>> Stashed changes
     <!-- Feature tools -->
     {{-- <div class="ec-tools-sidebar-overlay"></div>
     <div class="ec-tools-sidebar">
@@ -1244,6 +1240,7 @@
     <!-- Feature tools end -->
 
     <!-- Vendor JS -->
+    @yield('script')
     <script src="{{asset('assets/js/vendor/jquery-3.5.1.min.js')}}"></script>
     <script src="{{asset('assets/js/vendor/popper.min.js')}}"></script>
     <script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>

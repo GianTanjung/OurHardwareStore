@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Province;
 use App\Models\City;
 use Illuminate\Http\Request;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class CheckOngkirController extends Controller
 {
@@ -35,7 +36,6 @@ class CheckOngkirController extends Controller
             'weight'        => $request->weight, // berat barang dalam gram
             'courier'       => $request->courier // kode kurir pengiriman: ['jne', 'tiki', 'pos'] untuk starter
         ])->get();
-
 
         return response()->json($cost);
     }

@@ -25,6 +25,7 @@ class CreatePelanggansTable extends Migration
             $table->string('kota');
             $table->string('provinsi');
             $table->string('negara');
+            $table->double('saldo')->nullable();
             $table->double('poin')->nullable();
             $table->timestamps();
         });

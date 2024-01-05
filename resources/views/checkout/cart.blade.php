@@ -22,7 +22,7 @@
                 <div class="ec-cart-content">
                     <div class="ec-cart-inner">
                         <div class="row">
-                            <form action="#">
+                            {{-- <form action="#"> --}}
                                 {{-- @foreach ($listCart as $c) --}}
                                 @if ($sidoarjo > 0)
                                 <div class="table-content cart-table-content">
@@ -41,7 +41,11 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 1)
                                             <tr>
+<<<<<<< Updated upstream
                                                 <td><input type="checkbox" name="produk[]" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
+=======
+                                                <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td>
+>>>>>>> Stashed changes
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
@@ -97,7 +101,11 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 2)
                                             <tr>
+<<<<<<< Updated upstream
                                                 <td><input type="checkbox" id="produk" name="produk[]" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
+=======
+                                                <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td>
+>>>>>>> Stashed changes
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
@@ -147,7 +155,11 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 3)
                                             <tr>
+<<<<<<< Updated upstream
                                                 <td><input type="checkbox" name="produk[]" id="produk" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
+=======
+                                                <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td>
+>>>>>>> Stashed changes
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
@@ -189,7 +201,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            {{-- </form> --}}
                         </div>
                     </div>
                 </div>
@@ -264,14 +276,12 @@
             
                             </div>
                         </div>
-                        {{-- <form action="{{route('checkout')}}" method="post">
-                            @csrf --}}
-                            {{-- <input type="checkbox" name="produk[]" value="11">
-                            <input type="checkbox" name="produk[]" value="13"> --}}
-                        <button class="btn btn-primary" name="button" value="checkout">Check Out</button>
-                        
+                        <form action="{{route('masuk.order')}}" method="post">
+                            @csrf
+                            <input type="hidden" name="produk_array" id="produk_array" value="">
+                            <button class="btn btn-primary" name="button" value="checkout" onclick="updateHiddenField()">Check Out</button>
+                        </form>
                     </div>
-                    {{-- </form> --}}
                     <!-- Sidebar Summary Block -->
                 </div>
             </div>
@@ -279,6 +289,7 @@
     </div>
 </section>
 </form>
+<<<<<<< Updated upstream
 {{-- @push('scripts') --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -332,6 +343,24 @@
     });
 </script> --}}
     {{-- @endpush --}}
+=======
+
+<script>
+    function updateHiddenField() {
+        var checkboxes = document.getElementsByName('produk[]');
+        var selectedItems = [];
+
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                selectedItems.push(checkbox.value);
+            }
+        });
+
+        // Update nilai pada elemen hidden
+        document.getElementById('produk_array').value = JSON.stringify(selectedItems);
+    }
+</script>
+>>>>>>> Stashed changes
 @endsection
 
 

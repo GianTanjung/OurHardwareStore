@@ -137,3 +137,35 @@ Route::middleware(['role:1,2'])->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Gian
+// Pelanggan
+Route::post('customer/masuk-order', [PelangganController::class, 'masukOrder'])->name('masuk.order');
+Route::post('customer/buat-order', [PelangganController::class, 'buatOrder'])->name('buat.order');

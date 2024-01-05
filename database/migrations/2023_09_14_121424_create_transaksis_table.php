@@ -18,22 +18,17 @@ return new class extends Migration
             $table->string('kode_nota')->unique();
             $table->unsignedBigInteger('pelanggan_id');
             $table->foreign('pelanggan_id')->references('id')->on('pelanggans');
-            $table->unsignedBigInteger('promo_id')->nullable();
-            $table->foreign('promo_id')->references('id')->on('promos');
-            $table->unsignedBigInteger('pembayaran_id');
-            $table->foreign('pembayaran_id')->references('id')->on('pembayarans');
             $table->unsignedBigInteger('toko_id');
             $table->foreign('toko_id')->references('id')->on('tokos');
             $table->timestamp('tanggal_transaksi')->default(now());
-            $table->timestamp('tanggal_jatuh_tempo')->default(now());
-            $table->timestamp('tanggal_bayar')->default(now());
-            $table->enum('status',['Sudah Bayar','Menunggu Pembayaran','Dibatalkan','Selesai']);
+            $table->enum('status',['Diproses', 'Dikirim', 'Siap Diambil', 'Selesai']);
             $table->double('subtotal');
             $table->enum('pengiriman', ['Ambil Toko','Antar Di tempat']);
-            $table->double('biaya_pengiriman');
-            $table->double('harga_diskon')->nullable();
+            $table->string('tipe_jasa_kirim')->nullable();
+            $table->double('biaya_pengiriman')->nullable();
             $table->double('biaya_pajak');
-            $table->double('grand_total');
+            $table->double('grand_total')->nullable();
+            $table->double('poin')->nullable();
             $table->text('keterangan')->nullable();      
             $table->timestamps();
         });
@@ -49,10 +44,6 @@ return new class extends Migration
         Schema::table('transaksis', function (Blueprint $table) {
             $table->dropForeign(['pelanggan_id']);
             $table->dropColumn('pelanggan_id');
-            $table->dropForeign(['promo_id']);
-            $table->dropColumn('promo_id');
-            $table->dropForeign(['pembayaran_id']);
-            $table->dropColumn('pembayaran_id');
             $table->dropForeign(['toko_id']);
             $table->dropColumn('toko_id');
         });

@@ -30,7 +30,7 @@ class TokoSeeder extends Seeder
             'alamat' => 'Jl Raya Karanglo 69',
             'kode_pos' => '65153',
             'kecamatan' => 'Blimbing',
-            'kota' => 'Malanng',
+            'kota' => 'Malang',
             'provinsi' => 'Jawa timur',
             'negara' => 'Indonesia',
         ]);

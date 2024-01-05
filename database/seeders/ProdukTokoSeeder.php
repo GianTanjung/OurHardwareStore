@@ -134,15 +134,27 @@ class ProdukTokoSeeder extends Seeder
             'stok' => 100,
         ]);
         DB::table('produk_tokos')->insert([
+<<<<<<< Updated upstream
             'produk_id' => 21,
             'toko_id' => 3,
             'stok' => 100,
+=======
+            'produk_id' => '2',
+            'toko_id' => '1',
+            'stok' => '200'
+>>>>>>> Stashed changes
         ]);
         
         DB::table('produk_tokos')->insert([
+<<<<<<< Updated upstream
             'produk_id' => 22,
             'toko_id' => 3,
             'stok' => 100,
+=======
+            'produk_id' => '2',
+            'toko_id' => '2',
+            'stok' => '50'
+>>>>>>> Stashed changes
         ]);
         
         DB::table('produk_tokos')->insert([

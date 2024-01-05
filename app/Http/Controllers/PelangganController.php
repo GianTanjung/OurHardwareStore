@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Merk;
+use App\Models\DetailTransaksi;
+use App\Models\Transaksi;
+use Carbon\Carbon;
 use App\Models\Pelanggan;
+use App\Models\Keranjang;
 use App\Models\Produk;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\Keranjang;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -33,7 +37,12 @@ class PelangganController extends Controller
         $user = Auth::user();
         // dd($user->id);
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
+<<<<<<< Updated upstream
         // dd($pelanggan);
+=======
+        // hardcode
+        // $pelanggan = Pelanggan::where('user_id',5)->first();
+>>>>>>> Stashed changes
         $selectedkategori = $request->input('kategori', []);
         $selectedstore = $request->input('store', []);
         $search = $request->query('search');
@@ -79,6 +88,8 @@ class PelangganController extends Controller
         $user = Auth::user();
         // dd($user->id);
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
+        // hardcode
+        // $pelanggan = Pelanggan::where('user_id',5)->first();
 
         $selectedstore = $request->input('lokasi');
         // $store = DB::table('tokos')->select('id')->where('id', '=', $selectedstore)->first();
@@ -111,6 +122,7 @@ class PelangganController extends Controller
 
     public function cart(Request $request)
     {
+<<<<<<< Updated upstream
         // $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
         // $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         // $subTotal = 0;
@@ -120,6 +132,19 @@ class PelangganController extends Controller
         // $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
         // $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
         // $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
+=======
+        $pelanggan = Pelanggan::where('user_id', Auth::user()->id)->first();
+        // hardcode
+        // $pelanggan = Pelanggan::where('user_id', 5)->first();
+        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas    ')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
+        $vat = $subTotal*20/100;
+        $total = $subTotal+$vat;
+        $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
+        $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
+        $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
+        $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
+>>>>>>> Stashed changes
 
         $choosen = $request->input('produk', []);
         $message = '';
@@ -358,5 +383,216 @@ class PelangganController extends Controller
     public function destroy(Pelanggan $pelanggan)
     {
         //
+    }
+
+    public function masukOrder(Request $request)
+    {
+        $user = Auth::user();        
+        $dompet = $user->pelanggans->saldo;
+
+        $selectedItems = json_decode($request->input('produk_array'));
+        $listKeranjang = [];
+        $totalHarga = 0;
+        
+        setlocale(LC_TIME, 'id_ID');
+        $today = Carbon::now('Asia/Jakarta');
+        
+        //cari id kota pelanggan
+        $kota_tujuan = $user->pelanggans->kota;
+        $kota_tujuan_id = DB::table('cities')->Where('name', $kota_tujuan)->select('city_id')->get();
+
+        $ongkirList = [];
+        foreach ($selectedItems as $item) {
+            $keranjang = Keranjang::where('id', $item)->with('produk')->with('toko')->first();
+            //cari id kota toko pengirim
+            $kota_toko_id = DB::table('cities')->Where('name', $keranjang->toko->kota)->select('city_id')->get();
+
+            $responseCost = Http::withHeaders([
+                'key' => '9335a6b808be9ab68fb8bfa6458079c1'
+            ])->post('https://api.rajaongkir.com/starter/cost', [
+                'origin' => $kota_toko_id[0]->city_id,
+                'destination' => $kota_tujuan_id[0]->city_id,
+                'weight' => 1000,
+                'courier'=>'jne',
+            ]);
+
+            $ongkir = $responseCost['rajaongkir']['results'];
+            $ongkirList[] = $ongkir;
+
+            $listKeranjang[] = $keranjang;
+            $totalHarga += $keranjang->produk->harga*$keranjang->kuantitas;
+        }
+
+        $totals = [];
+        foreach ($ongkirList as $item) {
+            $totalValues = [];
+            $estimasiKirim = [];
+
+            foreach ($item[0]['costs'] as $cost) {
+                $service = $cost['service'];
+                $value = $cost['cost'][0]['value'];
+                
+                $nilai = $cost['cost'][0]['etd'];
+                $arrayNilai = explode('-', $nilai);
+                $nilaiTerakhir = end($arrayNilai);
+
+                if (isset($totalValues[$service])) {
+                    $totalValues[$service] += $value;
+                    foreach ($estimasiKirim as $key => $valueWaktu) {
+                        if ($key == $service){
+                            continue;
+                        } else {
+                            $tanggalSampai = $today->addDays($nilaiTerakhir); 
+                            $tanggalSampai->setLocale('id');
+                            $formattedDate = $tanggalSampai->formatLocalized('%d %B %Y');
+                            $estimasiKirim[$service] = $formattedDate;
+                        }
+                    }
+                } else {
+                    $totalValues[$service] = $value;
+                    $tanggalSampai = $today->addDays($nilaiTerakhir); 
+                    $tanggalSampai->setLocale('id');
+                    $formattedDate = $tanggalSampai->formatLocalized('%d %B %Y');
+                    $estimasiKirim[$service] = $formattedDate;
+                }
+            }
+            $totals[] = $totalValues;
+        }
+
+        $mergedTotals = [];
+        foreach ($totals as $item) {
+            foreach ($item as $service => $value) {
+                if (!isset($mergedTotals[$service])) {
+                    $mergedTotals[$service] = 0;
+                }
+                $mergedTotals[$service] += $value;
+            }
+        }
+
+        return view('checkout.detailorder', compact('listKeranjang', 'user', 'dompet', 'totalHarga', 'estimasiKirim' ,'mergedTotals'));
+    }
+
+    public function buatOrder(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $keranjang = $request->input('keranjang');
+            $user = Auth::user();
+            $pelanggan = $user->pelanggans;
+            $tanggalWaktu = now();
+
+            $totalHarga = $request->input('total_harga');
+            $service = $request->input('service');
+
+            // $dompet = $user->dompet;
+            // $riwayatDompet = new RiwayatDompet();
+            // $riwayatDompet->dana = $totalHarga;
+            // $riwayatDompet->arus = "Keluar";
+            // $riwayatDompet->validasi_topup = 1;
+            // $riwayatDompet->tanggal = Carbon::now('Asia/Jakarta');
+            // $riwayatDompet->dompet_id = $dompet->id;
+            // $riwayatDompet->save();
+
+            $pelanggan->saldo -= $totalHarga;
+            $pelanggan->poin += $totalHarga*0.01;
+            $pelanggan->save();
+            //cari id kota pelanggan
+            $kota_tujuan = $user->pelanggans->kota;
+            $kota_tujuan_id = DB::table('cities')->Where('name', $kota_tujuan)->select('city_id')->get();
+
+            $toko_id = Keranjang::where('id', $keranjang[0])->select('toko_id')->first();
+            $transaksi = new Transaksi();
+            $transaksi->kode_nota = "{$user->id}-" . $tanggalWaktu->format('YmdHis');
+            $transaksi->pelanggan_id = $user->pelanggans->id;
+            $transaksi->toko_id = $toko_id->toko_id;
+            $transaksi->status = "Diproses";
+            $transaksi->grand_total = $totalHarga;
+            $transaksi->poin = $totalHarga*0.01;
+            $transaksi->pengiriman = $request->input('input_metode_pengiriman');
+            $transaksi->tipe_jasa_kirim = $service;
+            $transaksi->save();
+
+            $subtotal = 0;
+            $biayaOngkir = 0;
+            foreach ($keranjang as $keranjang_id) {
+                $produk_keranjang = Keranjang::where('id', $keranjang_id)->with('toko')->first();
+
+                $produk_toko_id = DB::table('produk_tokos')->select('id')
+                                    ->where('toko_id', '=', $produk_keranjang->toko_id)
+                                    ->where('produk_id', '=', $produk_keranjang->produk_id)->get();
+                $produk = DB::table('produks')->where('id', '=', $produk_keranjang->produk_id)->get();
+
+                $detailTransaksi = new DetailTransaksi();
+                $detailTransaksi->transaksi_id = $transaksi->id;
+                $detailTransaksi->produk_toko_id = $produk_toko_id[0]->id;
+                $detailTransaksi->kuantitas = $produk_keranjang->kuantitas;
+                $detailTransaksi->total = $produk[0]->harga*$produk_keranjang->kuantitas;
+                $detailTransaksi->save();
+
+                $subtotal += $produk[0]->harga*$produk_keranjang->kuantitas;
+                
+                //cari id kota toko pengirim
+                $kota_toko_id = DB::table('cities')->Where('name', $produk_keranjang->toko->kota)->select('city_id')->get();
+                //perhitungan ongkir
+                $responseCost = Http::withHeaders([
+                    'key' => '9335a6b808be9ab68fb8bfa6458079c1'
+                ])->post('https://api.rajaongkir.com/starter/cost', [
+                    'origin'=> $kota_toko_id[0]->city_id,
+                    'destination' => $kota_tujuan_id[0]->city_id,
+                    'weight'=> $produk[0]->berat*100,
+                    'courier'=>'jne',
+                ]);
+                $ongkir = $responseCost['rajaongkir']['results'];
+
+                foreach ($ongkir[0]['costs'] as $ong) {
+                    if ($service == $ong['service']){
+                        $biayaOngkir += $ong['cost'][0]['value'];
+                    }
+                }
+
+                // $riwayatDompetVendor = new RiwayatDompet();
+                // $riwayatDompetVendor->dana = $subtotal;
+                // $riwayatDompetVendor->arus = "Masuk";
+                // $riwayatDompetVendor->validasi_topup = 1;
+                // $riwayatDompetVendor->tanggal = Carbon::now('Asia/Jakarta');
+                // $riwayatDompetVendor->dompet_id = $vendorUser->dompet->id;
+                // $riwayatDompetVendor->save();
+
+                // $riwayatDompetVendorOngkir = new RiwayatDompet();
+                // $riwayatDompetVendorOngkir->dana = $biayaOngkir;
+                // $riwayatDompetVendorOngkir->arus = "Masuk";
+                // $riwayatDompetVendorOngkir->validasi_topup = 1;
+                // $riwayatDompetVendorOngkir->tanggal = Carbon::now('Asia/Jakarta');
+                // $riwayatDompetVendorOngkir->dompet_id = $vendorUser->dompet->id;
+                // $riwayatDompetVendorOngkir->save();
+
+                // $vendorUser->dompet->saldo += $subtotal + $biayaOngkir;
+                // $vendorUser->dompet->save();
+
+                Keranjang::where('id', $keranjang_id)->delete();
+            }
+
+            $biayaPajak = $subtotal*0.11;
+            // $table->text('keterangan')->nullable();      
+
+            if ($transaksi->pengiriman == 'Ambil Toko') {
+                $transaksi->biaya_pengiriman = 0;
+            } else {
+                $transaksi->biaya_pengiriman = $biayaOngkir;
+            }
+            $transaksi->subtotal = $subtotal;
+            $transaksi->biaya_pajak = $biayaPajak;
+            // $transaksi->grand_total = ;
+            $transaksi->save();
+
+            DB::commit();
+            return redirect()->route('listProduct')->with('berhasil', 'Pembelian berhasil dilakukan.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $pesanGagal = 'Pembelian gagal. Terjadi kesalahan.';
+            $pesanGagal .= ' Silakan hubungi teknisi kami untuk bantuan lebih lanjut.';
+
+            return redirect()->route('listProduct')->with('gagal', $pesanGagal);
+        }
     }
 }

@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreign('produk_toko_id')->references('id')->on('produk_tokos');
             $table->unsignedBigInteger('transaksi_id');
             $table->foreign('transaksi_id')->references('id')->on('transaksis');
-            $table->double('diskon');
             $table->integer('kuantitas');
-            $table->double('total');
+            $table->double('total');       
+            $table->timestamps();
         });
     }
 

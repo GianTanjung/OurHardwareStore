@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Keranjang extends Model
 {
     use HasFactory;
+
+    public function produk() {
+        return $this->belongsTo(Produk::class, 'produk_id');
+    }
+
+    public function toko() {
+        return $this->belongsTo(Toko::class, 'toko_id');
+    }
 }
