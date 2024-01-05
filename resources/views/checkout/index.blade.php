@@ -55,16 +55,16 @@
                                                 {{-- <img class="hover-image"
                                                     src="{{asset('assets/images/product-image/6_2.jpg')}}" alt="Product" /> --}}
                                             </a>
-                                            <span class="percentage">20%</span>
-                                            <a href="#" class="quickview" data-link-action="quickview"
+                                            {{-- <span class="percentage">20%</span> --}}
+                                            {{-- <a href="#" class="quickview" data-link-action="quickview"
                                                 title="Quick view" data-bs-toggle="modal"
                                                 data-bs-target="#ec_quickview_modal"><img
                                                     src="{{asset('assets/images/icons/quickview.svg')}}" class="svg_img pro_svg"
-                                                    alt="" /></a>
+                                                    alt="" /></a> --}}
                                             <div class="ec-pro-actions">
-                                                <a href="compare.html" class="ec-btn-group compare"
+                                                {{-- <a href="compare.html" class="ec-btn-group compare"
                                                     title="Compare"><img src="{{asset('assets/images/icons/compare.svg')}}"
-                                                        class="svg_img pro_svg" alt="" /></a>
+                                                        class="svg_img pro_svg" alt="" /></a> --}}
 
                                                 {{-- add to cart --}}
                                                 {{-- <form action="{{route('addCart', $p->id)}}" method="post">
@@ -74,9 +74,9 @@
                                                         alt="" /> Add To Cart</button>
                                                 </form> --}}
                                                 
-                                                <a class="ec-btn-group wishlist" title="Wishlist"><img
+                                                {{-- <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                         src="{{asset('assets/images/icons/wishlist.svg')}}"
-                                                        class="svg_img pro_svg" alt="" /></a>
+                                                        class="svg_img pro_svg" alt="" /></a> --}}
                                             </div>
                                         </div>
                                     </div>

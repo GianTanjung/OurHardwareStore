@@ -152,7 +152,7 @@ class PelangganController extends Controller
             
             // dd($subTotal);
 
-            $toko = DB::table('keranjangs')->select('toko_id')->whereIn('id', $choosen)->get();
+            $toko = DB::table('keranjangs')->select('toko_id')->whereIn('id', $choosen)->groupBy('toko_id')->get();
             foreach($toko as $t)
             {
                 $count += 1;
@@ -218,8 +218,9 @@ class PelangganController extends Controller
         $produk = DB::table('produks as p')->select('p.*', 'pt.stok')->join('produk_tokos as pt', 'pt.produk_id', '=', 'p.id')->join('tokos as t', 't.id', '=', 'pt.toko_id')->where('p.id', '=', $id)->first();
         $lokasi = DB::table('tokos as t')->select('t.nama', 't.id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('pt.produk_id', '=', $id)->where('pt.stok', '>', 0)->distinct('t.nama')->get();
         $stok = DB::table('produk_tokos')->select('stok')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.produk_id')->sum('stok');
+        $cekStock = DB::table('produk_tokos')->select(DB::raw('SUM(produk_tokos.stok) as stok'), 'tokos.nama')->join('tokos', 'tokos.id', '=', 'produk_tokos.toko_id')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.toko_id')->get();
 
-        return view('checkout.detail', compact('produk', 'lokasi', 'stok', 'listCart'));
+        return view('checkout.detail', compact('produk', 'lokasi', 'stok', 'listCart', 'cekStock'));
         // dd($produk);
     }
 

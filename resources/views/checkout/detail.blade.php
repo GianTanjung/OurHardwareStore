@@ -46,6 +46,14 @@
                                                 <div class="ec-single-sales-progress">
                                                     <span class="ec-single-progress-desc">Hurry up! Left {{$stok}} in
                                                         stock</span>
+                                                        <ul>
+                                                            @foreach ($cekStock as $s)
+                                                            <li>
+                                                                {{$s->nama}} : {{$s->stok}}
+                                                            </li>
+                                                            @endforeach
+                                                            
+                                                        </ul>
                                                     {{-- <span class="ec-single-progressbar"></span> --}}
                                                 </div>
                                             </div>
@@ -91,7 +99,7 @@
                                             @csrf --}}
                                         <div class="ec-single-qty">
                                             <div class="qty-plus-minus">
-                                                <input class="qty-input" type="text" name="kuantitas" value="1" />
+                                                <input class="qty-input" type="text" name="kuantitas" value="1"/>
                                             </div>
                                             <div class="ec-single-cart ">
                                                 <button class="btn btn-primary" id="submitButton" type="submit" disabled>Add To Cart</button>
