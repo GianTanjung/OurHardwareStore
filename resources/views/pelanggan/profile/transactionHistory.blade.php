@@ -63,9 +63,17 @@
                                 <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                         src="{{asset('assets')}}/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                    <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                    @auth
+                                        <li><a class="dropdown-item" href="{{Route('customer.profile')}}">User Profile</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('customer.transaction.history')}}">History</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('cart')}}">Cart</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('logoutUser')}}">Logout</a></li>
+
+                                    @else
+                                        <li><a class="dropdown-item" href="{{Route('register')}}">Register</a></li>
+                                        {{-- <li><a class="dropdown-item" href="checkout.html">Checkout</a></li> --}}
+                                        <li><a class="dropdown-item" href="{{Route('login')}}">Login</a></li>
+                                    @endauth
                                 </ul>
                             </div>
                             <!-- Header User End -->
@@ -119,9 +127,17 @@
                                     <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                             src="{{asset('assets')}}/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                        <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                        <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                        @auth
+                                        <li><a class="dropdown-item" href="{{Route('customer.profile')}}">User Profile</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('customer.transaction.history')}}">History</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('cart')}}">Cart</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('logoutUser')}}">Logout</a></li>
+
+                                    @else
+                                        <li><a class="dropdown-item" href="{{Route('register')}}">Register</a></li>
+                                        {{-- <li><a class="dropdown-item" href="checkout.html">Checkout</a></li> --}}
+                                        <li><a class="dropdown-item" href="{{Route('login')}}">Login</a></li>
+                                    @endauth
                                     </ul>
                                 </div>
                                 <!-- Header User End -->

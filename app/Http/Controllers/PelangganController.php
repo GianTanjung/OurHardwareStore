@@ -78,7 +78,19 @@ class PelangganController extends Controller
         return view('checkout.index',compact('listProduct', 'listCart', 'subTotal', 'vat', 'total', 'count', 'kategoris', 'stores', 'selectedkategori', 'selectedstore'));
         // dd($listCart);
     }
+    public function updateCart($id,$value){
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where('user_id',$user->id)->first();
 
+        $helper = Keranjang::where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->select('*')->first();
+        // dd($helper);
+        // $helper = DB::table('keranjangs')->select('*')->where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->first();
+        if($helper->kuantitas != $value){
+            $helper->kuantitas = $value;
+        }
+        $helper->update();
+        return redirect()->route('cart');
+    }
     public function addCart(Request $request, $id)
     {
         

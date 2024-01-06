@@ -107,9 +107,16 @@
                                 <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                         src="{{asset('assets/images/icons/user.svg')}}" class="svg_img header_svg" alt="" /></button>
                                 <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                    <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                    @auth
+                                        <li><a class="dropdown-item" href="{{Route('customer.profile')}}">User Profile</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('customer.transaction.history')}}">History</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('cart')}}">Cart</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('logoutUser')}}">Logout</a></li>
+                                    @else
+                                        <li><a class="dropdown-item" href="{{Route('register')}}">Register</a></li>
+                                        {{-- <li><a class="dropdown-item" href="checkout.html">Checkout</a></li> --}}
+                                        <li><a class="dropdown-item" href="{{Route('login')}}">Login</a></li>
+                                    @endauth
                                 </ul>
                             </div>
                             <!-- Header User End -->
@@ -177,9 +184,16 @@
                                     <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                             src="{{asset('assets/images/icons/user.svg')}}" class="svg_img header_svg" alt="" /></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                        <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                        <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                        @auth
+                                            <li><a class="dropdown-item" href="{{Route('customer.profile')}}">User Profile</a></li>
+                                            <li><a class="dropdown-item" href="{{Route('customer.transaction.history')}}">History</a></li>
+                                            <li><a class="dropdown-item" href="{{Route('cart')}}">Cart</a></li>
+                                            <li><a class="dropdown-item" href="{{Route('logoutUser')}}">Logout</a></li>
+                                        @else
+                                            <li><a class="dropdown-item" href="{{Route('register')}}">Register</a></li>
+                                            {{-- <li><a class="dropdown-item" href="checkout.html">Checkout</a></li> --}}
+                                            <li><a class="dropdown-item" href="{{Route('login')}}">Login</a></li>
+                                        @endauth
                                     </ul>
                                 </div>
                                 <!-- Header User End -->
@@ -191,12 +205,14 @@
                                 </a> --}}
                                 <!-- Header wishlist End -->
                                 <!-- Header Cart Start -->
+                                @auth
                                 <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
                                     <div class="header-icon"><img src="{{asset('assets/images/icons/cart.svg')}}"
                                             class="svg_img header_svg" alt="" /></div>
                                             @yield('cartAmountHeader')
                                     {{-- <span class="ec-header-count cart-count-lable">3</span> --}}
                                 </a>
+                                @endauth
                                 <!-- Header Cart End -->
                             </div>
                         </div>
@@ -488,7 +504,7 @@
         </div>
         <!-- Ec Main Menu End -->
         <!-- ekka Mobile Menu Start -->
-        <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
+        {{-- <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
             <div class="ec-menu-title">
                 <span class="menu_title">My Menu</span>
                 <button class="ec-close">×</button>
@@ -723,7 +739,7 @@
                     <!-- Social End -->
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- ekka mobile Menu End -->
     </header>
     <!-- Header End  -->

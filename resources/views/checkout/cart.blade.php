@@ -159,9 +159,9 @@
                                                         class="amount">{{number_format(($c->harga) / 1, 2, '.', ',')}}</span></td>
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
-                                                    <div class="cart-qty-plus-minus">
-                                                        <input class="cart-plus-minus" id="plusButton" type="number"
-                                                            name="cartqtybutton" value={{$c->kuantitas}} data-product-id="{{ $c->id }}"/>
+                                                    <div class="">
+                                                        <input class="" id="plusButton{{$c->id}}" type="number"
+                                                            name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->id }}" onchange="checkValue({{$c->id}})" />
                                                     </div>
                                                 </td>
                                                 <td data-label="Total" class="ec-cart-pro-subtotal">{{number_format(($c->harga*$c->kuantitas) / 1, 2, '.', ',')}}</td>
@@ -290,6 +290,12 @@
                 $('#myForm').submit();
             });
         });
+        function checkValue(id){
+            
+            var value = $('#plusButton'+id).val();
+            console.log(value);
+            window.location.href = "cart/checkValue/"+ id + "/" + value;
+        }
     </script>
 {{-- @endpush --}}
 {{-- @push('scripts')

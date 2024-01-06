@@ -8,6 +8,7 @@ use App\Http\Controllers\PelangganController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\CheckOngkirController;
 
@@ -43,16 +44,18 @@ Route::resource('role', RoleController::class);
 Route::resource('user', UserController::class);
 Route::resource('detailtransaksi', DetailTransaksiController::class);
 Route::resource('promo', PromoController::class);
-
 // User ============================================
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/cobalayout', function () {
         return view('checkout.cart');
     });
+    Route::get('/logoutUser', [UserController::class, 'logout'])->name('logoutUser');
     // Pelanggan
+    Route::get('/', [PelangganController::class, 'katalog'])->name('listProduct');
     Route::get('customer/listProduct', [PelangganController::class, 'katalog'])->name('listProduct');
     Route::post('customer/addCart/{id}', [PelangganController::class, 'addCart'])->name('addCart');
     Route::get('customer/cart', [PelangganController::class, 'cart'])->name('cart');
+    Route::get('customer/cart/checkValue/{id}/{value}', [PelangganController::class, 'updateCart'])->name('cart.checkValue');
     Route::delete('customer/handle', [PelangganController::class, 'cartHandler'])->name('handleCart');
     Route::get('customer/deleteOutCart/{id}', [PelangganController::class, 'deleteOutCart'])->name('deleteOutCart');
     Route::get('customer/detail/{id}', [PelangganController::class, 'detail'])->name('detail');

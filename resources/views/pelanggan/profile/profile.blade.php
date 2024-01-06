@@ -49,87 +49,7 @@
     <!-- Header start  -->
     <header class="ec-header">
         <!--Ec Header Top Start -->
-        <div class="header-top">
-            <div class="container">
-                <div class="row align-items-center">
-                    <!-- Header Top social Start -->
-                    <div class="col text-left header-top-left d-none d-lg-block">
-                        <div class="header-top-social">
-                            <span class="social-text text-upper">Follow us on:</span>
-                            <ul class="mb-0">
-                                <li class="list-inline-item"><a class="hdr-facebook" href="#"><i class="ecicon eci-facebook"></i></a></li>
-                                <li class="list-inline-item"><a class="hdr-twitter" href="#"><i class="ecicon eci-twitter"></i></a></li>
-                                <li class="list-inline-item"><a class="hdr-instagram" href="#"><i class="ecicon eci-instagram"></i></a></li>
-                                <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i class="ecicon eci-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Header Top social End -->
-                    <!-- Header Top Message Start -->
-                    <div class="col text-center header-top-center">
-                        <div class="header-top-message text-upper">
-                            <span>Free Shipping</span>This Week Order Over - $75
-                        </div>
-                    </div>
-                    <!-- Header Top Message End -->
-                    <!-- Header Top Language Currency -->
-                    <div class="col header-top-right d-none d-lg-block">
-                        <div class="header-top-lan-curr d-flex justify-content-end">
-                            <!-- Currency Start -->
-                            <div class="header-top-curr dropdown">
-                                <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Currency <i
-                                        class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li class="active"><a class="dropdown-item" href="#">USD $</a></li>
-                                    <li><a class="dropdown-item" href="#">EUR €</a></li>
-                                </ul>
-                            </div>
-                            <!-- Currency End -->
-                            <!-- Language Start -->
-                            <div class="header-top-lan dropdown">
-                                <button class="dropdown-toggle text-upper" data-bs-toggle="dropdown">Language <i
-                                        class="ecicon eci-caret-down" aria-hidden="true"></i></button>
-                                <ul class="dropdown-menu">
-                                    <li class="active"><a class="dropdown-item" href="#">English</a></li>
-                                    <li><a class="dropdown-item" href="#">Italiano</a></li>
-                                </ul>
-                            </div>
-                            <!-- Language End -->
-
-                        </div>
-                    </div>
-                    <!-- Header Top Language Currency -->
-                    <!-- Header Top responsive Action -->
-                    <div class="col d-lg-none ">
-                        <div class="ec-header-bottons">
-                            <!-- Header User Start -->
-                            <div class="ec-header-user dropdown">
-                                <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
-                                        src="{{asset('assets')}}/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
-                                <ul class="dropdown-menu dropdown-menu-right">
-                                    <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                    <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                    <li><a class="dropdown-item" href="login.html">Login</a></li>
-                                </ul>
-                            </div>
-                            <!-- Header User End -->
-                            <!-- Header Cart Start -->
-
-                            <!-- Header Cart End -->
-                            <!-- Header Cart Start -->
-
-                            <!-- Header Cart End -->
-                            <!-- Header menu Start -->
-                            <a href="#ec-mobile-menu" class="ec-header-btn ec-side-toggle d-lg-none">
-                                <img src="{{asset('assets')}}/images/icons/menu.svg" class="svg_img header_svg" alt="icon" />
-                            </a>
-                            <!-- Header menu End -->
-                        </div>
-                    </div>
-                    <!-- Header Top responsive Action -->
-                </div>
-            </div>
-        </div>
+        
         <!-- Ec Header Top  End -->
         <!-- Ec Header Bottom  Start -->
         <div class="ec-header-bottom d-none d-lg-block">
@@ -167,9 +87,17 @@
                                     <button class="dropdown-toggle" data-bs-toggle="dropdown"><img
                                             src="{{asset('assets')}}/images/icons/user.svg" class="svg_img header_svg" alt="" /></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a class="dropdown-item" href="register.html">Register</a></li>
-                                        <li><a class="dropdown-item" href="checkout.html">Checkout</a></li>
-                                        <li><a class="dropdown-item" href="login.html">Login</a></li>
+                                        @auth
+                                        <li><a class="dropdown-item" href="{{Route('customer.profile')}}">User Profile</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('customer.transaction.history')}}">History</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('cart')}}">Cart</a></li>
+                                        <li><a class="dropdown-item" href="{{Route('logoutUser')}}">Logout</a></li>
+
+                                    @else
+                                        <li><a class="dropdown-item" href="{{Route('register')}}">Register</a></li>
+                                        {{-- <li><a class="dropdown-item" href="checkout.html">Checkout</a></li> --}}
+                                        <li><a class="dropdown-item" href="{{Route('login')}}">Login</a></li>
+                                    @endauth
                                     </ul>
                                 </div>
                                 <!-- Header User End -->
@@ -849,7 +777,7 @@
                                             <div class="d-flex justify-content-between">
                                                 <div class="m-2 p-2" style="border: 1px solid grey;border-radius: 5px">
                                                     <h6>Saldo</h6>
-                                                    <h3>Rp. {{$pelanggan->poin}}</h3>
+                                                    <h3>Rp. {{$pelanggan->saldo}}</h3>
                                                     <span><a href="#" class="text-primary"><b>+Isi Saldo</b></a>&nbsp;&nbsp;<a href="#" class="text-info"><b>+Riwayat Transaksi Saldo</b></a></span>
                                                 </div>
                                                 <div class="m-2 p-2" style="width: 150px;border: 1px solid grey;border-radius: 5px">
