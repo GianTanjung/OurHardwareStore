@@ -48,7 +48,6 @@
 
     <!-- Header start  -->
     <header class="ec-header">
-<<<<<<< Updated upstream
         <!--Ec Header Top Start -->
         <div class="header-top">
             <div class="container">
@@ -141,8 +140,6 @@
             </div>
         </div>
         <!-- Ec Header Top  End -->
-=======
->>>>>>> Stashed changes
         <!-- Ec Header Bottom  Start -->
         <div class="ec-header-bottom d-none d-lg-block">
             <div class="container position-relative">
@@ -1039,7 +1036,6 @@
     </div>
     <!-- Cart Floating Button end -->
 
-<<<<<<< Updated upstream
     <!-- Whatsapp -->
     {{-- <div class="ec-style ec-right-bottom">
         <!-- Start Floating Panel Container -->
@@ -1164,8 +1160,6 @@
     </div> --}}
     <!-- Whatsapp end -->
 
-=======
->>>>>>> Stashed changes
     <!-- Feature tools -->
     {{-- <div class="ec-tools-sidebar-overlay"></div>
     <div class="ec-tools-sidebar">

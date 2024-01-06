@@ -41,11 +41,8 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 1)
                                             <tr>
-<<<<<<< Updated upstream
                                                 <td><input type="checkbox" name="produk[]" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
-=======
-                                                <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td>
->>>>>>> Stashed changes
+                                                {{-- <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td> --}}
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
@@ -101,11 +98,8 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 2)
                                             <tr>
-<<<<<<< Updated upstream
                                                 <td><input type="checkbox" id="produk" name="produk[]" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
-=======
-                                                <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td>
->>>>>>> Stashed changes
+                                                {{-- <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td> --}}
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
@@ -155,11 +149,8 @@
                                             @foreach ($listCart as $c)
                                             @if ($c->idstore == 3)
                                             <tr>
-<<<<<<< Updated upstream
                                                 <td><input type="checkbox" name="produk[]" id="produk" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
-=======
-                                                <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td>
->>>>>>> Stashed changes
+                                                {{-- <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td> --}}
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
                                                         href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
@@ -279,7 +270,7 @@
                         <form action="{{route('masuk.order')}}" method="post">
                             @csrf
                             <input type="hidden" name="produk_array" id="produk_array" value="">
-                            <button class="btn btn-primary" name="button" value="checkout" onclick="updateHiddenField()">Check Out</button>
+                            <button class="btn btn-primary" name="button" value="checkout" onclick="updateHiddenField()" >Check Out</button>
                         </form>
                     </div>
                     <!-- Sidebar Summary Block -->
@@ -289,7 +280,6 @@
     </div>
 </section>
 </form>
-<<<<<<< Updated upstream
 {{-- @push('scripts') --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -343,7 +333,6 @@
     });
 </script> --}}
     {{-- @endpush --}}
-=======
 
 <script>
     function updateHiddenField() {
@@ -360,7 +349,6 @@
         document.getElementById('produk_array').value = JSON.stringify(selectedItems);
     }
 </script>
->>>>>>> Stashed changes
 @endsection
 
 

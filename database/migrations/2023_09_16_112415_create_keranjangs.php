@@ -20,16 +20,9 @@ class CreateKeranjangs extends Migration
             $table->foreign('pelanggan_id')->references('id')->on('pelanggans');
             $table->unsignedBigInteger('produk_id');
             $table->foreign('produk_id')->references('id')->on('produks');
-<<<<<<< Updated upstream
-            $table->unsignedBigInteger('kota_id');
-            $table->foreign('kota_id')->references('id')->on('cities');
-            $table->timestamps();
-            
-=======
             $table->unsignedBigInteger('toko_id');
             $table->foreign('toko_id')->references('id')->on('tokos');
             $table->timestamps();
->>>>>>> Stashed changes
         });
     }
 
@@ -45,13 +38,8 @@ class CreateKeranjangs extends Migration
             $table->dropColumn('pelanggan_id');
             $table->dropForeign(['produk_id']);
             $table->dropColumn('produk_id');
-<<<<<<< Updated upstream
-            $table->dropForeign(['kota_id']);
-            $table->dropColumn('kota_id');
-=======
             $table->dropForeign(['toko_id']);
             $table->dropColumn('toko_id');
->>>>>>> Stashed changes
         });
         Schema::dropIfExists('keranjangs');
     }

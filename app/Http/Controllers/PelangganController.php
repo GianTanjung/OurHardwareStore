@@ -10,8 +10,8 @@ use App\Models\Keranjang;
 use App\Models\Produk;
 use App\Models\Province;
 use App\Models\City;
-use App\Models\Keranjang;
-use App\Models\Transaksi;
+// use App\Models\Keranjang;
+// use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Auth;
@@ -37,12 +37,9 @@ class PelangganController extends Controller
         $user = Auth::user();
         // dd($user->id);
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
-<<<<<<< Updated upstream
         // dd($pelanggan);
-=======
         // hardcode
         // $pelanggan = Pelanggan::where('user_id',5)->first();
->>>>>>> Stashed changes
         $selectedkategori = $request->input('kategori', []);
         $selectedstore = $request->input('store', []);
         $search = $request->query('search');
@@ -122,7 +119,6 @@ class PelangganController extends Controller
 
     public function cart(Request $request)
     {
-<<<<<<< Updated upstream
         // $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
         // $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         // $subTotal = 0;
@@ -132,7 +128,6 @@ class PelangganController extends Controller
         // $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
         // $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
         // $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
-=======
         $pelanggan = Pelanggan::where('user_id', Auth::user()->id)->first();
         // hardcode
         // $pelanggan = Pelanggan::where('user_id', 5)->first();
@@ -144,7 +139,6 @@ class PelangganController extends Controller
         $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
         $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
         $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
->>>>>>> Stashed changes
 
         $choosen = $request->input('produk', []);
         $message = '';
@@ -204,7 +198,7 @@ class PelangganController extends Controller
             case 'checkout':
                 // Handle action 2
                 // $products = $request->input('produk', []);
-                // return $this->checkout($products);
+                return $this->masukOrder($request);
                 // dd($count);
                 break;
 
@@ -387,8 +381,9 @@ class PelangganController extends Controller
 
     public function masukOrder(Request $request)
     {
-        $user = Auth::user();        
-        $dompet = $user->pelanggans->saldo;
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where("user_id",$user->id)->first();
+        $dompet = $pelanggan->saldo;
 
         $selectedItems = json_decode($request->input('produk_array'));
         $listKeranjang = [];
@@ -468,7 +463,7 @@ class PelangganController extends Controller
                 $mergedTotals[$service] += $value;
             }
         }
-
+        
         return view('checkout.detailorder', compact('listKeranjang', 'user', 'dompet', 'totalHarga', 'estimasiKirim' ,'mergedTotals'));
     }
 
