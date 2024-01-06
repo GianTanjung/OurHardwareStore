@@ -224,7 +224,7 @@
         </div>
         <!-- Header responsive Bottom  End -->
         <!-- EC Main Menu Start -->
-        <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
+        {{-- <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
             <div class="container position-relative">
                 <div class="row">
                     <div class="col-md-12 align-self-center">
@@ -472,10 +472,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Ec Main Menu End -->
         <!-- ekka Mobile Menu Start -->
-        <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
+        {{-- <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
             <div class="ec-menu-title">
                 <span class="menu_title">My Menu</span>
                 <button class="ec-close">×</button>
@@ -708,13 +708,13 @@
                     <!-- Social End -->
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- ekka mobile Menu End -->
     </header>
     <!-- Header End  -->
 
     <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
+    {{-- <div class="ec-side-cart-overlay"></div>
     <div id="ec-side-cart" class="ec-side-cart">
         <div class="ec-cart-inner">
             <div class="ec-cart-top">
@@ -786,11 +786,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->
-    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+    {{-- <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -810,7 +810,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Ec breadcrumb end -->
 
     <!-- User profile section -->

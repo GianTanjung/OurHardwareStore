@@ -165,7 +165,7 @@
         </div>
         <!-- Header responsive Bottom  End -->
         <!-- EC Main Menu Start -->
-        <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
+        {{-- <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
             <div class="container position-relative">
                 <div class="row">
                     <div class="col-md-12 align-self-center">
@@ -413,10 +413,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- Ec Main Menu End -->
         <!-- ekka Mobile Menu Start -->
-        <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
+        {{-- <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
             <div class="ec-menu-title">
                 <span class="menu_title">My Menu</span>
                 <button class="ec-close">×</button>
@@ -649,13 +649,13 @@
                     <!-- Social End -->
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- ekka mobile Menu End -->
     </header>
     <!-- Header End  -->
 
     <!-- ekka Cart Start -->
-    <div class="ec-side-cart-overlay"></div>
+    {{-- <div class="ec-side-cart-overlay"></div>
     <div id="ec-side-cart" class="ec-side-cart">
         <div class="ec-cart-inner">
             <div class="ec-cart-top">
@@ -727,7 +727,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- ekka Cart End -->
 
     <!-- Ec breadcrumb start -->
@@ -770,7 +770,6 @@
                                         <tr>
                                             <th scope="col">Kode Nota</th>
                                             <th scope="col">Tanggal Transaksi</th>
-                                            <th scope="col">Tanggal Bayar</th>
                                             <th scope="col">Pengiriman</th>
                                             <th scope="col">Status</th>
                                             <th scope="col">Total</th>
@@ -781,7 +780,6 @@
                                             <tr>
                                                 <th scope="row"><span>{{$transaksi->kode_nota}}</span></th>
                                                 <td><span>{{$transaksi->tanggal_transaksi}}</span></td>
-                                                <td><span>{{$transaksi->tanggal_bayar}}</span></td>
                                                 <td><span>{{$transaksi->pengiriman}}</span></td>
                                                 <td><span>{{$transaksi->status}}</span></td>
                                                 <td><span>{{$transaksi->grand_total}}</span></td>
