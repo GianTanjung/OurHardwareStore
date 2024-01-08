@@ -83,8 +83,7 @@ class PelangganController extends Controller
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
 
         $helper = Keranjang::where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->select('*')->first();
-        // dd($helper);
-        // $helper = DB::table('keranjangs')->select('*')->where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->first();
+        
         if($helper->kuantitas != $value){
             $helper->kuantitas = $value;
         }
