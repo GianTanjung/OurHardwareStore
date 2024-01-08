@@ -18,6 +18,12 @@
     <div class="container">
         <div class="row">
             <div class="ec-cart-leftside col-lg-8 col-md-12 ">
+                @if (session('failed'))
+                    <div class="row alert alert-danger" id="status-messages">
+                        <span id="status-text">{{ session('failed') }}</span>
+                        <button type="button" class="status-close-button" id="close-button">&times;</button>
+                    </div>
+                @endif
                 <!-- cart content Start -->
                 <div class="ec-cart-content">
                     <div class="ec-cart-inner">
@@ -356,6 +362,9 @@
         // Update nilai pada elemen hidden
         document.getElementById('produk_array').value = JSON.stringify(selectedItems);
     }
+    $('#close-button').click(function() {
+            $('#status-messages').hide();
+        });
 </script>
 @endsection
 

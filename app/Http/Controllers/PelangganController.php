@@ -85,12 +85,20 @@ class PelangganController extends Controller
         // $helper = Keranjang::where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->select('*')->first();
         // dd($helper);
         $helper = Keranjang::where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->first();
-        // dd($helper);
-        if($helper->kuantitas != $value){
+        // $helper = Keranjang::where('pelanggan_id',$pelanggan->id)->where('produk_id','=',$id)->first();
+        // dd($id);
+        $stok = Produk::where("produk_tokos.produk_id",$id)
+                ->where('produk_tokos.toko_id', '=', $helper->toko_id)
+                ->join('produk_tokos','produk_tokos.produk_id','=','produks.id')
+                ->select('produk_tokos.stok')->first();
+        if($helper->kuantitas != $value && $value <= $stok->stok){
             $helper->kuantitas = $value;
+            $helper->update();
+            return redirect()->route('cart');
+        }else{
+            return redirect()->route('cart')->with('failed','Stock barang tidak mencukupi');
         }
-        $helper->update();
-        return redirect()->route('cart');
+        
     }
     public function addCart(Request $request, $id)
     {
@@ -135,9 +143,9 @@ class PelangganController extends Controller
         $pelanggan = Pelanggan::where('user_id', Auth::user()->id)->first();
         // hardcode
         // $pelanggan = Pelanggan::where('user_id', 5)->first();
-        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        $listCart = DB::table('keranjangs as k')->select('k.id','p.id as produk_id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         // dd($listCart);
-        $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas    ')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
+        $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
         $vat = $subTotal*20/100;
         $total = $subTotal+$vat;
         $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
