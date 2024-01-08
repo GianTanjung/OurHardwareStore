@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>Mitra 10 - @yield('title') </title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/src/assets/img/favicon.ico') }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Depot Bangunan - @yield('title') </title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/src/assets/img/depotbangunan.png') }}" />
     <link href="{{ asset('assets/layouts/modern-light-menu/css/light/loader.css') }}" rel="stylesheet"
         type="text/css" />
     <link href="{{ asset('assets/layouts/modern-light-menu/css/dark/loader.css') }}" rel="stylesheet" type="text/css" />
@@ -29,32 +30,40 @@
     <!-- Master -->
     @yield('cssdaftarproduk')
     @yield('cssdaftarkategori')
+    @yield('cssdaftarsubkategori')
     @yield('cssdaftarmerk')
     @yield('cssdaftarruangan')
 
     @yield('cssinsertproduk')
     @yield('cssinsertkategori')
+    @yield('cssinsertsubkategori')
     @yield('cssinsertmerk')
     @yield('cssinsertruangan')
 
     @yield('cssdetailproduk')
     @yield('cssdetailkategori')
+    @yield('cssdetailsubkategori')
     @yield('cssdetailmerk')
     @yield('cssdetailruangan')
 
     @yield('csseditproduk')
     @yield('csseditkategori')
+    @yield('csseditsubkategori')
     @yield('csseditmerk')
     @yield('csseditruangan')
 
     <!-- Transaksi -->
     @yield('cssdaftarpenjualan')
+    @yield('cssdaftarpembelian')
 
     @yield('cssinsertpenjualan')
+    @yield('cssinsertpembelian')
 
     @yield('cssdetailpenjualan')
+    @yield('cssdetailpembelian')
 
     @yield('csseditpenjualan')
+    @yield('csseditpembelian')
 
     <!-- Laporan -->
     @yield('cssdaftarlaporanpenjualan')
@@ -64,15 +73,19 @@
     <!-- Pengaturan -->
     @yield('cssdaftarpelanggan')
     @yield('cssdaftartoko')
+    @yield('cssdaftarsupplier')
 
     @yield('cssinsertpelanggan')
     @yield('cssinserttoko')
+    @yield('cssinsertsupplier')
 
     @yield('cssdetailpelanggan')
     @yield('cssdetailtoko')
+    @yield('cssdetailsupplier')
 
     @yield('csseditpelanggan')
     @yield('cssedittoko')
+    @yield('csseditsupplier')
 </head>
 
 <body class="layout-boxed">
@@ -98,7 +111,7 @@
                 </i>
             </a>
 
-            <div class="search-animated toggle-search">
+            {{-- <div class="search-animated toggle-search">
                 <i data-feather="search">
                     <circle cx="11" cy="11" r="8"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -113,7 +126,7 @@
                     </div>
                 </form>
                 <span class="badge badge-secondary">Ctrl + /</span>
-            </div>
+            </div> --}}
 
             <ul class="navbar-item flex-row ms-lg-auto ms-0">
 
@@ -151,7 +164,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item dropdown notification-dropdown">
+                {{-- <li class="nav-item dropdown notification-dropdown">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="notificationDropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i data-feather="bell"></i>
@@ -169,7 +182,7 @@
                         <div class="notification-scroll">
                             <div class="dropdown-item">
                                 <div class="media server-log">
-                                    <img src="{{ asset('assets/src/assets/img/profile-16.jpeg') }}"
+                                    <img src="{{ asset('assets/src/assets/img/profile.png') }}"
                                         class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
@@ -191,7 +204,7 @@
 
                             <div class="dropdown-item">
                                 <div class="media ">
-                                    <img src="{{ asset('assets/src/assets/img/profile-15.jpeg') }}"
+                                    <img src="{{ asset('assets/src/assets/img/profile.png') }}"
                                         class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
@@ -213,7 +226,7 @@
 
                             <div class="dropdown-item">
                                 <div class="media file-upload">
-                                    <img src="{{ asset('assets/src/assets/img/profile-21.jpeg') }}"
+                                    <img src="{{ asset('assets/src/assets/img/profile.png') }}"
                                         class="img-fluid me-2" alt="avatar">
                                     <div class="media-body">
                                         <div class="data-info">
@@ -327,14 +340,14 @@
                         </div>
                     </div>
 
-                </li>
+                </li> --}}
 
                 <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar-container">
                             <div class="avatar avatar-sm avatar-indicators avatar-online">
-                                <img alt="avatar" src="{{ asset('assets/src/assets/img/profile-bumi.jpg') }}"
+                                <img alt="avatar" src="{{ asset('assets/src/assets/img/profile.png') }}"
                                     class="rounded-circle">
                             </div>
                         </div>
@@ -347,8 +360,8 @@
                                     &#x1F44B;
                                 </div>
                                 <div class="media-body">
-                                    <h5>Bagus Surya Bumi</h5>
-                                    <p>Pemilik</p>
+                                    <h5>{{ Auth::user()->nama }}</h5>
+                                    <p>{{ Auth::user()->roles->nama }}</p>
                                 </div>
                             </div>
                         </div>
@@ -360,7 +373,7 @@
                                 </svg> <span>Profile</span>
                             </a>
                         </div>
-                        <div class="dropdown-item">
+                        {{-- <div class="dropdown-item">
                             <a href="#">
                                 <i data-feather="inbox"></i>
                                 <polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
@@ -369,8 +382,8 @@
                                 </path>
                                 </svg> <span>Inbox</span>
                             </a>
-                        </div>
-                        <div class="dropdown-item">
+                        </div> --}}
+                        {{-- <div class="dropdown-item">
                             <a href="#">
                                 <i data-feather="lock"></i>
                                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2">
@@ -378,9 +391,9 @@
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                 </svg> <span>Lock Screen</span>
                             </a>
-                        </div>
+                        </div> --}}
                         <div class="dropdown-item">
-                            <a href="#">
+                            <a href="{{ route('logoutUser') }}">
                                 <i data-feather="log-out"></i>
                                 <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                                 <polyline points="16 17 21 12 16 7"></polyline>
@@ -412,11 +425,11 @@
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
                             <a href="{{ route('home') }}">
-                                <img src="{{ asset('assets/src/assets/img/logo3.svg') }}" alt="logo">
+                                <img src="{{ asset('assets/src/assets/img/depotbangunan.png') }}" alt="logo">
                             </a>
                         </div>
-                        <div class="nav-item theme-text">
-                            <a href="{{ route('home') }}" class="nav-link">Mitra 10</a>
+                        <div class="nav-item theme-text" >
+                            <a href="{{ route('home') }}" class="nav-link">Admin</a>
                         </div>
                     </div>
                     <div class="nav-item sidebar-toggle">
@@ -429,11 +442,11 @@
                 <div class="profile-info">
                     <div class="user-info">
                         <div class="profile-img">
-                            <img src="{{ asset('assets/src/assets/img/profile-bumi.jpg') }}" alt="avatar">
+                            <img src="{{ asset('assets/src/assets/img/profile.png') }}" alt="avatar">
                         </div>
                         <div class="profile-content">
-                            <h6 class="">Bagus Surya Bumi</h6>
-                            <p class="">Pemilik</p>
+                            <h6 class="">{{ Auth::user()->nama }}</h6>
+                            <p class="">{{ Auth::user()->roles->nama }}</p>
                         </div>
                     </div>
                 </div>
@@ -441,9 +454,9 @@
                 <div class="shadow-bottom"></div>
 
                 <ul class="list-unstyled menu-categories" id="accordionExample">
-
+{{-- 
                     <li class="menu {{ request()->routeIs(['dashboard.*','home']) ? 'active' : '' }}">
-                        <a href="#dashboard" data-bs-toggle="collapse"
+                        <a href="{{ route('home') }}" data-bs-toggle="collapse"
                             aria-expanded="{{ request()->routeIs(['dashboard.*','home']) ? 'true' : 'false' }}"
                             class="dropdown-toggle">
                             <div class="">
@@ -465,12 +478,30 @@
                                 <a href="{{ route('dashboard.sales') }}"> Sales </a>
                             </li>
                         </ul>
+                    </li> --}}
+
+                    <li class="menu {{ request()->routeIs(['home']) ? 'active' : '' }}">
+                        <a href="{{ route('home') }}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <i data-feather="home"></i>
+                                <span>Dashboard</span>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="menu {{ request()->routeIs(['validation.topup']) ? 'active' : '' }}">
+                        <a href="{{ route('validation.topup') }}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="">
+                                <i data-feather="home"></i>
+                                <span>Validation Top Up</span>
+                            </div>
+                        </a>
                     </li>
 
                     <li
-                        class="menu {{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*', 'ruangan.*']) ? 'active' : '' }}">
+                        class="menu {{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*', 'subkategori.*', 'ruangan.*']) ? 'active' : '' }}">
                         <a href="#master" data-bs-toggle="collapse"
-                            aria-expanded="{{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*', 'ruangan.*']) ? 'true' : 'false' }}"
+                            aria-expanded="{{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*','subkategori.*', 'ruangan.*']) ? 'true' : 'false' }}"
                             class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="grid"></i>
@@ -482,7 +513,7 @@
                                 </svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*', 'ruangan.*']) ? 'show' : '' }}"
+                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['merk.*', 'produk.*', 'kategori.*','subkategori.*', 'ruangan.*']) ? 'show' : '' }}"
                             id="master" data-bs-parent="#accordionExample">
                             <li class="{{ request()->routeIs('produk.*') ? 'active' : '' }}">
                                 <a href="{{ route('produk.index') }}"> Produk </a>
@@ -493,15 +524,18 @@
                             <li class="{{ request()->routeIs('kategori.*') ? 'active' : '' }}">
                                 <a href="{{ route('kategori.index') }}"> Kategori </a>
                             </li>
+                            {{-- <li class="{{ request()->routeIs('subkategori.*') ? 'active' : '' }}">
+                                <a href="{{ route('subkategori.index') }}"> Sub Kategori </a>
+                            </li> --}}
                             <li class="{{ request()->routeIs('ruangan.*') ? 'active' : '' }}">
                                 <a href="{{ route('ruangan.index') }}"> Ruangan </a>
                             </li>
                         </ul>
                     </li>
 
-                    <li class="menu {{ request()->routeIs(['notabeli.*', 'transaksi.*']) ? 'active' : '' }}">
+                    <li class="menu {{ request()->routeIs(['pembelian.*', 'penjualan.*']) ? 'active' : '' }}">
                         <a href="#transaksi" data-bs-toggle="collapse"
-                            aria-expanded="{{ request()->routeIs(['notabeli.*', 'transaksi.*']) ? 'true' : 'false' }}"
+                            aria-expanded="{{ request()->routeIs(['pembelian.*', 'penjualan.*']) ? 'true' : 'false' }}"
                             class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="shopping-bag"></i>
@@ -513,14 +547,14 @@
                                 </svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['notabeli.*', 'transaksi.*']) ? 'show' : '' }}"
+                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['pembelian.*', 'penjualan.*']) ? 'show' : '' }}"
                             id="transaksi" data-bs-parent="#accordionExample">
-                            {{-- <li class="{{ request()->routeIs(['notabeli*']) ? 'active' : '' }}">
-                                <a href="{{ route('notabeli.index') }}"> Pembelian </a>
-                            </li> --}}
-                            <li class="{{ request()->routeIs(['transaksi.*']) ? 'active' : '' }}">
-                                <a href="{{ route('transaksi.index') }}"> Penjualan </a>
+                            <li class="{{ request()->routeIs(['pembelian.*']) ? 'active' : '' }}">
+                                <a href="{{ route('pembelian.index') }}"> Pembelian </a>
                             </li>
+                            {{-- <li class="{{ request()->routeIs(['penjualan.*']) ? 'active' : '' }}">
+                                <a href="{{ route('penjualan.index') }}"> Penjualan </a>
+                            </li> --}}
                         </ul>
                     </li>
 
@@ -543,15 +577,15 @@
                             <li class="{{ request()->routeIs(['laporan.penjualan']) ? 'active' : '' }}">
                                 <a href="{{ route('laporan.penjualan') }}"> Penjualan </a>
                             </li>
-                            {{-- <li class="{{ request()->routeIs(['laporan.pembelian']) ? 'active' : '' }}">
+                            <li class="{{ request()->routeIs(['laporan.pembelian']) ? 'active' : '' }}">
                                 <a href="{{ route('laporan.pembelian') }}"> Pembelian </a>
-                            </li> --}}
+                            </li>
                         </ul>
                     </li>
 
-                    <li class="menu {{ request()->routeIs(['pelanggan.*', 'toko.*']) ? 'active' : '' }}">
+                    <li class="menu {{ request()->routeIs(['pelanggan.*', 'toko.*', 'supplier.*']) ? 'active' : '' }}">
                         <a href="#pengaturan" data-bs-toggle="collapse"
-                            aria-expanded="{{ request()->routeIs(['pelanggan.*', 'toko.*']) ? 'true' : 'false' }}"
+                            aria-expanded="{{ request()->routeIs(['pelanggan.*', 'toko.*', 'supplier.*']) ? 'true' : 'false' }}"
                             class="dropdown-toggle">
                             <div class="">
                                 <i data-feather="settings"></i>
@@ -563,13 +597,16 @@
                                 </svg>
                             </div>
                         </a>
-                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['pelanggan.*', 'toko.*']) ? 'show' : '' }}"
+                        <ul class="collapse submenu list-unstyled {{ request()->routeIs(['pelanggan.*', 'toko.*', 'supplier.*']) ? 'show' : '' }}"
                             id="pengaturan" data-bs-parent="#accordionExample">
                             <li class="{{ request()->routeIs(['pelanggan.*']) ? 'active' : '' }}">
                                 <a href="{{ route('pelanggan.index') }}"> Pelanggan </a>
                             </li>
                             <li class="{{ request()->routeIs(['toko.*']) ? 'active' : '' }}">
                                 <a href="{{ route('toko.index') }}"> Toko </a>
+                            </li>
+                            <li class="{{ request()->routeIs(['supplier.*']) ? 'active' : '' }}">
+                                <a href="{{ route('supplier.index') }}"> Supplier </a>
                             </li>
                         </ul>
                     </li>
@@ -592,32 +629,40 @@
                     <!-- Master -->
                     @yield('kontendaftarproduk')
                     @yield('kontendaftarkategori')
+                    @yield('kontendaftarsubkategori')
                     @yield('kontendaftarmerk')
                     @yield('kontendaftarruangan')
 
                     @yield('konteninsertproduk')
                     @yield('konteninsertkategori')
+                    @yield('konteninsertsubkategori')
                     @yield('konteninsertmerk')
                     @yield('konteninsertruangan')
 
                     @yield('kontendetailproduk')
                     @yield('kontendetailkategori')
+                    @yield('kontendetailsubkategori')
                     @yield('kontendetailmerk')
                     @yield('kontendetailruangan')
 
                     @yield('konteneditproduk')
                     @yield('konteneditkategori')
+                    @yield('konteneditsubkategori')
                     @yield('konteneditmerk')
                     @yield('konteneditruangan')
 
                     <!-- Transaksi -->
                     @yield('kontendaftarpenjualan')
+                    @yield('kontendaftarpembelian')
 
                     @yield('konteninsertpenjualan')
+                    @yield('konteninsertpembelian')
 
                     @yield('kontendetailpenjualan')
+                    @yield('kontendetailpembelian')
 
                     @yield('konteneditpenjualan')
+                    @yield('konteneditpembelian')
 
                     <!-- Laporan -->
                     @yield('kontendaftarlaporanpenjualan')
@@ -626,15 +671,19 @@
                     <!-- Pengaturan -->
                     @yield('kontendaftarpelanggan')
                     @yield('kontendaftartoko')
+                    @yield('kontendaftarsupplier')
 
                     @yield('konteninsertpelanggan')
                     @yield('konteninserttoko')
+                    @yield('konteninsertsupplier')
 
                     @yield('kontendetailpelanggan')
                     @yield('kontendetailtoko')
+                    @yield('kontendetailsupplier')
 
                     @yield('konteneditpelanggan')
                     @yield('kontenedittoko')
+                    @yield('konteneditsupplier')
                 </div>
 
             </div>
@@ -642,7 +691,7 @@
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
                     <p class="">Copyright © <span class="dynamic-year">2023</span> <a target="_blank"
-                            href="https://designreset.com/cork-admin/">Mitra 10</a>, All rights reserved.</p>
+                            href="https://designreset.com/cork-admin/">Depot Bangunan</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Coded by Datesunearth
@@ -674,32 +723,40 @@
     <!-- Master -->
     @yield('jsdaftarproduk')
     @yield('jsdaftarkategori')
+    @yield('jsdaftarsubkategori')
     @yield('jsdaftarmerk')
     @yield('jsdaftarruangan')
 
     @yield('jsinsertproduk')
     @yield('jsinsertkategori')
+    @yield('jsinsertsubkategori')
     @yield('jsinsertmerk')
     @yield('jsinsertruangan')
 
     @yield('jsdetailproduk')
     @yield('jsdetailkategori')
+    @yield('jsdetailsubkategori')
     @yield('jsdetailmerk')
     @yield('jsdetailruangan')
 
     @yield('jseditproduk')
     @yield('jseditkategori')
+    @yield('jseditsubkategori')
     @yield('jseditmerk')
     @yield('jseditruangan')
 
     <!-- Transaksi -->
     @yield('jsdaftarpenjualan')
+    @yield('jsdaftarpembelian')
 
     @yield('jsinsertpenjualan')
+    @yield('jsinsertpembelian')
 
     @yield('jsdetailpenjualan')
+    @yield('jsdetailpembelian')
 
     @yield('jseditpenjualan')
+    @yield('jseditpembelian')
 
     <!-- Laporan -->
     @yield('jsdaftarlaporanpenjualan')
@@ -708,15 +765,19 @@
     <!-- Pengaturan -->
     @yield('jsdaftarpelanggan')
     @yield('jsdaftartoko')
+    @yield('jsdaftarsupplier')
 
     @yield('jsinsertpelanggan')
     @yield('jsinserttoko')
+    @yield('jsinsertsupplier')
 
     @yield('jsdetailpelanggan')
     @yield('jsdetailtoko')
+    @yield('jsdetailsupplier')
 
     @yield('jseditpelanggan')
     @yield('jsedittoko')
+    @yield('jseditsupplier')
 
 </body>
 

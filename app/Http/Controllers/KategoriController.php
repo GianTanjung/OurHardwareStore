@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Produk;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -15,11 +16,12 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $listKategori = Kategori::all();
+        $title = 'Delete Data!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
 
-        // dd($listMerk);
-
-        return view('kategori.index',compact('listKategori'));
+        $kategoris = Kategori::all();
+        return view('master.kategori.daftarkategori', compact('kategoris'));
     }
     public function listProduk($id){
         $produkList = Produk::where('produks.kategori_id',$id)
@@ -28,8 +30,8 @@ class KategoriController extends Controller
                         ->join('ruangans','produks.ruangan_id', '=','ruangans.id')
                         ->select("produks.*","merks.nama as namaMerk","kategoris.nama as namaKategori","ruangans.nama as namaRuangan")
                         ->get();
-        return view('kategori.kategoriProduk',compact('produkList'));
-    }
+                        return view('master.kategori.daftarkategori', compact('kategoris'));
+                    }
     /**
      * Show the form for creating a new resource.
      *
@@ -37,7 +39,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view("kategori.insert");
+        return view('master.kategori.insertkategori');
     }
 
     /**
@@ -48,11 +50,29 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $kategori = new Kategori();
-        $kategori->nama = $request->input('input-name');
-        $kategori->save();
-        $notif = "Success Adding ".$kategori->nama." To List of Category";
-        return redirect()->route('kategori.index')->with("status",$notif);
+        DB::beginTransaction();
+
+        $validatedData = $request->validate([
+            'nama' => 'required',
+        ], [
+            'nama.required' => 'Wajib diisi!',
+        ]);
+
+        try {
+
+            Kategori::create($validatedData);
+
+            DB::commit();
+
+            toast('Penambahan data berhasil!', 'success');
+            return redirect()->route('kategori.create');
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            toast('Penambahan data gagal!', 'warning');
+            return redirect()->route('kategori.create');
+        }
     }
 
     /**
@@ -74,8 +94,10 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        $kategori = Kategori::find($id);
-        return view('kategori.edit',compact('kategori'));
+        $kategoris = Kategori::where('id', $id)
+            ->get();
+
+        return view('master.kategori.editkategori', compact('kategoris'));
     }
 
     /**
@@ -85,15 +107,33 @@ class KategoriController extends Controller
      * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $kategori = Kategori::find($request->input('input-id'));
-        if($request->input("input-name") != $kategori->nama){
-            $kategori->nama = $request->input("input-name");
+        DB::beginTransaction();
+
+        $kategori = Kategori::find($id);
+
+        $validatedData = $request->validate([
+            'nama' => 'required',
+        ], [
+            'nama.required' => 'Wajib diisi!',
+        ]);
+
+        try {
+
+            $kategori->update($validatedData);
+
+            DB::commit();
+
+            toast('Perubahan data berhasil!', 'success');
+            return redirect()->route('kategori.edit', $id);
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            toast('Perubahan data gagal!', 'warning');
+            return redirect()->route('kategori.edit', $id);
         }
-        $kategori->save();
-        $notif = "Success Updating ".$kategori->nama." In Category List";
-        return redirect()->route('kategori.index')->with("status",$notif);
     }
 
     /**
@@ -104,9 +144,33 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        $kategori = Kategori::find($id);
-        $kategori->delete();
-        $notif = "Success Deleting ".$kategori->nama." From Category List";
-        return redirect()->route('kategori.index')->with("status",$notif);
+        DB::beginTransaction();
+
+        try {
+
+            $cekKategoriOnSubKategori = null;
+
+            if ($cekKategoriOnSubKategori == null) {
+
+                DB::statement('SET foreign_key_checks = 0');
+                Kategori::find($id)->delete();
+                DB::statement('SET foreign_key_checks = 1');
+
+                DB::commit();
+
+                alert()->success('Berhasil!', 'Penghapusan Data Berhasil!');
+                return redirect()->route('kategori.index');
+            } else {
+                alert()->error('Gagal!', 'Tidak bisa menghapus data, karena ada sub kategori yang menggunakan kategori ini');
+                return redirect()->route('kategori.index');
+            }
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            // echo ($e);
+            alert()->error('Yahhh..', 'Menghapus data tidak berhasil!');
+            return redirect()->route('kategori.index');
+        }
     }
 }

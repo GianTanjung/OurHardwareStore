@@ -46,4 +46,8 @@ class User extends Authenticatable
         // Implement your logic to check if the user has the specified role
         return $this->role_id === $role;
     }
+    public function roles()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

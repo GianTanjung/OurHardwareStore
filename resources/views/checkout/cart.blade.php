@@ -278,7 +278,7 @@
                         <form action="{{route('masuk.order')}}" method="post">
                             @csrf
                             <input type="hidden" name="produk_array" id="produk_array" value="">
-                            <button class="btn btn-primary" name="button" value="checkout" onclick="updateHiddenField()" >Check Out</button>
+                            <button class="btn btn-primary" name="button" {{$count > 1 ? 'disabled' : '' }} value="checkout" onclick="updateHiddenField()" >Check Out</button>
                         </form>
                     </div>
                     <!-- Sidebar Summary Block -->

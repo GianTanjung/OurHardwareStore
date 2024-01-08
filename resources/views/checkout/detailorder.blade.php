@@ -23,9 +23,6 @@
                                 Rp {{number_format($dompet, 2, ',', '.')}}
                             </h5>
                             <span id="saldo" hidden>{{$dompet}}</span>
-                            <p class="mb-0">
-                                <a href="/topup/order"><span class="text-success text-sm font-weight-bolder">+ ISI SALDO</span></a>
-                            </p>
                             </div>
                         </div>
                         <div class="col-4 text-end">

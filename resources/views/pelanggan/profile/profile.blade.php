@@ -759,6 +759,7 @@
                                 <div class="ec-vendor-block-items">
                                     <ul>
                                         <li><a href="{{Route('customer.profile')}}">User Profile</a></li>
+                                        <li><a href="{{Route('customer.dompet.history')}}"></a></li>
                                         <li><a href="{{Route('customer.transaction.history')}}">History</a></li>
                                         <li><a href="{{Route('cart')}}">Cart</a></li>
                                     </ul>
@@ -777,8 +778,8 @@
                                             <div class="d-flex justify-content-between">
                                                 <div class="m-2 p-2" style="border: 1px solid grey;border-radius: 5px">
                                                     <h6>Saldo</h6>
-                                                    <h3>Rp. {{$pelanggan->saldo}}</h3>
-                                                    <span><a href="#" class="text-primary"><b>+Isi Saldo</b></a>&nbsp;&nbsp;<a href="#" class="text-info"><b>+Riwayat Transaksi Saldo</b></a></span>
+                                                    <h3>Rp. {{$pelanggan->saldo == null ? 0 : $pelanggan->saldo}}</h3>
+                                                    <span><a href="{{Route('customer.dompet.history')}}" class="text-info"><b>+Riwayat Transaksi Saldo</b></a></span>
                                                 </div>
                                                 <div class="m-2 p-2" style="width: 150px;border: 1px solid grey;border-radius: 5px">
                                                     <h6>Poin</h6>
@@ -1051,7 +1052,7 @@
                                         <select id="province" name="province" class="" onchange="getCity()">
                                             <option selected disabled>Select Province</option>
                                             @foreach($provinceList as $province)
-                                                <option value="{{ $province->name }}" {{ $pelanggan->provinsi == $province->name ? 'selected' : '' }}>{{ $province->name }}</option>
+                                                <option value="{{ $province->id }}" {{ $pelanggan->provinsi == $province->name ? 'selected' : '' }}>{{ $province->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -1060,7 +1061,7 @@
                                         <select id="city" name="city" class="">
                                             <option selected disabled>Select City</option>
                                             @foreach($cityList as $city)
-                                                <option value="{{ $city->name }}" {{ $pelanggan->kota == $city->name ? 'selected' : '' }}>{{ $city->name }}</option>
+                                                <option value="{{ $city->id }}" {{ $pelanggan->kota == $city->name ? 'selected' : '' }}>{{ $city->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -1228,6 +1229,7 @@
 <script>
     function getCity() {
     var provinceID = document.getElementById('province').value;
+    // alert(provinceID);
     fetch('/getCity/' + provinceID) // Replace with your route
         .then(response => response.json())
         .then(data => {

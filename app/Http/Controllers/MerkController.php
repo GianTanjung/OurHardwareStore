@@ -7,6 +7,9 @@ use App\Models\Merk;
 use App\Models\Produk;
 use App\Models\Ruangan;
 use App\Models\Kategori;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 
 class MerkController extends Controller
 {
@@ -17,11 +20,12 @@ class MerkController extends Controller
      */
     public function index()
     {
-        $listMerk = Merk::all();
+        $title = 'Delete Data!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
 
-        // dd($listMerk);
-
-        return view('merk.index',compact('listMerk'));
+        $merks = Merk::all();
+        return view('master.merk.daftarmerk', compact('merks'));
     }
     public function listProduk($id){
         $produkList = Produk::where('produks.merk_id',$id)
@@ -40,7 +44,7 @@ class MerkController extends Controller
      */
     public function create()
     {
-        return view("merk.insert");
+        return view('master.merk.insertmerk');
     }
 
     /**
@@ -51,12 +55,47 @@ class MerkController extends Controller
      */
     public function store(Request $request)
     {
-        $merk = new Merk();
-        $merk->nama = $request->input("input-name");
-        $merk->foto_merk = $request->input("input-foto");
-        $merk->save();
-        $notif = "Success adding ".$merk->nama." to list of Merk";
-        return redirect()->route('merk.index')->with("status",$notif);
+        DB::beginTransaction();
+
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'foto_merk' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'nama.required' => 'Wajib diisi!',
+            'foto_merk.image' => 'File harus bertipe gambar!',
+            'foto_merk.mimes' => 'File harus bertipe jpeg/png/jpg!',
+            'foto_merk.max' => 'File melebihi batas ukuran 2MB!',
+        ]);
+
+        try {
+            if ($request->hasFile('foto_merk')) {
+                $image = $request->file('foto_merk');
+                $image->getClientOriginalName();
+                // $imageName = time() . $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
+                $imageName = 'merks/' . $image->getClientOriginalName();
+                // $image->storeAs('public', $imageName);       
+            }
+
+            Merk::create([
+                'nama' => $validatedData['nama'],
+                'foto_merk' => $imageName,
+            ]);
+
+            DB::commit();
+
+            $image->move(public_path('uploads/merks'), $imageName);
+
+            toast('Penambahan data berhasil!', 'success');
+            return redirect()->route('merk.create');
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            // echo ($e);
+
+            toast('Penambahan data gagal!', 'warning');
+            return redirect()->route('merk.create');
+        }
     }
 
     /**
@@ -78,8 +117,10 @@ class MerkController extends Controller
      */
     public function edit($id)
     {
-        $merk = Merk::find($id);
-        return view('merk.edit',compact('merk'));
+        $detailMerk = Merk::where('id', $id)
+            ->get();
+
+        return view('master.merk.editmerk', compact('detailMerk'));
     }
 
     /**
@@ -89,18 +130,62 @@ class MerkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $merk = Merk::find($request->input('input-id'));
-        if($request->input("input-name") != $merk->nama){
-            $merk->nama = $request->input("input-name");
+        DB::beginTransaction();
+
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'foto_merk' => 'image|mimes:jpeg,png,jpg|max:2048',
+        ], [
+            'nama.required' => 'Wajib diisi!',
+            'foto_merk.image' => 'File harus bertipe gambar!',
+            'foto_merk.mimes' => 'File harus bertipe jpeg/png/jpg!',
+            'foto_merk.max' => 'File melebihi batas ukuran 2MB!',
+        ]);
+
+        $imageName = Merk::where('id', $id)
+            ->value('foto_merk');
+
+        $imageNameBefore = $imageName;
+        $folderPath = public_path('uploads');
+        if (!file_exists($folderPath)) {
+            mkdir($folderPath, 0777, true);
         }
-        if($request->input("input-foto") != $merk->foto_merk){
-            $merk->foto_merk = $request->input("input-foto");
-        }
-        $merk->save();
-        $notif = "Success updating ".$merk->nama." in list of Merk";
-        return redirect()->route('merk.index')->with("status",$notif);
+        $filePath = public_path('uploads/') . $imageNameBefore;
+
+        try {
+
+            if ($request->hasFile('foto_merk')) {
+                $image = $request->file('foto_merk');
+                $image->getClientOriginalName();
+                $imageName = $image->getClientOriginalName();
+            }
+
+            $merk = Merk::find($id);
+            $merk->update([
+                'nama' => $validatedData['nama'],
+                'foto_merk' => $imageName,
+            ]);
+
+            DB::commit();
+
+            $image->move(public_path('uploads/'), $imageName);
+
+            if (File::exists($filePath)) {
+
+                File::delete($filePath);
+            }
+
+            toast('Perubahan data berhasil!', 'success');
+            return redirect()->route('merk.edit', $id);
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            toast('Perubahan data gagal!', 'warning');
+            return redirect()->route('merk.edit', $id);
+        }    
     }
 
     /**
@@ -111,9 +196,44 @@ class MerkController extends Controller
      */
     public function destroy($id)
     {
-        $merk = Merk::find($id);
-        $merk->delete();
-        $notif = "Success deleting ".$merk->nama." from list of Merk";
-        return redirect()->route('merk.index')->with("status",$notif);
+        DB::beginTransaction();
+
+        try {
+
+            $imageName = Merk::where('id', $id)
+                ->value('foto_merk');
+
+            $filePath = public_path('uploads/') . $imageName;
+
+            $cekMerkProduk = Produk::where('merk_id', $id)
+                ->first();
+
+            if ($cekMerkProduk == null) {
+
+                DB::statement('SET foreign_key_checks = 0');
+                Merk::find($id)->delete();
+                DB::statement('SET foreign_key_checks = 1');
+
+                DB::commit();
+
+                if (File::exists($filePath)) {
+
+                    File::delete($filePath);
+                }
+
+                alert()->success('Berhasil!', 'Penghapusan Data Berhasil!');
+                return redirect()->route('merk.index');
+            } else {
+                alert()->error('Gagal!', 'Tidak bisa menghapus data, karena ada produk yang menggunakan merk ini');
+                return redirect()->route('merk.index');
+            }
+
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            // echo ($e);
+            alert()->error('Yahhh..', 'Menghapus data tidak berhasil!');
+            return redirect()->route('merk.index');
+        }
     }
 }

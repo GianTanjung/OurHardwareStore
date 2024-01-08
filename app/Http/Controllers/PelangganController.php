@@ -10,7 +10,7 @@ use App\Models\Keranjang;
 use App\Models\Produk;
 use App\Models\Province;
 use App\Models\City;
-// use App\Models\Keranjang;
+use App\Models\Dompet;
 // use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -28,8 +28,13 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $pelangganList = Pelanggan::all();
-        return view('pelanggan.pelangganList',compact('pelangganList'));
+        $title = 'Delete Data!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
+        $pelanggans = Pelanggan::all();
+        return view('pengaturan.pelanggan.daftarpelanggan', compact('pelanggans'));
+
     }
 
     public function katalog(Request $request)
@@ -393,11 +398,14 @@ class PelangganController extends Controller
         if($pelanggan->kode_pos != $request->input('postal')){
             $pelanggan->kode_pos = $request->input('postal');
         }
-        if($pelanggan->provinsi != $request->input("province")){
-            $pelanggan->provinsi = $request->input('province');
+        $province = Province::find($request->input('province'));
+        if($pelanggan->provinsi != $province->name){
+            $pelanggan->provinsi = $province->name;
         }
-        if($pelanggan->kota != $request->input('kota')){
-            $pelanggan->kota = $request->input('kota');
+        $city = City::find($request->input('city'));
+        // dd($city);
+        if($pelanggan->kota != $city->name){
+            $pelanggan->kota = $city->name;
         }
         $pelanggan->update();
         return redirect()->route('customer.profile');
@@ -630,4 +638,92 @@ class PelangganController extends Controller
             return redirect()->route('listProduct')->with('gagal', $pesanGagal);
         }
     }
+
+    public function dompetHistory()
+    {
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where("user_id", $user->id)->first();
+        $riwayatDompet = Dompet::where("pelanggan_id", $pelanggan->id)->get();
+        // dd($riwayatDompet);
+        return view('pelanggan.profile.dompetHistory', compact('riwayatDompet'));
+        // dd($transactionList);
+    }
+
+    public function inserttopup(Request $request)
+    {
+        $user = Auth::user();
+        $pelanggan = Pelanggan::where("user_id", $user->id)->first();
+
+        if ($request->hasFile('bukti_transfer')) {
+            $image = $request->file('bukti_transfer');
+            $image->getClientOriginalName();
+            $imageName = 'dompets/' . $image->getClientOriginalName();    
+        }
+
+        Dompet::create([
+            'dana' => $request->input('dana'),
+            'arus' => 'Masuk',
+            'validasi_topup' => 0,
+            'tanggal' => Carbon::now(),
+            'bukti_transfer' => $imageName,
+            'pelanggan_id' => $pelanggan->id,
+        ]);
+
+        $image->move(public_path('uploads/dompets'), $imageName);
+
+        return redirect()->route('customer.dompet.history');
+        // dd($transactionList);
+    }
+
+    public function validationTopUp(){
+        $title = 'Delete Data!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
+        // $dompets = Dompet::all();
+
+        $dompets = Dompet::join('pelanggans', 'pelanggans.id', '=', 'riwayat_dompets.pelanggan_id')
+            ->select('pelanggans.nama as nama_pelanggan', 'riwayat_dompets.*')
+            ->get();
+
+        return view('validationn.topup.index', compact('dompets'));
+    }
+
+    public function updateTopUpSetuju($id){
+        $dompet = Dompet::find($id);
+
+        $saldoDompet = Dompet::where('id', $id)
+        ->value('dana');
+
+        // dd($dompet);
+
+        $dompet->update([
+            'validasi_topup' => 1,
+        ]);
+
+        $saldoPelanggan = Pelanggan::where('id', $dompet->pelanggan_id)
+            ->value('saldo');
+
+        $saldoPelanggan += $saldoDompet;
+
+        $pelanggan = Pelanggan::where('id', $dompet->pelanggan_id)->first();
+
+        $pelanggan->update([
+            'saldo' => $saldoPelanggan,
+        ]);
+
+        return redirect()->route('validation.topup');
+    }
+
+    public function updateTopUpTolak($id)
+    {
+        $dompet = Dompet::find($id);
+
+        $dompet->update([
+            'validasi_topup' => 2,
+        ]);
+
+        return redirect()->route('validation.topup');
+    }
+
 }

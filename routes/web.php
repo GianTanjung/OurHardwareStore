@@ -5,10 +5,12 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanTransaksiController;
 use App\Http\Controllers\MerkController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PembelianController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TokoController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\CheckOngkirController;
 
@@ -36,14 +38,17 @@ Route::resources([
     'ruangan' => RuanganController::class,
     'kategori' => KategoriController::class,
     // 'notabeli' => ProdukController::class,
+    'pembelian' => PembelianController::class,
+    'penjualan' => TransaksiController::class,
+    'pelanggan' => PelangganController::class,
     'transaksi' => TransaksiController::class,
     'pelanggan' => PelangganController::class,
     'toko' => TokoController::class,
+    'supplier' => SupplierController::class,
 ]);
 Route::resource('role', RoleController::class);
 Route::resource('user', UserController::class);
 Route::resource('detailtransaksi', DetailTransaksiController::class);
-Route::resource('promo', PromoController::class);
 // User ============================================
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/cobalayout', function () {
@@ -69,6 +74,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('customer/profile/update', [PelangganController::class, 'update'])->name('customer.profile.update');
 
     Route::get('customer/transaction/history', [PelangganController::class, 'transactionHistory'])->name('customer.transaction.history');
+    Route::get('customer/dompet/history', [PelangganController::class, 'dompetHistory'])->name('customer.dompet.history');
+    Route::post('customer/topup', [PelangganController::class, 'inserttopup'])->name('customer.insert.topup');
+
+    Route::post('customer/masuk-order', [PelangganController::class, 'masukOrder'])->name('masuk.order');
+    Route::post('customer/buat-order', [PelangganController::class, 'buatOrder'])->name('buat.order');
 });
 
 // Admin ===========================================
@@ -81,11 +91,15 @@ Route::middleware(['role:1,2'])->group(function () {
         return view('dashboard.analytics');
     })->name('dashboard.analytics');
     
-    Route::get('/dasboard/sales', function () {
-        return view('dashboard.sales');
-    })->name('dashboard.sales');
+    // Route::get('/dasboard/sales', function () {
+    //     return view('dashboard.sales');
+    // })->name('dashboard.sales');
     Route::get('/dasboard/sales', [TransaksiController::class, 'grafikSales'])->name('dashboard.sales');
+        Route::get('/dasboard', [TransaksiController::class, 'grafikSales'])->name('home');
+        Route::get('/validation/topup', [PelangganController::class, 'validationTopUp'])->name('validation.topup');
 
+        Route::get('/validation/topup/setuju/{id}', [PelangganController::class, 'updateTopUpSetuju'])->name('dompet.updateSetuju');
+        Route::get('/validation/topup/tolak/{id}', [PelangganController::class, 'updateTopUpTolak'])->name('dompet.updateTolak');
     // Master ===========================================
         Route::get('/master/produk', [ProdukController::class, 'index'])->name('produk.index');
         Route::get('/master/kategori', [KategoriController::class, 'index'])->name('kategori.index');
@@ -95,7 +109,7 @@ Route::middleware(['role:1,2'])->group(function () {
 
     // Laporan ===========================================
         Route::get('laporan/penjualan', [TransaksiController::class, 'laporanpenjualan'])->name('laporan.penjualan');
-
+        Route::get('laporan/pembelian', [PembelianController::class, 'laporanpembelian'])->name('laporan.pembelian');
     //Produk
         Route::get('/produk/detail/{id}', [ProdukController::class, 'show'])->name('detailproduk.detail');
         Route::get('/master/produk/tambahdata', [ProdukController::class, 'create'])->name('master.insertproduk');
@@ -103,7 +117,7 @@ Route::middleware(['role:1,2'])->group(function () {
         Route::get('/master/merk/tambahdata', [MerkController::class, 'create'])->name('master.insertMerk');
         Route::put('/addProduk', [ProdukController::class, 'store'])->name('addProduk');
         Route::get('/master/produkEdit/{id}', [ProdukController::class, 'edit'])->name("produkEdit");
-        Route::put('/produkUpdate', [ProdukController::class, 'update'])->name('produkUpdate');
+        Route::put('/produkUpdate', [ProdukController::class, 'update'])->name('produk.update');
         Route::get('/master/produkDelete/{id}', [ProdukController::class, 'destroy'])->name("produkDelete");
     // Transaksi ===========================================
         Route::get('/transaksi/penjualan', [TransaksiController::class, 'index'])->name('transaksi.jual');
@@ -133,6 +147,7 @@ Route::middleware(['role:1,2'])->group(function () {
     // Ruang
         Route::get('ruang', [RuanganController::class, 'index'])->name("ruangList");
         Route::get('ruang/{id}', [RuanganController::class, 'listProduk'])->name("ruangProduk");
+        Route::get('/ruang/delete/{id}', [RuanganController::class, 'destroy'])->name("ruangan.destroy");
 
 });
 // Auth::routes();

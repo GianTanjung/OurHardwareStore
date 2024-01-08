@@ -18,13 +18,16 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        $title = 'Delete Data!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
         $listPenjualan = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
             ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
             ->select('transaksis.*', 'tokos.nama as nama_toko', 'pelanggans.nama as nama_pelanggan')
             ->get();
 
-        return view('transaksi.daftarpenjualan', compact('listPenjualan'));
-        
+        return view('transaksi.penjualan.daftarpenjualan', compact('listPenjualan'));
     }
 
     /**
@@ -58,8 +61,7 @@ class TransaksiController extends Controller
     {
         $detailPenjualan = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
         ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
-        ->join('promos', 'promos.id', '=', 'transaksis.promo_id')
-        ->select('transaksis.*', 'pelanggans.*', 'tokos.nama as nama_toko', 'tokos.nama as nama _toko', 'tokos.alamat as alamat_toko','tokos.kota as kota_toko','tokos.provinsi as provinsi_toko', 'tokos.negara as negara_toko','tokos.kode_pos as kode_pos_toko','tokos.no_hp as no_hp_toko', 'promos.*')
+        ->select('transaksis.*', 'pelanggans.*', 'tokos.nama as nama_toko', 'tokos.nama as nama _toko', 'tokos.alamat as alamat_toko','tokos.kota as kota_toko','tokos.provinsi as provinsi_toko', 'tokos.negara as negara_toko','tokos.kode_pos as kode_pos_toko','tokos.no_hp as no_hp_toko')
         ->orderBy('transaksis.id', 'asc')
         ->get();
 
@@ -74,8 +76,8 @@ class TransaksiController extends Controller
     // dd($rincianPenjualan);
 
 
-    return view('transaksi.detailpenjualan', compact('detailPenjualan', 'rincianPenjualan'));
-    }
+    return view('transaksi.penjualan.detailpenjualan', compact('detailPenjualan', 'rincianPenjualan'));
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -85,7 +87,25 @@ class TransaksiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detailPenjualan = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
+        ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
+        ->join('promos', 'promos.id', '=', 'transaksis.promo_id')
+        ->select('transaksis.*', 'pelanggans.*', 'tokos.nama as nama_toko', 'tokos.nama as nama _toko', 'tokos.alamat as alamat_toko', 'tokos.kota as kota_toko', 'tokos.provinsi as provinsi_toko', 'tokos.negara as negara_toko', 'tokos.kode_pos as kode_pos_toko', 'tokos.no_hp as no_hp_toko', 'promos.*')
+        ->orderBy('transaksis.id', 'asc')
+        ->get();
+
+
+
+    $rincianPenjualan = DetailTransaksi::join('produks', 'produks.id', '=', 'detail_transaksis.produk_id')
+        ->select('detail_transaksis.*', 'produks.*')
+        ->where('detail_transaksis.transaksi_id', $id)
+        ->get();
+
+    // dd($rincianPenjualan);
+
+
+    return view('transaksi.penjualan.editpenjualan', compact('detailPenjualan', 'rincianPenjualan'));
+
     }
 
     /**
