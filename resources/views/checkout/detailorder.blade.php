@@ -188,7 +188,7 @@
                                     @endforeach
                                     <input type="hidden" name="total_harga" value="{{$totalHarga}}">
                                     <input type="hidden" name="total_ongkir" value="">
-                                    <input type="hidden" name="input_metode_pengiriman" value="">
+                                    <input type="hidden" name="input_metode_pengiriman" value="Ambil Toko">
                                     <input type="hidden" name="service" value="">
                                     <div>
                                         <a id="beli-button" class="btn btn-primary">Place Order</a>

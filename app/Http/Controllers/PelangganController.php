@@ -490,6 +490,7 @@ class PelangganController extends Controller
 
             $totalHarga = $request->input('total_harga');
             $service = $request->input('service');
+            // dd($request->input('input_metode_pengiriman'));
 
             // $dompet = $user->dompet;
             // $riwayatDompet = new RiwayatDompet();
@@ -516,7 +517,11 @@ class PelangganController extends Controller
             $transaksi->grand_total = $totalHarga;
             $transaksi->poin = $totalHarga*0.01;
             $transaksi->pengiriman = $request->input('input_metode_pengiriman');
-            $transaksi->tipe_jasa_kirim = $service;
+            if ($request->input('input_metode_pengiriman') == "Ambil Toko") {
+
+            } else if ($request->input('input_metode_pengiriman') == "Antar Di tempat") {
+                $transaksi->tipe_jasa_kirim = $service;
+            }
             $transaksi->save();
 
             $subtotal = 0;
