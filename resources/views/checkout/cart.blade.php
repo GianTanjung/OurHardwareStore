@@ -52,9 +52,11 @@
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
                                                     <div class="">
-                                                        <input class="" id="plusButton{{$c->produk_id}}" type="number"
-                                                            name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->produk_id }}" onchange="checkValue({{$c->produk_id}})" />
+                                                        <input class="" id="plusButton{{$c->produk_id}}" type="number" min="1"
+                                                            name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->produk_id }}" onchange="checkValue({{$c->produk_id}})"/>
+                                                            {{-- <p>{{$stok}}</p> --}}
                                                     </div>
+                    
                                                     {{-- <div>
                                                         <input type="number" name="quantity" value="{{$c->kuantitas}}" min="1">
 
@@ -108,10 +110,11 @@
                                                         class="amount">{{number_format(($c->harga) / 1, 2, '.', ',')}}</span></td>
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
-                                                    <div class="">
-                                                        <input class="" id="plusButton{{$c->produk_id}}" type="number"
-                                                            name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->produk_id }}" onchange="checkValue({{$c->produk_id}})" />
-                                                    </div>
+                                                    <div>
+                                                        <div class="">
+                                                            <input class="" id="plusButton{{$c->produk_id}}" type="number"
+                                                                name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->produk_id }}" onchange="checkValue({{$c->produk_id}})" />
+                                                        </div>
                                                 </td>
                                                 <td data-label="Total" class="ec-cart-pro-subtotal">{{number_format(($c->harga*$c->kuantitas) / 1, 2, '.', ',')}}</td>
                                                  

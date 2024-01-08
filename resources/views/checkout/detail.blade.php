@@ -78,9 +78,16 @@
                                                         @foreach ($lokasi as $l)
                                                         <tr>
                                                             <td>
-                                                            <li style="width: 130px;">
-                                                                <input class="lokasi" type="radio" name="lokasi" value="{{$l->id}}" id="lokasi" style="width: 20px; height: 20px;"> {{$l->nama}}
-                                                            </li>
+                                                                @if ($l->id == $choosen)
+                                                                <li style="width: 130px;">
+                                                                    <input class="lokasi" type="radio" name="lokasi" value="{{$l->id}}" id="lokasi{{$l->id}}" style="width: 20px; height: 20px;" onchange="checkStock({{$l->id}})" checked> {{$l->nama}}
+                                                                </li>
+                                                                @else
+                                                                <li style="width: 130px;">
+                                                                    <input class="lokasi" type="radio" name="lokasi" value="{{$l->id}}" id="lokasi{{$l->id}}" style="width: 20px; height: 20px;" onchange="checkStock({{$l->id}})"> {{$l->nama}}
+                                                                </li>
+                                                                @endif
+                                                            
                                                             </td>
                                                         </tr>
                                                         {{-- <li style="width: 100px;"><input type="radio" style="width: 20px; height: 20px;" name="lokasi" value="{{$l->id}}">{{$l->nama}}</li>  --}}
@@ -98,13 +105,16 @@
                                         {{-- <form action="{{route('addCart', $produk->id)}}" method="post">
                                             @csrf --}}
                                         <div class="ec-single-qty">
-                                            <div class="qty-plus-minus">
-                                                <input class="qty-input" type="text" name="kuantitas" value="1"/>
-                                            </div>
+                                            {{-- <div class="qty-plus-minus" > --}}
+                                                @if ($max)
+                                                <input class="qty-input" type="number" id="kuantitas" name="kuantitas" value="1" max="{{$max}}" min="1" style="width: 100px; height: 40px; border:10px"/>
+                                                
+                                            {{-- </div> --}}
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary" id="submitButton" type="submit" disabled>Add To Cart</button>
+                                                <button class="btn btn-primary" id="submitButton" type="submit">Add To Cart</button>
                                             </div>
-                                            <div class="ec-single-wishlist">
+                                            @endif
+                                            {{-- <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist"><img
                                                         src="{{asset('assets/images/icons/wishlist.svg')}}" class="svg_img pro_svg"
                                                         alt="" /></a>
@@ -115,7 +125,7 @@
                                                     data-bs-target="#ec_quickview_modal"><img
                                                         src="{{asset('assets/images/icons/quickview.svg')}}" class="svg_img pro_svg"
                                                         alt="" /></a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     {{-- </form> --}}
                                         <div class="ec-single-social">
@@ -163,7 +173,39 @@
                     $('#submitButton').prop('disabled', !$('input[name="lokasi"]:checked').val());
                 });
             });
+            function checkStock(id){
+            
+            var product = @json($productId);
+            console.log(product);
+            window.location.href = "checkStock/"+ product + "/" + id;
+            }
+
+    //         document.addEventListener('DOMContentLoaded', function () {
+    //     // Retrieve the stored value from session storage
+    //     var storedValue = sessionStorage.getItem('selectedRadio');
+
+    //     // If a value is found, set the radio button to checked
+    //     if (storedValue) {
+    //         var radioButton = document.querySelector('input[name="lokasi"][value="' + storedValue + '"]');
+    //         if (radioButton) {
+    //             radioButton.checked = true;
+    //             // Enable the submit button
+    //             document.getElementById('submitButton').disabled = false;
+    //         }
+    //     }
+
+    //     // Add an event listener to update session storage when a radio button is clicked
+    //     var radioButtons = document.querySelectorAll('input[name="lokasi"]');
+    //     radioButtons.forEach(function (radioButton) {
+    //         radioButton.addEventListener('click', function () {
+    //             // Store the selected value in session storage
+    //             sessionStorage.setItem('selectedRadio', this.value);
+    //             document.getElementById('submitButton').disabled = false;
+    //         });
+    //     });
+    // });
         </script>
+
 {{-- @endpush --}}
 @endsection
 
@@ -184,9 +226,9 @@
                         <div class="ec-pro-content">
                             <a href="product-left-sidebar.html" class="cart_pro_title">{{$c->nama}}</a>
                             <span class="cart-price"><span>{{number_format(($c->harga) / 1, 2, '.', ',')}}</span> x {{$c->kuantitas}}</span>
-                            <div class="qty-plus-minus">
+                            {{-- <div class="qty-plus-minus">
                                 <input class="qty-input" type="text" name="ec_qtybtn" value={{$c->kuantitas}} />
-                            </div>
+                            </div> --}}
                             <a href="../customer/deleteOutCart/{{$c->id}}" class="remove">×</a>
                         </div>
                     </li>

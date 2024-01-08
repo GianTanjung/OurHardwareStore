@@ -238,9 +238,9 @@
                     <div class="ec-pro-content">
                         <a href="product-left-sidebar.html" class="cart_pro_title">{{$c->nama}}</a>
                         <span class="cart-price"><span>{{number_format(($c->harga) / 1, 2, '.', ',')}}</span> x {{$c->kuantitas}}</span>
-                        <div class="qty-plus-minus">
+                        {{-- <div class="qty-plus-minus">
                             <input class="qty-input" type="text" name="ec_qtybtn" value={{$c->kuantitas}} />
-                        </div>
+                        </div> --}}
                         <a href="../customer/deleteOutCart/{{$c->id}}" class="remove">×</a>
                     </div>
                 </li>

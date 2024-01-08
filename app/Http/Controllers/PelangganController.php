@@ -82,9 +82,10 @@ class PelangganController extends Controller
         $user = Auth::user();
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
 
+        // $helper = Keranjang::where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->select('*')->first();
+        // dd($helper);
         $helper = Keranjang::where('pelanggan_id', '=', $pelanggan->id)->where('produk_id', '=', $id)->first();
-        $helper = Keranjang::where('pelanggan_id',$pelanggan->id)->where('produk_id','=',$id)->first();
-        // dd($id);
+        // dd($helper);
         if($helper->kuantitas != $value){
             $helper->kuantitas = $value;
         }
@@ -131,19 +132,11 @@ class PelangganController extends Controller
 
     public function cart(Request $request)
     {
-        // $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
-        // $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
-        // $subTotal = 0;
-        //     $vat = 0;
-        //     $total = 0;
-        // $store = DB::table('keranjangs as k')->select('t.id', 't.nama')->join('tokos as t', 't.id', '=', 'k.toko_id')->get();
-        // $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
-        // $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
-        // $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
         $pelanggan = Pelanggan::where('user_id', Auth::user()->id)->first();
         // hardcode
         // $pelanggan = Pelanggan::where('user_id', 5)->first();
-        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        $listCart = DB::table('keranjangs as k')->select('k.id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        // dd($listCart);
         $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas    ')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
         $vat = $subTotal*20/100;
         $total = $subTotal+$vat;
@@ -151,6 +144,11 @@ class PelangganController extends Controller
         $sidoarjo = DB::table('keranjangs')->where('keranjangs.toko_id', 1)->count();
         $malang = DB::table('keranjangs')->where('keranjangs.toko_id', 2)->count();
         $surabaya = DB::table('keranjangs')->where('keranjangs.toko_id', 3)->count();
+
+        // foreach($listCart as $c){
+        //     $stok = DB::table('produk_tokos')->select('stok')->where('produk_tokos.produk_id', '=', $c->id)->groupBy('produk_tokos.produk_id')->sum('stok');
+        // }
+        // dd($stok);
 
         $choosen = $request->input('produk', []);
         $message = '';
@@ -197,7 +195,7 @@ class PelangganController extends Controller
             
         }
 
-        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'choosen', 'message', 'count'));
+        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'choosen', 'message', 'count', 'stok'));
         // dd($coba);
     }
 
@@ -241,8 +239,9 @@ class PelangganController extends Controller
         // $listCart->destroy();
         return redirect()->back();
     }
-    public function detail($id)
+    public function detail(Request $request, $id)
     {
+        $productId = $id;
         $user = Auth::user();
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
         $listCart = DB::table('keranjangs as k')->select('k.id','p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
@@ -250,9 +249,25 @@ class PelangganController extends Controller
         $lokasi = DB::table('tokos as t')->select('t.nama', 't.id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('pt.produk_id', '=', $id)->where('pt.stok', '>', 0)->distinct('t.nama')->get();
         $stok = DB::table('produk_tokos')->select('stok')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.produk_id')->sum('stok');
         $cekStock = DB::table('produk_tokos')->select(DB::raw('SUM(produk_tokos.stok) as stok'), 'tokos.nama')->join('tokos', 'tokos.id', '=', 'produk_tokos.toko_id')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.toko_id')->get();
+        // $max = 1;
+        $choosen = $request->session()->get('choosen', null);
+        $max = $request->session()->get('max', null);
 
-        return view('checkout.detail', compact('produk', 'lokasi', 'stok', 'listCart', 'cekStock'));
+        return view('checkout.detail', compact('produk', 'lokasi', 'stok', 'listCart', 'cekStock', 'max', 'productId', 'choosen'));
         // dd($produk);
+    }
+
+    public function checkStock(Request $request, $id, $lokasi)
+    {
+        $max = DB::table('produk_tokos')->select(DB::raw('SUM(stok) as stok'))->where('produk_tokos.produk_id', '=', $id)->where('produk_tokos.toko_id', '=', $lokasi)->groupBy('produk_tokos.produk_id')->value('stok');
+        $choosen = $lokasi;
+        // dd($max);
+        $productId = $id;
+        // session(['lokasi' => $request->input('lokasi')]);
+        
+        return redirect()->route('detail', $productId)->with('max',$max)->with('choosen', $choosen);
+        // return response()->json(['newVariable' => $max]);
+        
     }
 
     public function checkout($products)
