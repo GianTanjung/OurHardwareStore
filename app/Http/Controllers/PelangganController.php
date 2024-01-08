@@ -195,7 +195,7 @@ class PelangganController extends Controller
             
         }
 
-        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'choosen', 'message', 'count', 'stok'));
+        return view('checkout.cart', compact('listCart','subTotal','vat','total', 'store', 'sidoarjo', 'malang', 'surabaya', 'choosen', 'message', 'count'));
         // dd($coba);
     }
 
