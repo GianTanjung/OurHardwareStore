@@ -18,6 +18,12 @@
     <div class="container">
         <div class="row">
             <div class="ec-cart-leftside col-lg-8 col-md-12 ">
+                @if (session('failed'))
+                    <div class="row alert alert-danger" id="status-messages">
+                        <span id="status-text">{{ session('failed') }}</span>
+                        <button type="button" class="status-close-button" id="close-button">&times;</button>
+                    </div>
+                @endif
                 <!-- cart content Start -->
                 <div class="ec-cart-content">
                     <div class="ec-cart-inner">
@@ -51,10 +57,12 @@
                                                         class="amount">{{number_format(($c->harga) / 1, 2, '.', ',')}}</span></td>
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
-                                                    <div class="cart-qty-plus-minus">
-                                                        <input class="cart-plus-minus" type="text"
-                                                            name="cartqtybutton" id="quantityInput" value={{$c->kuantitas}} />
+                                                    <div class="">
+                                                        <input class="" id="plusButton{{$c->produk_id}}" type="number" min="1"
+                                                            name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->produk_id }}" onchange="checkValue({{$c->produk_id}})"/>
+                                                            {{-- <p>{{$stok}}</p> --}}
                                                     </div>
+                    
                                                     {{-- <div>
                                                         <input type="number" name="quantity" value="{{$c->kuantitas}}" min="1">
 
@@ -101,7 +109,7 @@
                                                 <td><input type="checkbox" id="produk" name="produk[]" onchange="this.form.submit()" @if(in_array($c->id, $choosen)) checked @endif value={{$c->id}}></td>
                                                 {{-- <td><input type="checkbox" name="produk[]" value="{{$c->id}}"></td> --}}
                                                 <td data-label="Product" class="ec-cart-pro-name"><a
-                                                        href="product-left-sidebar.html"><img class="ec-cart-pro-img mr-4"
+                                                        href=""><img class="ec-cart-pro-img mr-4"
                                                             src={{$c->fotoProduk}}
                                                             alt="" />{{$c->nama}}</a></td>
                                                 <td data-label="Price" class="ec-cart-pro-price"><span
@@ -109,10 +117,10 @@
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
                                                     <div>
-                                                    <div class="cart-qty-plus-minus">
-                                                        <input class="cart-plus-minus" type="text"
-                                                            name="cartqtybutton" value={{$c->kuantitas}} data-product-id="{{ $c->id }}"/>
-                                                    </div>
+                                                        <div class="">
+                                                            <input class="" id="plusButton{{$c->produk_id}}" type="number"
+                                                                name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->produk_id }}" onchange="checkValue({{$c->produk_id}})" />
+                                                        </div>
                                                 </td>
                                                 <td data-label="Total" class="ec-cart-pro-subtotal">{{number_format(($c->harga*$c->kuantitas) / 1, 2, '.', ',')}}</td>
                                                  
@@ -160,8 +168,8 @@
                                                 <td data-label="Quantity" class="ec-cart-pro-qty"
                                                     style="text-align: center;">
                                                     <div class="">
-                                                        <input class="" id="plusButton{{$c->id}}" type="number"
-                                                            name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->id }}" onchange="checkValue({{$c->id}})" />
+                                                        <input class="" id="plusButton{{$c->produk_id}}" type="number"
+                                                            name="cartqtybutton"  value={{$c->kuantitas}} data-product-id="{{ $c->produk_id }}" onchange="checkValue({{$c->produk_id}})" />
                                                     </div>
                                                 </td>
                                                 <td data-label="Total" class="ec-cart-pro-subtotal">{{number_format(($c->harga*$c->kuantitas) / 1, 2, '.', ',')}}</td>
@@ -354,6 +362,9 @@
         // Update nilai pada elemen hidden
         document.getElementById('produk_array').value = JSON.stringify(selectedItems);
     }
+    $('#close-button').click(function() {
+            $('#status-messages').hide();
+        });
 </script>
 @endsection
 

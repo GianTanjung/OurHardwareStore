@@ -53,12 +53,14 @@ Route::group(['middleware' => 'auth'], function () {
     // Pelanggan
     Route::get('/', [PelangganController::class, 'katalog'])->name('listProduct');
     Route::get('customer/listProduct', [PelangganController::class, 'katalog'])->name('listProduct');
+    // Route::get('customer/checkStock/{id}/{produk}', [PelangganController::class, 'checkStock'])->name('checkStock');
     Route::post('customer/addCart/{id}', [PelangganController::class, 'addCart'])->name('addCart');
     Route::get('customer/cart', [PelangganController::class, 'cart'])->name('cart');
     Route::get('customer/cart/checkValue/{id}/{value}', [PelangganController::class, 'updateCart'])->name('cart.checkValue');
     Route::delete('customer/handle', [PelangganController::class, 'cartHandler'])->name('handleCart');
     Route::get('customer/deleteOutCart/{id}', [PelangganController::class, 'deleteOutCart'])->name('deleteOutCart');
     Route::get('customer/detail/{id}', [PelangganController::class, 'detail'])->name('detail');
+    Route::get('customer/detail/checkStock/{id}/{lokasi}', [PelangganController::class, 'checkStock'])->name('checkStock');
     Route::post('products/increase-count/{id}', [PelangganController::class, 'updateQuantity'])->name('updateQuantity');
     
     Route::get('/getCity/{id}', [CheckOngkirController::class, 'getCity'])->name('getCity');
