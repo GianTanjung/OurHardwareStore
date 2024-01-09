@@ -144,65 +144,49 @@ class TransaksiController extends Controller
 
     public function grafikSales()
     {
-        $startDate = Carbon::now()->startOfMonth();
-        $tglSekarang = Carbon::now();
+        $startDate = Carbon::now('Asia/Jakarta')->startOfMonth();
+        $tglSekarang = Carbon::now('Asia/Jakarta');
 
-        $tglSekarangOnly = $tglSekarang->format('m');
+        $tglSekarangOnly = $tglSekarang->format('d');
 
         $arraySalesSidoarjo = [];
-        $arraySalesSidoarjo2 = [38, 65, 38, 52, 36, 40, 28, 38, 60, 38, 52, 36, 40, 28, 38, 60, 38, 52, 36, 40, 28, 38, 60, 38, 52, 36, 40, 28];
         $arraySalesMalang = [];
         $arraySalesSurabaya = [];
+        $arraySalesSidoarjo2 = [1, 2, 3, 4, 5, 6];
+        $arrayWaktu = [];
 
-        for ($i=1; $i <= $tglSekarangOnly; $i++) {
+        // dd($tglSekarangOnly);
+
+        for ($i = 1; $i <= $tglSekarangOnly; $i++) {
+
+            $arrayWaktu[] = $i;
+
             //  Sidoarjo
-            $depoSidoarjo = Transaksi::where('tanggal_transaksi', '=', Carbon::now()->day($i))
-                ->where('toko_id', 1)
-                ->get();
+            $depoSidoarjo = Transaksi::whereBetween('tanggal_transaksi', [Carbon::now()->day($i)->startOfDay(), Carbon::now()->day($i)->endOfDay()])
+                ->where('toko_id', '=', 1)
+                ->count();
 
-            $grandTotalSidoarjo = 0;
-
-            foreach ($depoSidoarjo as $data) {
-                $grandTotalSidoarjo += $data['grand_total'];
-            }
-
-            $arraySalesSidoarjo[] = [
-                $grandTotalSidoarjo
-            ];
+            $arraySalesSidoarjo[] = $depoSidoarjo;
 
             // Malang
-            $depoMalang = Transaksi::where('tanggal_transaksi', '=', Carbon::now()->day($i))
-                ->where('toko_id', 2)
-                ->get();
+            $depoMalang = Transaksi::whereBetween('tanggal_transaksi', [Carbon::now()->day($i)->startOfDay(), Carbon::now()->day($i)->endOfDay()])
+                ->where('toko_id', '=', 2)
+                ->count();
 
-            $grandTotalMalang = 0;
-
-            foreach ($depoMalang as $data) {
-                $grandTotalMalang += $data['grand_total'];
-            }
-
-            $arraySalesMalang[] = [
-                $grandTotalMalang
-            ];
+            $arraySalesMalang[] = $depoMalang;
 
             //  Surabaya
-            $depoSurabaya = Transaksi::where('tanggal_transaksi', '=', Carbon::now()->day($i))
-                ->where('toko_id', 3)
-                ->get();
+            $depoSurabaya = Transaksi::whereBetween('tanggal_transaksi', [Carbon::now()->day($i)->startOfDay(), Carbon::now()->day($i)->endOfDay()])
+                ->where('toko_id', '=', 3)
+                ->count();
 
-            $grandTotalSurabaya = 0;
 
-            foreach ($depoSurabaya as $data) {
-                $grandTotalSurabaya += $data['grand_total'];
-            }
 
-            $arraySalesSurabaya[] = [
-                $grandTotalSurabaya
-            ];
+            $arraySalesSurabaya[] = $depoSurabaya;
         }
 
+        // dd($arrayWaktu, $arraySalesSidoarjo);
 
-        // dd($arraySalesSidoarjo, $arraySalesMalang, $arraySalesSurabaya, $tglSekarang, $startDate);
-        return view('dashboard.sales', compact('arraySalesSidoarjo2', 'arraySalesMalang','arraySalesSurabaya', 'tglSekarang', 'startDate'));
+        return view('dashboard.sales', compact('arraySalesSidoarjo', 'arraySalesMalang', 'arrayWaktu', 'arraySalesSurabaya', 'tglSekarang', 'startDate'));
     }
 }
