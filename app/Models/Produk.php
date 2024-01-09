@@ -25,10 +25,6 @@ class Produk extends Model
 
     public function ruangans()
     {
-        return $this->belongsTo(Ruangan::class);
-    }
-    public function salesuoms()
-    {
-        return $this->belongsTo(SalesUom::class);
+        return $this->belongsToMany(Ruangan::class, 'produk_ruangans');
     }
 }

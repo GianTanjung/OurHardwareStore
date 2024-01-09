@@ -247,7 +247,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-4">
+                {{-- <div class="row mb-4">
                     <div class="col">
                         <label>Harga Spesial</label>
                         <div class="col-sm-12 input-group mb-3">
@@ -274,7 +274,7 @@
                                 value="{{ old('tgl_selesai_harga_spesial') }}" placeholder="Masukkan Tanggal">
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="row mb-4">
                     <div class="col-sm-12">

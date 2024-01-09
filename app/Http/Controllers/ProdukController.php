@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Merk;
-use Illuminate\Support\Facades\DB;
-use App\Models\Product;
 use App\Models\Produk;
+use App\Models\Product;
 use App\Models\Ruangan;
 use App\Models\Kategori;
-
 use Illuminate\Http\Request;
+
+use App\Models\PembelianDetail;
+use Illuminate\Support\Facades\DB;
 
 
 class ProdukController extends Controller
@@ -397,133 +398,4 @@ class ProdukController extends Controller
             return redirect()->route('produk.index');
         }
     }
-
-    public function album(){
-        $ProdukList = DB::table('produks')->get();
-        return view('produk.album',compact('ProdukList'));
-    }
-
-    public function katalog(Request $request)
-    {
-        $user = Auth::user();
-
-        $selectedkategori = $request->input('kategori', []);
-        $selectedstore = $request->input('store', []);
-        $search = $request->query('search');
-
-        $listProduct = Produk::select('id', 'foto_produk', 'nama', 'harga', (DB::raw("CONCAT(SUBSTRING_INDEX(deskripsi, ' ', 20),'...') AS deskripsi")))->get();
-
-        if ($selectedkategori != null) {
-
-            $listProduct = Produk::join('produk_tokos', 'produk_tokos.produk_id', '=', 'produks.id')
-                ->join('kategoris', 'kategoris.id', '=', 'produks.kategori_id')
-                ->select('produks.id', 'produks.foto_produk', 'produks.nama', 'produks.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(produks.deskripsi, ' ', 20),'...') AS deskripsi")))
-                ->whereIn('kategoris.kategori_id', $selectedkategori)
-                ->where('produk_tokos.stok', '>', 0)
-                ->get();
-        }
-
-        if ($selectedstore != null) {
-
-            $listProduct = Produk::join('produk_tokos', 'produk_tokos.produk_id', '=', 'produks.id')
-                ->select('produks.id', 'produks.foto_produk', 'produks.nama', 'produks.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(produks.deskripsi, ' ', 20),'...') AS deskripsi")))
-                ->whereIn('produk_tokos.toko_id', $selectedstore)
-                ->where('produk_tokos.stok', '>', 0)
-                ->get();
-        }
-
-        if ($selectedstore && $selectedkategori != null) {
-
-            $listProduct = Produk::join('produk_tokos', 'produk_tokos.produk_id', '=', 'produks.id')
-                ->join('kategoris', 'kategoris.id', '=', 'produks.kategori_id')
-                ->select('produks.id', 'produks.foto_produk', 'produks.nama', 'produks.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(produks.deskripsi, ' ', 20),'...') AS deskripsi")))
-                ->whereIn('kategoris.kategori_id', $selectedkategori)
-                ->whereIn('produk_tokos.toko_id', $selectedstore)
-                ->where('produk_tokos.stok', '>', 0)
-                ->get();
-        }
-
-        if ($search != null) {
-
-            $listProduct = Produk::select('id', 'foto_produk', 'nama', 'harga', (DB::raw("CONCAT(SUBSTRING_INDEX(deskripsi, ' ', 20),'...') AS deskripsi")))
-                ->where('nama', 'like', '%' . $search . '%')
-                ->get();
-        }
-
-
-        $listCart = Keranjang::join('produks', 'produks.id', '=', 'keranjangs.pt_produk_id')
-            ->select('produks.foto_produk', 'keranjangs.id', 'produks.nama', 'produks.harga', 'keranjangs.kuantitas')
-            ->where('keranjangs.user_id', $user->id)
-            ->get();
-
-
-        $subTotal = Keranjang::join('produk_tokos', 'produk_tokos.produk_id', '=', 'keranjangs.pt_produk_id')
-            ->join('produks', 'produks.id', '=', 'produk_tokos.produk_id')
-            ->select('produks.foto_produk', 'keranjangs.id', 'produks.nama', 'produks.harga', 'keranjangs.kuantitas')
-            ->where('keranjangs.user_id', $user->id)
-            ->sum(DB::raw('produks.harga * keranjangs.kuantitas'));
-
-        $vat = $subTotal * 20 / 100;
-        $total = $subTotal + $vat;
-
-
-        $count = Keranjang::join('produk_tokos', 'produk_tokos.produk_id', '=', 'keranjangs.pt_produk_id')
-            ->join('produks', 'produks.id', '=', 'produk_tokos.produk_id')
-            ->select('produks.foto_produk', 'keranjangs.id', 'produks.nama', 'produks.harga', 'keranjangs.kuantitas')
-            ->where('keranjangs.user_id', $user->id)
-            ->count();
-
-        $kategoris = Kategori::all();
-        $stores = Toko::all();
-
-        return view('checkout.index', compact('listProduct', 'listCart', 'subTotal', 'vat', 'total', 'count', 'kategoris', 'stores', 'selectedkategori', 'selectedstore'));
-        // dd($listCart);
-    }
-
-    public function detail($id)
-    {
-        $user = Auth::user();
-
-        $listCart = Keranjang::join('produks', 'produks.id', '=', 'keranjangs.pt_produk_id')
-            ->select('produks.foto_produk', 'keranjangs.id', 'produks.nama', 'produks.harga', 'keranjangs.kuantitas')
-            ->where('keranjangs.user_id', $user->id)
-            ->get();
-
-
-        $produk = Produk::join('produk_tokos', 'produk_tokos.produk_id', '=', 'produks.id')
-            ->select('produks.*', 'produk_tokos.stok')
-            ->where('produks.id', $id)
-            ->first();
-
-
-        $lokasi = Toko::join('produk_tokos', 'produk_tokos.toko_id', '=', 'tokos.id')
-            ->select('tokos.*')
-            ->where('produk_tokos.produk_id', $id)
-            ->where('produk_tokos.stok', '>', 0)
-            ->distinct('tokos.nama')
-            ->get();
-
-
-        $stok = ProdukToko::select('stok')
-            ->where('produk_tokos.produk_id', $id)
-            ->groupBy('produk_tokos.produk_id')
-            ->sum('stok');
-
-        $cekStock = ProdukToko::join('tokos', 'produk_tokos.toko_id', '=', 'tokos.id')
-            ->select(DB::raw('SUM(produk_tokos.stok) as stok'), 'tokos.nama')
-            ->where('produk_tokos.produk_id', $id)
-            ->groupBy('produk_tokos.toko_id', 'tokos.nama')
-            ->get();
-
-        return view('checkout.detail', compact('produk', 'lokasi', 'stok', 'listCart', 'cekStock'));
-        // dd($produk);
-        }
-
-        public function transactionHistory()
-        {
-            $user = Auth::user();
-            $transactionList = Transaksi::where('user_id', $user->id)->get();
-            return view('pelanggan.profile.transactionHIstory', compact('transactionList'));
-            // dd($transactionList);
-        }
 }
