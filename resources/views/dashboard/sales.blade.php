@@ -18,178 +18,178 @@
 @section('kontensales')
 <div class="row layout-top-spacing">
 
-  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-    <div class="widget widget-chart-one">
-      <div class="widget-heading">
-        <h5 class="">Depo Sidoarjo</h5>
-        <h5 class="">{{ date('d F Y',
-          strtotime($startDate)) }} - {{ date('d F Y',
-          strtotime($tglSekarang)) }}</h5>
-        <div class="task-action">
-          <div class="dropdown">
-            <a class="dropdown-toggle" href="#" role="button" id="renvenue1" data-bs-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-more-horizontal">
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="19" cy="12" r="1"></circle>
-                <circle cx="5" cy="12" r="1"></circle>
-              </svg>
-            </a>
-            {{-- <div class="dropdown-menu left" aria-labelledby="renvenue" style="will-change: transform;">
-              <a class="dropdown-item" href="javascript:void(0);">Weekly</a>
-              <a class="dropdown-item" href="javascript:void(0);">Monthly</a>
-              <a class="dropdown-item" href="javascript:void(0);">Yearly</a>
-            </div> --}}
-          </div>
-        </div>
-      </div>
-
-      <div class="widget-content">
-        <div id="revenueMonthly1"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-    <div class="widget widget-chart-one">
-      <div class="widget-heading">
-        <h5 class="">Depo Malang</h5>
-        <h5 class="">{{ date('d F Y',
-          strtotime($startDate)) }} - {{ date('d F Y',
-          strtotime($tglSekarang)) }}</h5>
-        <div class="task-action">
-          <div class="dropdown">
-            <a class="dropdown-toggle" href="#" role="button" id="renvenue" data-bs-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-more-horizontal">
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="19" cy="12" r="1"></circle>
-                <circle cx="5" cy="12" r="1"></circle>
-              </svg>
-            </a>
-            {{-- <div class="dropdown-menu left" aria-labelledby="renvenue" style="will-change: transform;">
-              <a class="dropdown-item" href="javascript:void(0);">Weekly</a>
-              <a class="dropdown-item" href="javascript:void(0);">Monthly</a>
-              <a class="dropdown-item" href="javascript:void(0);">Yearly</a>
-            </div> --}}
-          </div>
-        </div>
-      </div>
-
-      <div class="widget-content">
-        <div id="revenueMonthly2"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-    <div class="widget widget-chart-one">
-      <div class="widget-heading">
-        <h5 class="">Depo Surabaya</h5>
-        <h5 class="">{{ date('d F Y',
-          strtotime($startDate)) }} - {{ date('d F Y',
-          strtotime($tglSekarang)) }}</h5>
-        <div class="task-action">
-          <div class="dropdown">
-            <a class="dropdown-toggle" href="#" role="button" id="renvenue3" data-bs-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="feather feather-more-horizontal">
-                <circle cx="12" cy="12" r="1"></circle>
-                <circle cx="19" cy="12" r="1"></circle>
-                <circle cx="5" cy="12" r="1"></circle>
-              </svg>
-            </a>
-            {{-- <div class="dropdown-menu left" aria-labelledby="renvenue" style="will-change: transform;">
-              <a class="dropdown-item" href="javascript:void(0);">Weekly</a>
-              <a class="dropdown-item" href="javascript:void(0);">Monthly</a>
-              <a class="dropdown-item" href="javascript:void(0);">Yearly</a>
-            </div> --}}
-          </div>
-        </div>
-      </div>
-
-      <div class="widget-content">
-        <div id="revenueMonthly3"></div>
-      </div>
-    </div>
-  </div>
-
-  {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-    <div class="row widget-statistic">
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-        <div class="widget widget-one_hybrid widget-followers">
-          <div class="widget-heading">
-            <div class="w-title">
-              <div class="w-icon">
-                <i data-feather="activity"></i>
-              </div>
-              <div class="">
-                <p class="w-value">Depo Sidoarjo</p>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <div class="widget widget-chart-one">
+            <div class="widget-heading">
+                <h5 class="">Depo Sidoarjo</h5>
                 <h5 class="">{{ date('d F Y',
                   strtotime($startDate)) }} - {{ date('d F Y',
                   strtotime($tglSekarang)) }}</h5>
-              </div>
+                <div class="task-action">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="renvenue1" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="feather feather-more-horizontal">
+                                <circle cx="12" cy="12" r="1"></circle>
+                                <circle cx="19" cy="12" r="1"></circle>
+                                <circle cx="5" cy="12" r="1"></circle>
+                            </svg>
+                        </a>
+                        {{-- <div class="dropdown-menu left" aria-labelledby="renvenue" style="will-change: transform;">
+                            <a class="dropdown-item" href="javascript:void(0);">Weekly</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Monthly</a>
+                            <a class="dropdown-item" href="javascript:void(0);">Yearly</a>
+                        </div> --}}
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="widget-content">
-            <div class="w-chart">
-              <div id="hybrid_followers"></div>
+
+            <div class="widget-content">
+                <div id="revenueMonthly1"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+      <div class="widget widget-chart-one">
+        <div class="widget-heading">
+          <h5 class="">Depo Malang</h5>
+          <h5 class="">{{ date('d F Y',
+            strtotime($startDate)) }} - {{ date('d F Y',
+            strtotime($tglSekarang)) }}</h5>
+          <div class="task-action">
+            <div class="dropdown">
+              <a class="dropdown-toggle" href="#" role="button" id="renvenue" data-bs-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-more-horizontal">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </a>
+              {{-- <div class="dropdown-menu left" aria-labelledby="renvenue" style="will-change: transform;">
+                <a class="dropdown-item" href="javascript:void(0);">Weekly</a>
+                <a class="dropdown-item" href="javascript:void(0);">Monthly</a>
+                <a class="dropdown-item" href="javascript:void(0);">Yearly</a>
+              </div> --}}
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-        <div class="widget widget-one_hybrid widget-referral">
-          <div class="widget-heading">
-            <div class="w-title">
-              <div class="w-icon">
-                <i data-feather="activity"></i>
-              </div>
-              <div class="">
-                <p class="w-value">Depo Malang</p>
-                <h5 class="">{{ date('d F Y',
-                  strtotime($startDate)) }} - {{ date('d F Y',
-                  strtotime($tglSekarang)) }}</h5>
-              </div>
-            </div>
-          </div>
-          <div class="widget-content">
-            <div class="w-chart">
-              <div id="hybrid_followers1"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-        <div class="widget widget-one_hybrid widget-engagement">
-          <div class="widget-heading">
-            <div class="w-title">
-              <div class="w-icon">
-                <i data-feather="activity"></i>
-              </div>
-              <div class="">
-                <p class="w-value">Depo Surabaya</p>
-                <h5 class="">{{ date('d F Y',
-                  strtotime($startDate)) }} - {{ date('d F Y',
-                  strtotime($tglSekarang)) }}</h5>
-              </div>
-            </div>
-          </div>
-          <div class="widget-content">
-            <div class="w-chart">
-              <div id="hybrid_followers3"></div>
-            </div>
-          </div>
+    
+        <div class="widget-content">
+          <div id="revenueMonthly2"></div>
         </div>
       </div>
     </div>
-  </div> --}}
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+      <div class="widget widget-chart-one">
+        <div class="widget-heading">
+          <h5 class="">Depo Surabaya</h5>
+          <h5 class="">{{ date('d F Y',
+            strtotime($startDate)) }} - {{ date('d F Y',
+            strtotime($tglSekarang)) }}</h5>
+          <div class="task-action">
+            <div class="dropdown">
+              <a class="dropdown-toggle" href="#" role="button" id="renvenue3" data-bs-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-more-horizontal">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </a>
+              {{-- <div class="dropdown-menu left" aria-labelledby="renvenue" style="will-change: transform;">
+                <a class="dropdown-item" href="javascript:void(0);">Weekly</a>
+                <a class="dropdown-item" href="javascript:void(0);">Monthly</a>
+                <a class="dropdown-item" href="javascript:void(0);">Yearly</a>
+              </div> --}}
+            </div>
+          </div>
+        </div>
+    
+        <div class="widget-content">
+          <div id="revenueMonthly3"></div>
+        </div>
+      </div>
+    </div>
+
+    {{-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="row widget-statistic">
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+                <div class="widget widget-one_hybrid widget-followers">
+                    <div class="widget-heading">
+                        <div class="w-title">
+                            <div class="w-icon">
+                                <i data-feather="activity"></i>
+                            </div>
+                            <div class="">
+                                <p class="w-value">Depo Sidoarjo</p>
+                                <h5 class="">{{ date('d F Y',
+                                strtotime($startDate)) }} - {{ date('d F Y',
+                                strtotime($tglSekarang)) }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="w-chart">
+                            <div id="hybrid_followers"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+                <div class="widget widget-one_hybrid widget-referral">
+                    <div class="widget-heading">
+                        <div class="w-title">
+                            <div class="w-icon">
+                                <i data-feather="activity"></i>
+                            </div>
+                            <div class="">
+                                <p class="w-value">Depo Malang</p>
+                                <h5 class="">{{ date('d F Y',
+                                strtotime($startDate)) }} - {{ date('d F Y',
+                                strtotime($tglSekarang)) }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="w-chart">
+                            <div id="hybrid_followers1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
+                <div class="widget widget-one_hybrid widget-engagement">
+                    <div class="widget-heading">
+                        <div class="w-title">
+                            <div class="w-icon">
+                                <i data-feather="activity"></i>
+                            </div>
+                            <div class="">
+                                <p class="w-value">Depo Surabaya</p>
+                                <h5 class="">{{ date('d F Y',
+                                    strtotime($startDate)) }} - {{ date('d F Y',
+                                    strtotime($tglSekarang)) }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="w-chart">
+                            <div id="hybrid_followers3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
 </div>
 @endsection
 
@@ -200,6 +200,18 @@
 
 <script>
   window.addEventListener("load", function () {
+
+      var arraySalesSidoarjo = @json($arraySalesSidoarjo);
+      var arraySalesMalang = @json($arraySalesMalang);
+      var arraySalesSurabaya = @json($arraySalesSurabaya);
+      var arrayWaktu = @json($arrayWaktu);
+      
+      var tglSekarang = @json($tglSekarang);
+      var startDate = @json($startDate);
+
+      console.log(arraySalesSidoarjo);
+
+      
 
       var arraySalesSidoarjo = @json($arraySalesSidoarjo);
       var arraySalesMalang = @json($arraySalesMalang);
@@ -1718,7 +1730,7 @@
 })
 </script>
 
-{{-- <script>
+{{-- {{-- <script>
   window.addEventListener("load", function(){
   try {
 

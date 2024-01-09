@@ -5,17 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\DetailTransaksi;
 use Illuminate\Support\Facades\DB;
+use Kodepandai\LaravelRajaOngkir\Facades\RajaOngkir;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Carbon\Carbon;
-
 class TransaksiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $title = 'Delete Data!';
@@ -30,116 +26,79 @@ class TransaksiController extends Controller
         return view('transaksi.penjualan.daftarpenjualan', compact('listPenjualan'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $detailPenjualan = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
-        ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
-        ->select('transaksis.*', 'pelanggans.*', 'tokos.nama as nama_toko', 'tokos.nama as nama _toko', 'tokos.alamat as alamat_toko','tokos.kota as kota_toko','tokos.provinsi as provinsi_toko', 'tokos.negara as negara_toko','tokos.kode_pos as kode_pos_toko','tokos.no_hp as no_hp_toko')
-        ->orderBy('transaksis.id', 'asc')
-        ->get();
-
-    
-
-        $rincianPenjualan = DetailTransaksi::join('produk_tokos', 'produk_tokos.id', '=', 'detail_transaksis.produk_toko_id')
-        ->join('produks', 'produks.id', '=', 'produk_tokos.produk_id')
-        ->select('detail_transaksis.*', 'produks.*')
-        ->where('detail_transaksis.transaksi_id', $id)
-        ->get();
-
-    // dd($rincianPenjualan);
+            ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
+            ->select('transaksis.*', 'pelanggans.*', 'tokos.nama as nama_toko', 'tokos.nama as nama _toko', 'tokos.alamat as alamat_toko', 'tokos.kecamatan as kecamatan_toko', 'tokos.kota as kota_toko', 'tokos.provinsi as provinsi_toko', 'tokos.negara as negara_toko', 'tokos.kode_pos as kode_pos_toko', 'tokos.no_hp as no_hp_toko')
+            ->orderBy('transaksis.id', 'asc')
+            ->get();
 
 
-    return view('transaksi.penjualan.detailpenjualan', compact('detailPenjualan', 'rincianPenjualan'));
-}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        $rincianPenjualan = DetailTransaksi::join('produks', 'produks.id', '=', 'detail_transaksis.produk_id')
+            ->select('detail_transaksis.*', 'produks.*')
+            ->where('detail_transaksis.transaksi_id', $id)
+            ->get();
+
+        // dd($rincianPenjualan);
+
+
+        return view('transaksi.penjualan.detailpenjualan', compact('detailPenjualan', 'rincianPenjualan'));
+    }
+
     public function edit($id)
     {
         $detailPenjualan = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
-        ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
-        ->join('promos', 'promos.id', '=', 'transaksis.promo_id')
-        ->select('transaksis.*', 'pelanggans.*', 'tokos.nama as nama_toko', 'tokos.nama as nama _toko', 'tokos.alamat as alamat_toko', 'tokos.kota as kota_toko', 'tokos.provinsi as provinsi_toko', 'tokos.negara as negara_toko', 'tokos.kode_pos as kode_pos_toko', 'tokos.no_hp as no_hp_toko', 'promos.*')
-        ->orderBy('transaksis.id', 'asc')
-        ->get();
+            ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
+            ->join('promos', 'promos.id', '=', 'transaksis.promo_id')
+            ->select('transaksis.*', 'pelanggans.*', 'tokos.nama as nama_toko', 'tokos.nama as nama _toko', 'tokos.alamat as alamat_toko', 'tokos.kota as kota_toko', 'tokos.provinsi as provinsi_toko', 'tokos.negara as negara_toko', 'tokos.kode_pos as kode_pos_toko', 'tokos.no_hp as no_hp_toko', 'promos.*')
+            ->orderBy('transaksis.id', 'asc')
+            ->get();
 
 
 
-    $rincianPenjualan = DetailTransaksi::join('produks', 'produks.id', '=', 'detail_transaksis.produk_id')
-        ->select('detail_transaksis.*', 'produks.*')
-        ->where('detail_transaksis.transaksi_id', $id)
-        ->get();
+        $rincianPenjualan = DetailTransaksi::join('produks', 'produks.id', '=', 'detail_transaksis.produk_id')
+            ->select('detail_transaksis.*', 'produks.*')
+            ->where('detail_transaksis.transaksi_id', $id)
+            ->get();
 
-    // dd($rincianPenjualan);
+        // dd($rincianPenjualan);
 
 
-    return view('transaksi.penjualan.editpenjualan', compact('detailPenjualan', 'rincianPenjualan'));
-
+        return view('transaksi.penjualan.editpenjualan', compact('detailPenjualan', 'rincianPenjualan'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+
     }
+
     public function laporanpenjualan()
     {
-        $listTransaksi = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
+        $listPenjualan = Transaksi::join('tokos', 'tokos.id', '=', 'transaksis.toko_id')
             ->join('pelanggans', 'pelanggans.id', '=', 'transaksis.pelanggan_id')
             ->select('transaksis.*', 'tokos.nama as nama_toko', 'pelanggans.nama as nama_pelanggan')
             ->orderBy('transaksis.id', 'asc')
             ->get();
 
 
-        return view('laporan.daftarlaporanpenjualan', compact('listTransaksi'));
+        return view('laporan.penjualan.daftarlaporanpenjualan', compact('listPenjualan'));
     }
 
     public function grafikSales()
@@ -148,11 +107,16 @@ class TransaksiController extends Controller
         $tglSekarang = Carbon::now('Asia/Jakarta');
 
         $tglSekarangOnly = $tglSekarang->format('d');
+        $tglSekarangOnly = $tglSekarang->format('d');
 
         $arraySalesSidoarjo = [];
         $arraySalesMalang = [];
         $arraySalesSurabaya = [];
         $arraySalesSidoarjo2 = [1, 2, 3, 4, 5, 6];
+        $arrayWaktu = [];
+
+        // dd($tglSekarangOnly);
+        $arraySalesSidoarjo2 = [1,2,3,4,5,6];
         $arrayWaktu = [];
 
         // dd($tglSekarangOnly);
@@ -165,10 +129,17 @@ class TransaksiController extends Controller
             $depoSidoarjo = Transaksi::whereBetween('tanggal_transaksi', [Carbon::now()->day($i)->startOfDay(), Carbon::now()->day($i)->endOfDay()])
                 ->where('toko_id', '=', 1)
                 ->count();
+            $depoSidoarjo = Transaksi::whereBetween('tanggal_transaksi', [Carbon::now()->day($i)->startOfDay(), Carbon::now()->day($i)->endOfDay()])
+                ->where('toko_id', '=', 1)
+                ->count();
 
+            $arraySalesSidoarjo[] = $depoSidoarjo;
             $arraySalesSidoarjo[] = $depoSidoarjo;
 
             // Malang
+            $depoMalang = Transaksi::whereBetween('tanggal_transaksi', [Carbon::now()->day($i)->startOfDay(), Carbon::now()->day($i)->endOfDay()])
+                ->where('toko_id', '=', 2)
+                ->count();
             $depoMalang = Transaksi::whereBetween('tanggal_transaksi', [Carbon::now()->day($i)->startOfDay(), Carbon::now()->day($i)->endOfDay()])
                 ->where('toko_id', '=', 2)
                 ->count();
@@ -183,10 +154,13 @@ class TransaksiController extends Controller
 
 
             $arraySalesSurabaya[] = $depoSurabaya;
+            $arraySalesSurabaya[] = $depoSurabaya;
         }
 
         // dd($arrayWaktu, $arraySalesSidoarjo);
 
         return view('dashboard.sales', compact('arraySalesSidoarjo', 'arraySalesMalang', 'arrayWaktu', 'arraySalesSurabaya', 'tglSekarang', 'startDate'));
     }
+
+
 }
