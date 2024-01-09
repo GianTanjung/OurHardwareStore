@@ -82,13 +82,13 @@
                                     </div>
                                     <div class="ec-pro-content">
                                         <h5 class="ec-pro-title"><a href={{route('detail', $p->id)}}>{{$p->nama}}</a></h5>
-                                        <div class="ec-pro-rating">
+                                        {{-- <div class="ec-pro-rating">
                                             <i class="ecicon eci-star fill"></i>
                                             <i class="ecicon eci-star fill"></i>
                                             <i class="ecicon eci-star fill"></i>
                                             <i class="ecicon eci-star fill"></i>
                                             <i class="ecicon eci-star"></i>
-                                        </div>
+                                        </div> --}}
                                         <div class="ec-pro-list-desc">{{$p->deskripsi}}</div>
                                         <span class="ec-price">
                                             {{-- <span class="old-price">$27.00</span> --}}

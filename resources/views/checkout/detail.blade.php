@@ -30,7 +30,7 @@
                                 <div class="single-pro-desc single-pro-desc-no-sidebar">
                                     <div class="single-pro-content">
                                         <h5 class="ec-single-title">{{$produk->nama}}</h5>
-                                        <div class="ec-single-rating-wrap">
+                                        {{-- <div class="ec-single-rating-wrap">
                                             <div class="ec-single-rating">
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star fill"></i>
@@ -38,7 +38,7 @@
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star-o"></i>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="ec-single-desc">{{$produk->deskripsi}}</div>
 
                                         <div class="ec-single-sales">

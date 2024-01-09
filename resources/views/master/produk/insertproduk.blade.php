@@ -87,7 +87,7 @@
                         <label>Sub Kategori</label>
                         <select class="form-select @error('subkategori_id') is-invalid @enderror" name="subkategori_id">
                             <option selected disabled value="">Choose...</option>
-                            @foreach ($subkategoris as $subkategori)
+                            @foreach ($kategoris as $subkategori)
 
                             <option value="{{ $subkategori->id }}" {{ old('subkategori_id')==$subkategori->id ?
                                 'selected' : '' }}>{{ $subkategori->nama }}</option>
