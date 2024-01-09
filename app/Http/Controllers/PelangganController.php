@@ -516,7 +516,7 @@ class PelangganController extends Controller
             $riwayatDompet = new Dompet();
             $riwayatDompet->dana = $totalHarga;
             $riwayatDompet->arus = "Keluar";
-            $riwayatDompet->validasi_topup = 1;
+            $riwayatDompet->validasi_topup = 4;
             $riwayatDompet->tanggal = Carbon::now('Asia/Jakarta');
             $riwayatDompet->pelanggan_id = $pelanggan->id;
             // dd($riwayatDompet);

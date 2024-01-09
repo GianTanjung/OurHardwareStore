@@ -822,6 +822,8 @@
                                             <td><span>Menunggu Verifikasi</span></td>
                                             @elseif($dompet->validasi_topup == 1)
                                             <td><span>Diterima</span></td>
+                                            @elseif($dompet->validasi_topup == 4)
+                                            <td><span></span></td>
                                             @else
                                             <td><span>Dibatalkan</span></td>
                                             @endif
