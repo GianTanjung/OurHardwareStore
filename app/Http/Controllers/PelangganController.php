@@ -45,34 +45,34 @@ class PelangganController extends Controller
         $selectedstore = $request->input('store', []);
         $search = $request->query('search');
 
-        $listProduct = DB::table('produks')->select('id', 'foto_produk', 'nama', 'harga', (DB::raw("CONCAT(SUBSTRING_INDEX(deskripsi, ' ', 20),'...') AS deskripsi")))->get();
+        $listProduct = DB::table('produks')->select('id', 'fotoProduk', 'nama', 'harga', (DB::raw("CONCAT(SUBSTRING_INDEX(deskripsi, ' ', 20),'...') AS deskripsi")))->get();
 
         if($selectedkategori != null){
-            $listProduct = DB::table('produks as p')->select('p.id', 'p.foto_produk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
+            $listProduct = DB::table('produks as p')->select('p.id', 'p.fotoProduk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
             ->join('produk_tokos as t', 't.produk_id', '=', 'p.id')->whereIn('p.kategori_id', $selectedkategori)->where('t.stok', '>', 0)->get();
         }
 
         if($selectedstore != null){
-            $listProduct = DB::table('produks as p')->select('p.id', 'p.foto_produk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
+            $listProduct = DB::table('produks as p')->select('p.id', 'p.fotoProduk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
         ->join('produk_tokos as t', 't.produk_id', '=', 'p.id')->whereIn('t.toko_id', $selectedstore)->where('t.stok', '>', 0)->get();
         }
 
         if($selectedstore && $selectedkategori != null){
-            $listProduct = DB::table('produks as p')->select('p.id', 'p.foto_produk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
+            $listProduct = DB::table('produks as p')->select('p.id', 'p.fotoProduk', 'p.nama', 'p.harga', (DB::raw("CONCAT(SUBSTRING_INDEX(p.deskripsi, ' ', 20),'...') AS deskripsi")))
         ->join('produk_tokos as t', 't.produk_id', '=', 'p.id')->whereIn('t.toko_id', $selectedstore)->whereIn('p.kategori_id', $selectedkategori)->where('t.stok', '>', 0)->get();
         }
 
         if($search != null)
         {
-            $listProduct = DB::table('produks')->select('id', 'foto_produk', 'nama', 'harga', (DB::raw("CONCAT(SUBSTRING_INDEX(deskripsi, ' ', 20),'...') AS deskripsi")))->where('nama', 'like', '%' . $search . '%')->get();
+            $listProduct = DB::table('produks')->select('id', 'fotoProduk', 'nama', 'harga', (DB::raw("CONCAT(SUBSTRING_INDEX(deskripsi, ' ', 20),'...') AS deskripsi")))->where('nama', 'like', '%' . $search . '%')->get();
         }
 
-        // $listCart = DB::table('keranjangs as k')->select('p.foto_produk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', Auth::user()->id)->get();
-        $listCart = DB::table('keranjangs as k')->select('k.id','p.foto_produk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        // $listCart = DB::table('keranjangs as k')->select('p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', Auth::user()->id)->get();
+        $listCart = DB::table('keranjangs as k')->select('k.id','p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas    ')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
         $vat = $subTotal*20/100;
         $total = $subTotal+$vat;
-        $count = DB::table('keranjangs as k')->select('p.foto_produk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->count();
+        $count = DB::table('keranjangs as k')->select('p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->count();
         $kategoris = DB::table('kategoris')->select('*')->get();
         $stores = DB::table('tokos')->select('*')->get();
 
@@ -144,7 +144,7 @@ class PelangganController extends Controller
         $pelanggan = Pelanggan::where('user_id', Auth::user()->id)->first();
         // hardcode
         // $pelanggan = Pelanggan::where('user_id', 5)->first();
-        $listCart = DB::table('keranjangs as k')->select('k.id','p.id as produk_id', 'p.foto_produk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        $listCart = DB::table('keranjangs as k')->select('k.id','p.id as produk_id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         // dd($listCart);
         $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->sum(DB::raw('harga * kuantitas'));
         $vat = $subTotal*20/100;
@@ -165,7 +165,7 @@ class PelangganController extends Controller
         if($choosen == null)
         {
             $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
-            $listCart = DB::table('keranjangs as k')->select('k.id', 'p.id as produk_id' ,'p.foto_produk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+            $listCart = DB::table('keranjangs as k')->select('k.id', 'p.id as produk_id' ,'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
             $subTotal = 0;
             $vat = 0;
             $total = 0;
@@ -177,7 +177,7 @@ class PelangganController extends Controller
         }
         else{
             $pelanggan = Pelanggan::where('user_id',Auth::user()->id)->first();
-            $listCart = DB::table('keranjangs as k')->select('k.id','p.id as produk_id', 'p.foto_produk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+            $listCart = DB::table('keranjangs as k')->select('k.id','p.id as produk_id', 'p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas', 'k.toko_id', 't.id as idstore', 't.nama as namastore')->join('produks as p', 'p.id', '=', 'k.produk_id')->join('tokos as t', 't.id', '=', 'k.toko_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
             $subTotal = DB::table('keranjangs as k')->select('p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->whereIn('k.id', $choosen)->sum(DB::raw('harga * kuantitas'));
             
             $vat = $subTotal*11/100;
@@ -253,7 +253,7 @@ class PelangganController extends Controller
         $productId = $id;
         $user = Auth::user();
         $pelanggan = Pelanggan::where('user_id',$user->id)->first();
-        $listCart = DB::table('keranjangs as k')->select('k.id','p.foto_produk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
+        $listCart = DB::table('keranjangs as k')->select('k.id','p.fotoProduk', 'p.nama', 'p.harga', 'k.kuantitas')->join('produks as p', 'p.id', '=', 'k.produk_id')->where('k.pelanggan_id', '=', $pelanggan->id)->get();
         $produk = DB::table('produks as p')->select('p.*', 'pt.stok')->join('produk_tokos as pt', 'pt.produk_id', '=', 'p.id')->join('tokos as t', 't.id', '=', 'pt.toko_id')->where('p.id', '=', $id)->first();
         $lokasi = DB::table('tokos as t')->select('t.nama', 't.id')->join('produk_tokos as pt', 'pt.toko_id', '=', 't.id')->where('pt.produk_id', '=', $id)->where('pt.stok', '>', 0)->distinct('t.nama')->get();
         $stok = DB::table('produk_tokos')->select('stok')->where('produk_tokos.produk_id', '=', $id)->groupBy('produk_tokos.produk_id')->sum('stok');
@@ -502,7 +502,7 @@ class PelangganController extends Controller
     public function buatOrder(Request $request)
     {
         DB::beginTransaction();
-        try {
+        // try {
             $keranjang = $request->input('keranjang');
             $user = Auth::user();
             $pelanggan = $user->pelanggans;
@@ -513,13 +513,14 @@ class PelangganController extends Controller
             // dd($request->input('input_metode_pengiriman'));
 
             // $dompet = $user->dompet;
-            // $riwayatDompet = new RiwayatDompet();
-            // $riwayatDompet->dana = $totalHarga;
-            // $riwayatDompet->arus = "Keluar";
-            // $riwayatDompet->validasi_topup = 1;
-            // $riwayatDompet->tanggal = Carbon::now('Asia/Jakarta');
-            // $riwayatDompet->dompet_id = $dompet->id;
-            // $riwayatDompet->save();
+            $riwayatDompet = new Dompet();
+            $riwayatDompet->dana = $totalHarga;
+            $riwayatDompet->arus = "Keluar";
+            $riwayatDompet->validasi_topup = 1;
+            $riwayatDompet->tanggal = Carbon::now('Asia/Jakarta');
+            $riwayatDompet->pelanggan_id = $pelanggan->id;
+            // dd($riwayatDompet);
+            $riwayatDompet->save();
 
             $pelanggan->saldo -= $totalHarga;
             $pelanggan->poin += $totalHarga*0.01;
@@ -619,13 +620,13 @@ class PelangganController extends Controller
 
             DB::commit();
             return redirect()->route('listProduct')->with('berhasil', 'Pembelian berhasil dilakukan.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $pesanGagal = 'Pembelian gagal. Terjadi kesalahan.';
-            $pesanGagal .= ' Silakan hubungi teknisi kami untuk bantuan lebih lanjut.';
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         $pesanGagal = 'Pembelian gagal. Terjadi kesalahan.';
+    //         $pesanGagal .= ' Silakan hubungi teknisi kami untuk bantuan lebih lanjut.';
 
-            return redirect()->route('listProduct')->with('gagal', $pesanGagal);
-        }
+    //         return redirect()->route('listProduct')->with('gagal', $pesanGagal);
+    //     }
     }
 
     public function dompetHistory()

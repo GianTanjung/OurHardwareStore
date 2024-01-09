@@ -241,7 +241,7 @@
                         {{-- <div class="qty-plus-minus">
                             <input class="qty-input" type="text" name="ec_qtybtn" value={{$c->kuantitas}} />
                         </div> --}}
-                        <a href="../customer/deleteOutCart/{{$c->id}}" class="remove">×</a>
+                        <a href="deleteOutCart/{{$c->id}}" class="remove">×</a>
                     </div>
                 </li>
                 @endforeach
