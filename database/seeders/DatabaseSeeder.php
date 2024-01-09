@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SalesUomsSeeder::class,
             TokoSeeder::class,
             ProdukSeeder::class,
+            ProdukRuanganSeeder::class,
             ProdukTokoSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
